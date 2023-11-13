@@ -1,0 +1,17 @@
+.categories {
+    margin: 0 auto;
+    padding: 0 1em;
+    width: 80%;
+}
+
+.categories > h3 {
+    text-align: center;
+    color: #848484;
+}
+
+.categories ul {
+    list-style-type: none;
+    display: flex;
+    gap: 3em;
+    justify-content: space-around;
+}
