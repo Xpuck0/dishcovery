@@ -1,26 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RecipeCard from "../components/RecipeCard.jsx";
+import * as recipeAPI from '../services/recipesAPI';
 import './RecipeList.css'
 
-export default function RecipeList(props) {
-    const [count, setCount] = useState(6);
+export default function RecipeList({
+    content,
+}) {
+    const [recipes, setRecipes] = useState({});
 
-    // TODO use database
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await recipeAPI.getAllRecipes();
+            setRecipes(data);
+        }
+        fetchData()
+    }, []);
 
-    return (    
+
+    if (Object.keys(recipes).length == 0) {
+        return (
+            <h1 className="no-recipes">There are no recipes</h1>
+        )
+    }
+
+    return (
         <div className="recipe-list">
             <div className="header-wrapper">
-                <h2>{props.content}</h2>
+                <h2>{content}</h2>
             </div>
             <div className="line"></div>
             <ul className="recipes">
-                <RecipeCard author="Ivan invanov"/> 
-                <RecipeCard author="Ivan invanov"/> 
-                <RecipeCard author="Ivan invanov"/> 
-                <RecipeCard author="Ivan invanov"/> 
-                <RecipeCard author="Ivan invanov"/> 
-                <RecipeCard author="Ivan invanov"/> 
+
+                {Object.values(recipes).map(r => {
+                    return <RecipeCard key={r._id} r={r} />
+                })}
+
             </ul>
-        </div>        
+        </div>
     )
 }

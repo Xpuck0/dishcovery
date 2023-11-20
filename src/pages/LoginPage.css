@@ -1,0 +1,167 @@
+.login-page-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: #A4A4A4;
+    font-size: 1.5em;
+    background-image: url('/images/stars.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-page-wrapper .title {
+    display: relative;
+    text-align: center;
+    font-size: 3em;
+    text-shadow: 0px 0px 15px rgba(231,231,231,0.59);
+}
+
+.login-page-wrapper .title-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 800;
+}
+
+
+.login-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    display: flex;
+
+    width: 90%;
+    min-height: 30em;
+    margin: 0 auto;
+    border-radius: .3em;
+    overflow: hidden;
+    background-color: #E4EBEB;
+
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.33);
+}
+
+.login-page .image-container {
+    flex: 0 0 55%;
+    border-radius: 0em;
+    overflow: hidden;
+}
+
+.login-page img {
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+    -webkit-box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+    -moz-box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+}
+
+
+.login-page .login-form {
+    flex: 1 1 40%;
+    padding: 2em;
+}
+
+.login-page label:not([for="remember-me"]) {
+    display: block;
+}
+
+.login-form {
+    position: relative;
+
+    box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+    -webkit-box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+    -moz-box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+}
+
+.login-form form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.login-form form>h2,
+.login-form form>p {
+    text-align: center;
+}
+
+.login-form form>h2 {
+    text-transform: uppercase;
+    margin-bottom: 1em;
+}
+
+.login-form label {
+    font-weight: 600;
+    color: #686868;
+}
+
+.login-form input {
+    padding: 0.5em 1em;
+    font-size: inherit;
+}
+
+.login-form .inline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .4em;
+    font-size: .7em
+}
+
+.login-form .remember-me-wrapper {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.login-form .input-wrapper {
+    margin-bottom: 1em;
+}
+
+.login-form form .input-wrapper input {
+    width: 100%;
+}
+
+.login-form input:not([type="checkbox"]) {
+    margin-bottom: 1em;
+    background-color: #D9D9D9;
+    border-radius: 1em;
+    border: 2px solid black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.login-form .submit {
+    padding: .5em 1em;
+    background-color: #FFC267;
+    border-radius: 1em;
+    font-size: 1em;
+    font-weight: 600;
+    border: 2px solid black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    color: #474747;
+}
+
+.login-form .link {
+    text-decoration: none;
+    font-weight: 600;
+    color: #7288FF;
+}
+
+.login-form p {
+    margin-top: 1em;
+    font-size: .5em;
+    font-weight: 600;
+    color: #686868;
+}
+
+#remember-me {
+    width: .75em;
+    margin-left: .5em;
+}

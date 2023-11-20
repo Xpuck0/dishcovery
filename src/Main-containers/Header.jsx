@@ -1,4 +1,5 @@
-import './Header.css'
+import { Link } from 'react-router-dom';
+import './Header.css';
 
 export default function Header() {
 
@@ -9,8 +10,8 @@ export default function Header() {
                 <input type="text" name="Searchbar" placeholder="Search recipes and chefs"/>
             </form>
             <div className="auth-buttons">
-                <p><a href="#">Log in</a></p>
-                <p><a href="#">Sign up</a></p>
+                <p><Link to="/login">Log in</Link></p>
+                <p><Link to="/signup">Sign up</Link></p>
             </div>
         </div>
     )

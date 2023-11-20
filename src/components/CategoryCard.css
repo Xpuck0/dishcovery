@@ -4,13 +4,16 @@
     align-items: center;
 }
 
+
+
 .category-card h3 {
     font-weight: 300;
 }
 
 .category-card .img-container {
-    width: 4em;
-    border-radius: 2em;
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
     overflow: hidden;
 }
 
