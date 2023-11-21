@@ -35,6 +35,20 @@
     border-radius: 50em;
 }
 
+.site-header .searchbar-wrapper {
+    position: relative;
+}
+
+.site-header .backspace {
+    position: absolute;
+    right: 1em;
+    height: 3em;
+}
+
+.site-header .backspace:hover {
+    cursor: pointer;
+}
+
 .site-header .auth-buttons {
     flex: 0 1 15%;
     justify-content: flex-end;

@@ -3,7 +3,7 @@ import { getFullRecipe } from "../services/recipesAPI";
 import { useParams, Link } from "react-router-dom";
 import StarRating from "../components/StarRating";
 import HeadingWithLine from "../components/HeadingWithLine";
-import { createComment } from "../services/commentsAPI";
+import { createComment, getAllComments } from "../services/commentsAPI";
 
 const COMMENT_STATE_KEYS = {
     username: '',
@@ -25,6 +25,7 @@ export default function RecipeDetails() {
     const { id } = useParams();
 
     const [comment, setComment] = useState(COMMENT_STATE_KEYS)
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         async function getInfo() {
@@ -32,8 +33,13 @@ export default function RecipeDetails() {
             setRecipe(res);
         }
 
+        getAllComments(id)
+            .then(data => {
+                setComments(data)
+            })
+
         getInfo();
-    }, [])
+    }, [comment])
 
     const changeHandler = (e) => {
         setComment(old => ({
@@ -48,7 +54,8 @@ export default function RecipeDetails() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        await createComment(id, comment.username, comment.comment);
+        const res = await createComment(id, comment.username, comment.comment);
+        setComments(old => [...old, res])
         clearState();
     }
 
@@ -58,16 +65,16 @@ export default function RecipeDetails() {
                 <Link to="..">Back</Link>
                 <section className="title-wrapper">
                     <h1 className="title">{recipe.title}</h1>
-                    <h4 className="author">{recipe.author}</h4>.
+                    <h4 className="author">{recipe.author}</h4>
                 </section>
                 <StarRating />
             </div>
             <div className="images">
-                {recipe.images.map(i => {
-                    <div className="image-wrapper">
+                {recipe.images.map((i, index) => (
+                    <div key={index} className="image-wrapper">
                         <img src={i} alt={`Picture of ${recipe.title}`} />
                     </div>
-                })}
+                ))}
             </div>
             <HeadingWithLine content="Ingredients" />
             <ul>
@@ -88,18 +95,29 @@ export default function RecipeDetails() {
 
             <HeadingWithLine content="Contribute" />
 
-            {recipe.wallets ? Object.entries(recipe.wallets).map((a, i) => (
-                <p><span>{a[0]}</span>: {a[1]}</p>
+            {recipe.wallets ? Object.values(recipe.wallets).map((a, i) => (
+                <p key={i}><span>{a}</span>: {a}</p>
             ))
                 : <h3>no added wallets</h3>
             }
 
             <HeadingWithLine content="Tags" />
-            {recipe.tags ? recipe.tags.map((a) => (
-                <Link to={`/tags/${a}`} >{a}</Link>
+            {recipe.tags ? recipe.tags.map((a, i) => (
+                <Link key={i} to={`/tags/${a}`} >{a}</Link>
             ))
                 : <h3>No tags added.</h3>}
-
+            <div className="comments">
+                <ul>
+                    {comments.length > 0 ? comments.map((a, i) => (
+                        <li key={a._id} >
+                            <section className="recipe-comment">
+                                <h4>{a.username}</h4>
+                                <p>{a.comment}</p>
+                            </section>
+                        </li>
+                    )) : <h3>No comments! Be the first one to post a comment!</h3>}
+                </ul>
+            </div>
             <article className="create-comment">
                 <label>Add new comment</label>
                 <form className="form" onSubmit={submitHandler}>

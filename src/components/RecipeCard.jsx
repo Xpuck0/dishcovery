@@ -6,7 +6,7 @@ import './RecipeCard.css';
 
 // TODO recipesAPI object.entries returns recipe without author and profilePicture.
 export default function RecipeCard({ r }) {
-    useEffect(() => console.log(r), [])
+    // useEffect(() => console.log(r), [])
     return (
         <Link to={`/recipes/${r._id}`} >
             <div className="recipe-card">

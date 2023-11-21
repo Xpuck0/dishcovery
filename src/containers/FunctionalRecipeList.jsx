@@ -34,7 +34,6 @@ export default function FunctionalRecipeList({
             setRecipes(data); 
         }
         fetchData()
-        console.log(recipes)
     }, []);
 
     return (
