@@ -1,0 +1,28 @@
+.heading-with-line {
+  position: relative;
+  padding: 10px;
+  background-color: #f0f0f0; /* Change the background color as needed */
+}
+
+.heading-with-line h2 {
+    order: 0;
+    padding: 0 1em;
+    margin: 0 auto;
+    width: min-content;
+    background-color: white;
+    border: 1px solid black;
+    position: relative;
+    z-index: 1;
+}
+
+.heading-with-line .line {
+  position: absolute;
+
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px; /* Change the line height as needed */
+  background-color: #333; /* Change the line color as needed */
+
+  z-index: 0;
+}

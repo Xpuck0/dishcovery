@@ -5,7 +5,7 @@ export default function Header() {
 
     return (
         <div className="site-header">
-            <h1 className="logo">dishcovery</h1>
+            <Link to={'/'}><h1 className="logo">dishcovery</h1></Link>
             <form>
                 <input type="text" name="Searchbar" placeholder="Search recipes and chefs"/>
             </form>

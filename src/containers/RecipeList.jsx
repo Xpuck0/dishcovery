@@ -16,13 +16,6 @@ export default function RecipeList({
         fetchData()
     }, []);
 
-
-    if (Object.keys(recipes).length == 0) {
-        return (
-            <h1 className="no-recipes">There are no recipes</h1>
-        )
-    }
-
     return (
         <div className="recipe-list">
             <div className="header-wrapper">
@@ -31,9 +24,9 @@ export default function RecipeList({
             <div className="line"></div>
             <ul className="recipes">
 
-                {Object.values(recipes).map(r => {
+                {recipes ? Object.values(recipes).map(r => {
                     return <RecipeCard key={r._id} r={r} />
-                })}
+                }) : <h1 className="error">There are no recipes!</h1>}
 
             </ul>
         </div>
