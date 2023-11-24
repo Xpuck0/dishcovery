@@ -1,7 +1,6 @@
 .heading-with-line {
   position: relative;
   padding: 10px;
-  background-color: #f0f0f0; /* Change the background color as needed */
 }
 
 .heading-with-line h2 {
@@ -9,8 +8,8 @@
     padding: 0 1em;
     margin: 0 auto;
     width: min-content;
-    background-color: white;
-    border: 1px solid black;
+    background-color: #151515;
+    color: tomato;
     position: relative;
     z-index: 1;
 }
@@ -21,8 +20,8 @@
   top: 50%;
   left: 0;
   width: 100%;
-  height: 2px; /* Change the line height as needed */
-  background-color: #333; /* Change the line color as needed */
+  height: 2px; 
+  background-color: #a3a3a3; 
 
   z-index: 0;
 }

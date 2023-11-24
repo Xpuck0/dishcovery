@@ -5,7 +5,7 @@
   cursor: pointer;
 }
 .star-rating .on {
-  color: #000;
+  color: yellow;
 }
 .star-rating .off {
   color: #ccc;

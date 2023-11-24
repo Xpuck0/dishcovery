@@ -20,6 +20,7 @@ export default function RecipeCard({ r }) {
                 <div className="img-container">
                     <img src="/images/salad.avif" alt="Image of the recipe" />
                 </div>
+                <h3>{r.title}</h3>
                 <p className="description">{r.description}</p>
                 <div className="buttons">
                     <>

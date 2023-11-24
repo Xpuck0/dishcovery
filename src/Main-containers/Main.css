@@ -1,0 +1,22 @@
+.site-main {
+    background-color: #151515;
+    min-height: 100vh;
+}
+
+.site-main .links {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.site-main .links a {
+    font-size: .9em;
+    font-weight: 600;
+    color: rgb(118, 0, 253);
+    background-color: unset;
+    border: 1px solid rgb(118, 0, 253);
+    padding: .5em 1em;
+    border-radius: .5em;
+    width: 8em;
+    text-align: center;
+    text-decoration: none;
+}

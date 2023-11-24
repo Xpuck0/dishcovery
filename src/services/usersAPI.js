@@ -10,27 +10,16 @@ export async function getUser(id) {
     }
 }
 
-export async function getAllRecipes() {
+export async function getAllUsers() {
     try {
-        const get = await fetch(base);
-        const res = await get.json();
-
-        const recipePromises = Object.values(res).map(async r => {
-            const userData = await getUser(`${r.owner}`);
-            // console.log(userData)
-            // userData.then(a => console.log(a))
-            r['author'] = userData.username;
-            r['profilePicture'] = userData.profilePicture;
-            return r;
-        });
-
-        const recipesWithUserData = await Promise.all(recipePromises);
-        console.log(recipesWithUserData)
-        return recipesWithUserData;
+        const res = await fetch(`${baseUsers}`);
+        const data = await res.json();
+        return Object.values(data);
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
+
 
 
 export async function createUser(d) {

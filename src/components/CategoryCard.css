@@ -23,8 +23,12 @@
     object-fit: cover;
 }
 
+.category-card h3 {
+    color: rgb(255, 0, 255)
+}
+
 .category-card p {
     font-size: 12px;
-    color: #757575;
+    color: #d1d1d1;
     font-style:italic;
 }

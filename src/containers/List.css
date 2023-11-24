@@ -1,0 +1,18 @@
+.list {
+    column-count: 3;
+    padding: 1em 2em;
+}
+
+.item {
+    font-size: 1.2em;
+    color: yellow;
+    list-style-position: inside; 
+}
+
+.item a {
+    color: rgb(0, 247, 255);
+    text-decoration: none
+}
+
+
+

@@ -1,0 +1,97 @@
+.recipe-page-wrapper {
+    font-size: 1.2em;
+    color: white;
+    margin: 2em 4em;
+}
+
+.recipe-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.recipe-page-header h1 {
+    font-size: 40px;
+}
+
+.recipe-page-header h4 a {
+    color: rgb(118, 0, 253);
+}
+
+.recipe-page-header .title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.recipe-page-header .like-button {
+    font-size: 1em;
+    font-weight: 600;
+    color: rgb(118, 0, 253);
+    background-color: unset;
+    border: 2px solid rgb(118, 0, 253);
+    padding: .5em 1em;
+    border-radius: .5em;
+    width: 8em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.recipe-page-wrapper .images {
+    display: flex;
+    gap: 1em;
+}
+
+.ingredients li,
+.instructions li{
+    text-align: center;
+    list-style-position: inside;
+    color: pink;
+}
+
+li span {
+    color:cyan;
+}
+
+.recipe-page-wrapper .image-wrapper {
+    display: block;
+    width: 10em;
+    height: 25em;
+    overflow: hidden;
+    border-radius: 0.5em;
+    transition: width 0.3s ease-in-out;
+}
+
+.recipe-page-wrapper .image-wrapper:hover {
+    width: 35em;
+}
+
+.recipe-page-wrapper img {
+    display: block;
+    width: auto;
+    height: 100%;
+    background-color: white;
+}
+
+.recipe-page-wrapper .image-wrapper:hover img {
+
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.recipe-page-wrapper .wallets {
+    color: navajowhite;
+}
+
+.recipe-page-wrapper .wallet code{
+    font-weight: 700;
+    background-color: #101010;
+    font-size: .85em;
+    color: green;
+}
+
+
+.heart-icon {
+    color: red;
+}

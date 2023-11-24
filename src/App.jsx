@@ -1,10 +1,13 @@
-import './App.css'
+import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import RecipesPage from './pages/RecipesPage'
 import RecipeDetails from './pages/RecipeDetails'
-import { Routes, Route } from 'react-router-dom'
+import UsersPage from './pages/UsersPage'
+import UserDetails from './pages/UserDetails'
+
+import './App.css'
 
 function App() {
     return (
@@ -14,6 +17,8 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/recipes" element={<RecipesPage />} />
             <Route path="/recipes/:id" element={<RecipeDetails />} />
+            <Route path="/authors" element={<UsersPage />} />
+            <Route path="/authors/:id" element={<UserDetails />} />
             <Route path="*" element={<h1>Not found</h1>} />
         </Routes>
     )

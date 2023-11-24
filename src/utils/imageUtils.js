@@ -1,10 +1,12 @@
-export default function checkImageExists(url, callback) {
+
+
+export default function checkImageExists(url)  {
     var img = new Image();
     img.onload = function() {
-        callback(true);
+        return true;
     };
     img.onerror = function() {
-        callback(false);
+        return false;
     };
     img.src = url;
 }
