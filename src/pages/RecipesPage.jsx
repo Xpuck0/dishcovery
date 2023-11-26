@@ -2,7 +2,7 @@ import Header from "../Main-containers/Header"
 import { useState, useEffect } from "react";
 import * as recipeAPI from "../services/recipesAPI";
 import RecipeCard from "../components/RecipeCard";
-import FunctionalRecipeList from "../containers/FunctionalRecipeList";
+import RecipeList from "../containers/FunctionalRecipeList";
 
 export default function RecipesPage() {
     const [form, setForm] = useState({
@@ -44,7 +44,7 @@ export default function RecipesPage() {
                 </div>
 
                 {/* <FunctionalRecipeList order={state.order} quantity={state.quantity} /> */}
-                <FunctionalRecipeList order={`${form.criteria}-${form.order}`} quantity={-1} />
+                <RecipeList order={`${form.criteria}-${form.order}`} quantity={-1} />
 
                 <ul className="recipes">
 

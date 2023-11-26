@@ -12,7 +12,7 @@ export default function HomePage() {
     return (
         <div className="home-page">
             <QueryContext.Provider value={search}>
-                <Header setSearch={setSearch}  />
+                <Header setSearch={setSearch} search={search} />
                 <Main search={search} />
                 <Footer />
             </QueryContext.Provider>

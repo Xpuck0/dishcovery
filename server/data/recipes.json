@@ -1,0 +1,134 @@
+{
+    "85d6f2b4-9821-4edd-919c-cd2cf1eee2be": {
+        "owner": "3d3e3f53-fe64-4d06-bc9c-1a168767593b",
+        "title": "Ramen",
+        "description": "A nice tasty dish suitable for you and your family.1",
+        "images": [
+            "https://www.inspiredtaste.net/wp-content/uploads/2022/03/Baked-Tofu-Recipe-1-1200.jpg",
+            "https://www.inspiredtaste.net/wp-content/uploads/2022/01/Creamy-Chicken-Noodle-Soup-3-1200-1200x800.jpg"
+        ],
+        "ingredients": [
+            "turkey",
+            "pasta",
+            "ketchup",
+            "idk"
+        ],
+        "instructions": [
+            "Put in furnace",
+            "get from furnace"
+        ],
+        "tags": [
+            "meat",
+            "christmas",
+            "american"
+        ],
+        "likes": 6,
+        "_id": "85d6f2b4-9821-4edd-919c-cd2cf1eee2be"
+    },
+    "c38a9332-2011-495f-9bbc-bdc57b830251": {
+        "owner": "881b4437-9d7a-47d6-98aa-50db91e7b6aa",
+        "title": "Banica",
+        "description": "A nice tasty dish suitable for you and your family.22",
+        "images": [
+            "image1",
+            "image2"
+        ],
+        "ingredients": [
+            "turkey",
+            "pasta",
+            "ketchup",
+            "idk"
+        ],
+        "instructions": [
+            "Put in furnace",
+            "get from furnace"
+        ],
+        "tags": [
+            "healthy",
+            "sveti valentin",
+            "balkan"
+        ],
+        "likes": 22,
+        "_id": "c38a9332-2011-495f-9bbc-bdc57b830251"
+    },
+    "a074c570-d288-41be-9d89-fcafaeb9bef1": {
+        "owner": "881b4437-9d7a-47d6-98aa-50db91e7b6aa",
+        "title": "ovcharska salata",
+        "description": "mn hubava ovcharska salata praena s mn lubov",
+        "images": [
+            "image1",
+            "image2"
+        ],
+        "ingredients": [
+            "turkey",
+            "pasta",
+            "ketchup",
+            "idk"
+        ],
+        "tags": [
+            "salad",
+            "balkan",
+            "eggs"
+        ],
+        "instructions": [
+            "Put in furnace",
+            "get from furnace"
+        ],
+        "likes": 48,
+        "_id": "a074c570-d288-41be-9d89-fcafaeb9bef1"
+    },
+    "24091e70-4fb0-4bb3-ad21-7011e4a478e7": {
+        "owner": "4441717e-1026-4619-9d1d-92aa72c0cff6",
+        "title": "shopska",
+        "description": "A nice tasty dish suitable for you and your family.4",
+        "images": [
+            "image1",
+            "image2"
+        ],
+        "ingredients": [
+            "turkey",
+            "pasta",
+            "ketchup",
+            "idk"
+        ],
+        "instructions": [
+            "Put in furnace",
+            "get from furnace"
+        ],
+        "tags": [
+            "salad",
+            "balkan"
+        ],
+        "likes": 1,
+        "_id": "24091e70-4fb0-4bb3-ad21-7011e4a478e7"
+    },
+    "3d3e3f53-fe64-4d06-bc9c-1a168767593b":  {
+        "owner": "3d3e3f53-fe64-4d06-bc9c-1a168767593b",
+        "title": "Chicken Stir-Fry",
+        "description": "A quick and delicious stir-fry that's perfect for busy evenings.",
+        "images": [
+          "https://www.example.com/chicken-stir-fry-image.jpg",
+          "https://www.example.com/chicken-stir-fry-image2.jpg"
+        ],
+        "ingredients": [
+          "chicken breast",
+          "vegetables (bell peppers, broccoli, carrots)",
+          "soy sauce",
+          "ginger",
+          "garlic",
+          "rice"
+        ],
+        "instructions": [
+          "Stir-fry chicken until cooked.",
+          "Add vegetables, soy sauce, ginger, and garlic.",
+          "Serve over cooked rice."
+        ],
+        "tags": [
+          "asian",
+          "quick",
+          "dinner"
+        ],
+        "likes": 8,
+        "_id": "3d3e3f53-fe64-4d06-bc9c-1a168767593b"
+      }
+}

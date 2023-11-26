@@ -28,14 +28,18 @@
 .recipe-page-header .like-button {
     font-size: 1em;
     font-weight: 600;
-    color: rgb(118, 0, 253);
+    color: tomato;
     background-color: unset;
-    border: 2px solid rgb(118, 0, 253);
+    border: 2px solid tomato;
     padding: .5em 1em;
     border-radius: .5em;
     width: 8em;
     text-align: center;
     text-decoration: none;
+}
+
+.recipe-page-header .like-button:hover {
+    text-decoration: underline;
 }
 
 .recipe-page-wrapper .images {
@@ -44,53 +48,56 @@
 }
 
 .ingredients li,
-.instructions li{
-    text-align: center;
+.instructions li {
     list-style-position: inside;
-    color: pink;
 }
 
-li span {
-    color:cyan;
+.recipe-page-wrapper .checked {
+    text-decoration: line-through;
 }
 
-.recipe-page-wrapper .image-wrapper {
-    display: block;
-    width: 10em;
-    height: 25em;
-    overflow: hidden;
-    border-radius: 0.5em;
-    transition: width 0.3s ease-in-out;
-}
-
-.recipe-page-wrapper .image-wrapper:hover {
-    width: 35em;
-}
-
-.recipe-page-wrapper img {
-    display: block;
-    width: auto;
-    height: 100%;
-    background-color: white;
-}
-
-.recipe-page-wrapper .image-wrapper:hover img {
-
-    transform: translateX(0);
-    transition: transform 0.3s ease-in-out;
-}
-
+li span,
 .recipe-page-wrapper .wallets {
     color: navajowhite;
 }
 
-.recipe-page-wrapper .wallet code{
+.recipe-page-wrapper .wallets {
+    padding-left: 1em;
+}
+
+.recipe-page-wrapper .author a {
+    color: gold;
+    text-decoration: none;
+}
+
+.recipe-page-wrapper .author a:hover {
+    text-decoration: underline;
+}
+
+.recipe-page-wrapper .wallet code {
     font-weight: 700;
     background-color: #101010;
     font-size: .85em;
     color: green;
 }
 
+.recipe-page-wrapper .tags {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.recipe-page-wrapper .tags a {
+    color: greenyellow;
+    padding: .1em;
+    text-decoration: none;
+}
+
+.recipe-page-wrapper .tags a:hover {
+    text-decoration: underline;
+}
 
 .heart-icon {
     color: red;

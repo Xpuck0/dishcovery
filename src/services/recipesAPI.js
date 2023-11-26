@@ -62,7 +62,8 @@ export async function createRecipe(d) {
             images: d.images,
             ingredients: d.ingredients,
             instructionos: d.instructions,
-            likes: d.likes
+            likes: d.likes,
+            date: d.date
         }
 
         const res = await fetch(base, {

@@ -41,9 +41,7 @@ export default function SignupPage() {
         <div className="login-page-wrapper">
             <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
             <div className="login-page">
-                <div className="image-container">
-                    <img src="/images/auth.jpg" alt="Food image" />
-                </div>
+                
                 <div className="login-form">
                     <form onSubmit={submitHandler}>
                         <h2>Sign up</h2>

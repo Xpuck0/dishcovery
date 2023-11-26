@@ -6,7 +6,7 @@ export default function CategoryCard({
     category,
     count,
 }) {
-    const imgExists = checkImageExists(image, (exists) => exists ? true : false) 
+    const imgExists = image; 
     return (
         <li className="category-card-li-wrapper">
             <div className="category-card">

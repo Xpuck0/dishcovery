@@ -1,0 +1,54 @@
+{
+    "3d3e3f53-fe64-4d06-bc9c-1a168767593b": {
+        "username": "ivan veliki",
+        "email": "ivan@veliki.com",
+        "password": "34234",
+        "profilePicture": "",
+        "created": "2020-10-16T19:42:04.330Z",
+        "likes": 3,
+        "recipes": [
+            "85d6f2b4-9821-4edd-919c-cd2cf1eee2be",
+            "3d3e3f53-fe64-4d06-bc9c-1a168767593b"
+        ],
+        "wallets": {
+            "monero": "monerowallet",
+            "bitcoin": "bitcoinwallet"
+        }
+    },
+    "881b4437-9d7a-47d6-98aa-50db91e7b6aa": {
+        "username": "kai",
+        "email": "kkkkjkj@@@",
+        "password": "34234",
+        "profilePicture": "./data/ronaldo.jpg",
+        "created": "2023-11-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        },
+        "_id": "881b4437-9d7a-47d6-98aa-50db91e7b6aa"
+    },
+    "4441717e-1026-4619-9d1d-92aa72c0cff6": {
+        "username": "kaimmncnv petar petrov",
+        "email": "dddddddkkkkjkj@@@",
+        "password": "34234",
+        "profilePicture": "http://localhost:3030/jsonstore/data/ronaldo.jpg",
+        "created": "2021-10-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        },
+        "_id": "4441717e-1026-4619-9d1d-92aa72c0cff6"
+    },
+    "eb5fa8f8-038b-4916-b124-db9b6bf5efbb": {
+        "username": "kaimmncnv",
+        "email": "dddddddkkkkjkj@@@",
+        "password": "34234",
+        "profilePicture": "./data/ronaldo.jpg",
+        "created": "2022-10-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        },
+        "_id": "eb5fa8f8-038b-4916-b124-db9b6bf5efbb"
+    }
+}

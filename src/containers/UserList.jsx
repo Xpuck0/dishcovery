@@ -26,6 +26,7 @@ export default function UserList({
             {
                 authors
                     ? authors.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.username.toLowerCase().includes(query.toLowerCase())).map(author => (
+                        // console.log(author)
                         <li key={author._id} className="author item">
                             <Link key={author._id} to={`/authors/${author._id}`}>{author.username}</Link>
                         </li>

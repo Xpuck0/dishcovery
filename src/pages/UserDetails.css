@@ -1,0 +1,49 @@
+.user-details {
+    color: beige;
+}
+
+.user-details .profile {
+    border-radius: 1em;
+    background-color: #252525;
+    padding-top: 1em;
+    margin: 2em 0 2em 0;
+    text-align: center;
+}
+
+.user-details .img-container {
+
+    margin: 2em auto 1em;
+    display: block;
+    width: 15em;
+    height: 15em;
+    border-radius: 50%;
+    background-color: grey;
+}
+
+.user-details .follow {
+    margin-block: 3em 2em;
+    font-weight: 700;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    background-color: greenyellow;
+    border-radius: 1em;
+    color: #151515;
+    border: none;
+    border: 2px solid #151515;
+}
+
+.user-details .follow:hover {
+    cursor: pointer;
+
+    color: greenyellow;
+    background-color: #151515;
+    border: 2px solid greenyellow;
+
+    transition: .2s ease-in;
+}
+
+.user-details .recipes {
+    background-color: #252525;
+    border-radius: 1em;
+    margin: 0 0 2em 0;
+}

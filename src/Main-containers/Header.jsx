@@ -9,13 +9,17 @@ export default function Header({ setSearch, search }) {
         setSearch(e.target.value);
     }
 
+    const resetHandler = (e) => {
+        setSearch('')
+    }
+
     return (
         <div className="site-header">
             <Link to={'/'}><h1 className="logo">dishcovery</h1></Link>
             <form className="searchbar-wrapper">
                 <input type="text" name="Searchbar" id="search" value={search} onChange={changeHandler} placeholder="Search recipes and chefs" />
                     <svg
-                        onClick={() => setSearch('')} 
+                        onClick={resetHandler} 
                         className="backspace"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

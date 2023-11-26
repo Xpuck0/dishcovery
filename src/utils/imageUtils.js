@@ -1,12 +1,13 @@
 
 
-export default function checkImageExists(url)  {
-    var img = new Image();
-    img.onload = function() {
+export default async function checkImageExists(url) {
+    const res = await fetch(url);
+    const data = await res;
+    if (data.ok){
         return true;
-    };
-    img.onerror = function() {
+    } else {
         return false;
-    };
-    img.src = url;
+    }
 }
+
+// console.log(await checkImageExi/sts('aksdjf'))

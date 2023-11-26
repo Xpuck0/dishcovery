@@ -1,6 +1,9 @@
 import { Link, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+
+import { LoginContext } from "../contexts/queryContext";
 import { getUser } from "../services/usersAPI";
+import useForm from "../hooks/useForm";
 import "./LoginPage.css"
 
 const FORM_INITIAL_STATE = {
@@ -9,35 +12,25 @@ const FORM_INITIAL_STATE = {
 }
 
 export default function LoginPage() {
-    const [credentials, setCredentials] = useState(FORM_INITIAL_STATE);
-    const [errors, setErrors] = useState({});
+    const {credentials, changeHandler, submitHandler} = useForm(FORM_INITIAL_STATE)
+    const { loginSubmitHandler } = useContext(LoginContext); 
 
-    const changeHandler = (e) => {
-        setCredentials(old => ({
-            ...old,
-            [e.target.name]: e.target.value,
-        }))
-    }
-
-    const resetValues = () => {
-        setCredentials(FORM_INITIAL_STATE);
-    }
-
-    const submitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-        console.log(credentials)
-        resetValues()
+        const res = await loginSubmitHandler({ email: credentials.email, password: credentials.password })
+        
+        
     }
 
     return (
         <div className="login-page-wrapper">
             <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
             <div className="login-page">
-                <div className="image-container">
+                {/* <div className="image-container">
                     <img src="/images/auth.jpg" alt="Food image" />
-                </div>
+                </div> */}
                 <div className="login-form">
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={onSubmitHandler}>
                         <h2>Log in</h2>
 
                         <div className="input-wrapper">

@@ -16,7 +16,7 @@ export default function Main() {
         <div className="site-main wrapper">
             {!search && <Categories />}
             <section className="recipes">
-                <Heading content="Newest" line={true} />
+                <Heading content="Newest" line={false} />
                 <RecipeList order={order} quantity={30} />
                 <div className="links">
                     <Link to="/recipes">Browse ALL</Link>
@@ -24,7 +24,7 @@ export default function Main() {
                 </div>
             </section>
             <section className="users">
-                <Heading content="Authors" line={true} />
+                <Heading content="Authors" line={false} />
                 <UserList quantity={30} />
                 <div className="links">
                     <Link to="/authors">Browse ALL</Link>
