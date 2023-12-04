@@ -1,26 +1,26 @@
 import { useState } from "react";
 
 
-export default function useForm(initialValue) {
+export default function useForm(submitHandler, initialValue = {}) {
     const [credentials, setCredentials] = useState(initialValue);
 
-    const handleChange = (e) => {
+    const onChange = (e) => {
         setCredentials(old => ({
             ...old,
             [e.target.name]: e.target.value
         }))
     }
 
-    const submitHandler = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        setCredentials(initialValue)
+        submitHandler(credentials)
     }
 
 
     const inputProps = {
-        changeHandler: handleChange,
         credentials: credentials,
-        submitHandler: submitHandler
+        onChange: onChange,
+        onSubmit: onSubmit, 
     }
 
 

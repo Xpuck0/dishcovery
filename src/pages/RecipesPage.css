@@ -1,0 +1,88 @@
+.recipes-wrapper .recipe-list.list {
+    column-count: 1;
+}
+
+.recipe-page-list .recipe-list {
+    color: beige;
+    /* padding: 1em; */
+    width: 100%;
+    font-size: 18px;
+    background-color: #252525;
+}
+
+.recipe-page-list .recipe-list> :nth-child(2n) {
+    background-color: #202020;
+}
+
+ .recipe-page-list .recipe-list button {
+    position: relative;
+
+}
+
+.filter-menu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    margin: 1em 0;
+}
+
+.filter-container {
+    justify-content: flex-end;
+}
+
+.filter-container button {
+    margin-left:calc(100% - 5em);
+    width: 5em;
+    padding: .5em .75em;
+    border: none;
+}
+
+select {
+    border: none;
+    padding: .5em .75em;
+}
+
+.recipes-wrapper {
+    width: 40em;
+    margin: 0 auto;
+}
+
+.recipes-wrapper .form {
+    /* position: absolute; */
+    color: beige;
+}
+
+.recipe-card {
+    width: 100%;
+    display: flex;
+    gap: 1em;
+}
+
+.recipe-card>* {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recipe-page-list .recipe-card-wrapper {
+    list-style-type: none;
+}
+
+.recipe-page-list .recipe-card .title {
+    flex: 0 0 50%;
+}
+
+
+.recipe-page-list .recipe-card .date,
+.recipe-page-list .recipe-card .likes {
+    flex: 0 0 20%;
+}
+
+.recipe-card a {
+    color: gold;
+    text-decoration: none
+}
+
+.recipe-card a:hover {
+    color: beige;
+    text-decoration: underline;
+}

@@ -4,20 +4,21 @@ import Categories from "../containers/Categories";
 import RecipeList from "../containers/RecipeList";
 import Heading from "../components/Heading";
 import UserList from "../containers/UserList";
-import { QueryContext } from "../contexts/queryContext";
+import { QueryContext } from "../contexts/contexts";
 import "./Main.css"
 import { Link } from "react-router-dom";
 
 export default function Main() {
     const [order, setOrder] = useState('date-descending')
-    const search = useContext(QueryContext)
+    const {search, setSearch }= useContext(QueryContext)
+    const show = useState('none')
 
     return (
         <div className="site-main wrapper">
             {!search && <Categories />}
             <section className="recipes">
                 <Heading content="Newest" line={false} />
-                <RecipeList order={order} quantity={30} />
+                <RecipeList order={order} quantity={30} show={show}/>
                 <div className="links">
                     <Link to="/recipes">Browse ALL</Link>
                     <Link to="/recipes/create">Create</Link>

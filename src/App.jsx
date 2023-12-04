@@ -1,52 +1,47 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-import { LoginContext } from './contexts/queryContext'
-import { login } from './services/authAPI'
+import { AuthContext, QueryContext } from './contexts/contexts'
 
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
+import LogoutPage from './pages/LogoutPage'
 import RecipesPage from './pages/RecipesPage'
 import RecipeDetails from './pages/RecipeDetails'
 import UsersPage from './pages/UsersPage'
 import UserDetails from './pages/UserDetails'
 
 import './App.css'
-
-
-const AUTH_INITIAL_KEYS = {
-    email: '',
-    password: ''
-};
+import Path from './paths'
+import AuthProvider from './Main-containers/AuthProvider'
 
 function App() {
-    const navigate = useNavigate();
-    const [auth, setAuth] = useState(AUTH_INITIAL_KEYS)
+    
+    const [search, setSearch] = useState('')
 
-    const loginSubmitHandler = async (values) => {
-        console.log(values.email, values.password)
-        const res = await login(values.email, values.password)
-        if (!res.code) {
-            setAuth(res)
-            navigate('/')
-        }
-
+    const queryValues = {
+        search: search,
+        setSearch: setSearch
     }
 
     return (
-        <LoginContext.Provider value={{ loginSubmitHandler }}>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/recipes" element={<RecipesPage />} />
-                <Route path="/recipes/:id" element={<RecipeDetails />} />
-                <Route path="/authors" element={<UsersPage />} />
-                <Route path="/authors/:id" element={<UserDetails />} />
-                <Route path="*" element={<h1>Not found</h1>} />
-            </Routes>
-        </LoginContext.Provider>
+        <QueryContext.Provider value={queryValues} >
+            <AuthProvider>
+                <Routes>
+                    <Route path={Path.Home} element={<HomePage />} />
+                    <Route path={Path.Login} element={<LoginPage />} />
+                    <Route path={Path.LogoutPage} element={<LogoutPage />} />
+                    <Route path={Path.Signup} element={<SignupPage />} />
+                    <Route path={Path.Recipes} element={<RecipesPage />} />
+                    <Route path={`${Path.Recipes}:id`} element={<RecipeDetails />} />
+                    <Route path={Path.Authors} element={<UsersPage />} />
+                    <Route path={`${Path.Authors}/:id`} element={<UserDetails />} />
+                    <Route path={Path.CreateRecipe} element={<HomePage />} />
+                    <Route path="*" element={<h1>Not found</h1>} />
+                </Routes>
+            </AuthProvider>
+        </QueryContext.Provider >
     )
 }
 

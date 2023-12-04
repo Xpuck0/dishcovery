@@ -26,7 +26,7 @@ export default function Images({ images }) {
             {/* Image container */}
             < div className="images-container" ref={sliderRef} >
                 {
-                    images.filter(img => checkImageExists(img)).map((image) => {
+                    images.map((image) => {
                         return (
                             <img
                                 className="image"

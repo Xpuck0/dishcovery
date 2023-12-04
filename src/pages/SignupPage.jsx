@@ -1,39 +1,31 @@
 import { Link, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { AuthContext } from "../contexts/contexts";
 import { getUser } from "../services/usersAPI";
+import { signup } from "../services/authAPI";
 import "./LoginPage.css"
+import useForm from "../hooks/useForm";
 
 const FORM_INITIAL_STATE = {
-    email: '',
-    password: '',
-    password2: '',
+    email: 'email',
+    password: 'password',
+    passwordConfirm: 'passwordConfirm',
 }
 
 export default function SignupPage() {
-    const [credentials, setCredentials] = useState(FORM_INITIAL_STATE);
+    const { registerSubmitHandler } = useContext(AuthContext)
+    const { credentials, onChange, onSubmit} = useForm(registerSubmitHandler, {
+        [FORM_INITIAL_STATE.email]: '',
+        [FORM_INITIAL_STATE.password]: '',
+        [FORM_INITIAL_STATE.passwordConfirm]: '',
+    })
     const [visible, setVisible] = useState(false);
     const [errors, setErrors] = useState({});
 
-    const changeHandler = (e) => {
-        setCredentials(old => ({
-            ...old,
-            [e.target.name]: e.target.value,
-        }))
-    }
-
-    const resetValues = () => {
-        setCredentials(FORM_INITIAL_STATE);
-    }
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-        console.log(credentials)
-        resetValues()
-    }
 
     const passwordBlurHandler = () => {
-        if (credentials.password != credentials.password2) {
-            // setVisible(true);
+        if (credentials.password != credentials.passwordConfirm) {
+            setVisible(true);
         }
     }
 
@@ -43,22 +35,22 @@ export default function SignupPage() {
             <div className="login-page">
                 
                 <div className="login-form">
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={onSubmit}>
                         <h2>Sign up</h2>
 
                         <div className="input-wrapper">
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="email" id="email" value={credentials.email} onChange={changeHandler} />
+                            <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} />
                         </div>
 
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name="password" id="password" value={credentials.password} onChange={changeHandler} />
+                            <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
                         </div>
 
                         <div className="input-wrapper">
                             <label htmlFor="password2">Repeat Password</label>
-                            <input type="password" name="password2" id="password2" onBlur={passwordBlurHandler} value={credentials.password2} onChange={changeHandler} />
+                            <input type="password" name="password2" id="password2" onBlur={passwordBlurHandler} value={credentials.passwordConfirm} onChange={onChange} />
                             <p className="error" style={{ display: visible ? 'block' : 'none' }}>Passwords do not match!</p>
                         </div>
 

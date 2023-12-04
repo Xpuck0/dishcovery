@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { QueryContext } from "../contexts/queryContext.js";
+import { QueryContext } from "../contexts/contexts.js";
 import * as usersAPI from '../services/usersAPI';
 import sortCallback from "../utils/sortCallback.js";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ export default function UserList({
     quantity
 }) {
     const [authors, setAuthors] = useState([]);
-    const query = useContext(QueryContext);
+    const {search, setSearch} = useContext(QueryContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +25,7 @@ export default function UserList({
         <ol className="authors-list list">
             {
                 authors
-                    ? authors.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.username.toLowerCase().includes(query.toLowerCase())).map(author => (
+                    ? authors.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.username.toLowerCase().includes(search.toLowerCase())).map(author => (
                         // console.log(author)
                         <li key={author._id} className="author item">
                             <Link key={author._id} to={`/authors/${author._id}`}>{author.username}</Link>

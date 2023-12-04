@@ -2,7 +2,7 @@
     margin: 2em 0;
 }
 
-.list {
+ .list {
     column-count: 3;
     margin: 1em auto 0em;
     padding: 1em 2em;
@@ -10,26 +10,30 @@
     width: 700px; 
 }
 
-.item {
+ .item {
     font-size: 1.2em;
     color: white;
     list-style-position: inside; 
     width: 16ch;
 }
 
-.item:hover {
+ .item:hover {
     color: beige;
     text-decoration: underline;
 }
 
-.item a {
+ .item a {
     color: gold;
     text-decoration: none
 }
 
-.item a:hover {
+ .item a:hover {
     color: beige;
 }
 
-
+.list .error {
+    /* position: relative; */
+    color: white;
+    margin: 0 auto;
+}
 

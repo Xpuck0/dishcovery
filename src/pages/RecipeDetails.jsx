@@ -41,7 +41,7 @@ export default function RecipeDetails() {
     }
 
     const checkHandler = (e) => {
-        let a = e.current;
+        let a = e.currentTarget;
         a.className == "" ? a.className = "checked" : a.className = "";
     }
 

@@ -1,27 +1,22 @@
-import { getUser } from "./usersAPI";
+import recipeList from "../utils/requestUtils.js";
+import * as request from "./requests.js";
+import { getUser } from "./usersAPI.js";
 
-const base = "http://localhost:3030/jsonstore/recipes";
+const base = "http://localhost:3030/data/recipes";
 
 
 export async function getAllRecipes() {
     try {
         const get = await fetch(base);
-        const res = await get.json();
+        const data = await get.json()
+        return data;
 
-        const recipesWithUserInfo = await Promise.all(
-            Object.values(res).map(async (r) => {
-                const userData = await getUser(`${r.owner}`);
-                r['author'] = userData.username;
-                r['profilePicture'] = userData.profilePicture;
-                return r;
-            })
-        );
-
-        return recipesWithUserInfo;
     } catch (err) {
         console.log("Error when fetching all recipes: " + err);
     }
 }
+
+await getAllRecipes();
 export async function getRecipe(id) {
     try {
 
@@ -56,7 +51,7 @@ export async function createRecipe(d) {
     try {
 
         const body = {
-            owner: d.owner,
+            // owner: d.owner,
             title: d.title,
             author: d.author,
             images: d.images,
@@ -66,20 +61,24 @@ export async function createRecipe(d) {
             date: d.date
         }
 
-        const res = await fetch(base, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
+        const r = await request.post(base, body)
 
-        const r = await res.json();
+        // const res = await fetch(base, {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(body)
+        // })
+
+        // const r = await res.json();
         return r;
     } catch (err) {
         console.log(err)
     }
 }
+
+// recipeList.forEach(r => createRecipe(r))
 
 export async function updateRecipe(id, d) {
     try {

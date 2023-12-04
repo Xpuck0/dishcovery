@@ -89,3 +89,11 @@
     text-decoration: none;
     color: white;
 }
+
+.site-header .profile {
+    display: flex;
+    justify-content: space-evenly;
+    
+    color: beige;
+
+}

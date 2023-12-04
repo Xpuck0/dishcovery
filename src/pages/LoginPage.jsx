@@ -1,7 +1,7 @@
 import { Link, Routes, Route } from "react-router-dom";
 import { useState, useEffect, useContext } from "react"
 
-import { LoginContext } from "../contexts/queryContext";
+import { AuthContext } from "../contexts/contexts";
 import { getUser } from "../services/usersAPI";
 import useForm from "../hooks/useForm";
 import "./LoginPage.css"
@@ -12,15 +12,8 @@ const FORM_INITIAL_STATE = {
 }
 
 export default function LoginPage() {
-    const {credentials, changeHandler, submitHandler} = useForm(FORM_INITIAL_STATE)
-    const { loginSubmitHandler } = useContext(LoginContext); 
-
-    const onSubmitHandler = async (e) => {
-        e.preventDefault();
-        const res = await loginSubmitHandler({ email: credentials.email, password: credentials.password })
-        
-        
-    }
+    const { loginSubmitHandler } = useContext(AuthContext);
+    const { credentials, onChange, onSubmit } = useForm(loginSubmitHandler, FORM_INITIAL_STATE)
 
     return (
         <div className="login-page-wrapper">
@@ -30,17 +23,17 @@ export default function LoginPage() {
                     <img src="/images/auth.jpg" alt="Food image" />
                 </div> */}
                 <div className="login-form">
-                    <form onSubmit={onSubmitHandler}>
+                    <form onSubmit={onSubmit}>
                         <h2>Log in</h2>
 
                         <div className="input-wrapper">
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="email" id="email" value={credentials.email} onChange={changeHandler} />
+                            <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} />
                         </div>
 
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name="password" id="password" value={credentials.password} onChange={changeHandler} />
+                            <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
                         </div>
 
                         <button className="submit" type="submit">Log in</button>

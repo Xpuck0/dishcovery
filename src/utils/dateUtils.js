@@ -3,13 +3,13 @@ const formatDate = (str) => {
 
     const day = inputDate.getUTCDate();
     const monthNames = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+        "Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.",
+        "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
     ];
     const month = monthNames[inputDate.getUTCMonth()];
     const year = inputDate.getUTCFullYear();
 
-    const formattedDate = `${month} ${day} , ${year}`;
+    const formattedDate = `${month} ${day}, ${year}`;
     return formattedDate;
 }
 

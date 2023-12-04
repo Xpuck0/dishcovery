@@ -1,19 +1,21 @@
 import { useState, useEffect, useContext } from "react";
-import { QueryContext } from "../contexts/queryContext.js";
+import { AuthContext, QueryContext } from "../contexts/contexts.js";
 import * as recipeAPI from '../services/recipesAPI';
 import sortCallback from "../utils/sortCallback.js";
 import './List.css'
 import { Link } from "react-router-dom";
+import RecipeCard from "../components/RecipeCard.jsx";
+import Path from "../paths.js";
 
 export default function RecipeList({
     order,
     quantity,
-    owner_id
+    owner_id,
+    show
 }) {
+    const auth = useContext(AuthContext)
+    const {search, setSearch} = useContext(QueryContext)
     const [recipes, setRecipes] = useState([]);
-    const query = useContext(QueryContext)
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,50 +29,31 @@ export default function RecipeList({
         fetchData()
     }, []);
 
+
     return (
-        <ul className="recipe-list list">
+        <>
+        {/* <ul className="recipe-list list">
             {
 
                 recipes
-                    ? recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.title.toLowerCase().includes(query.toLowerCase())).map(r => {
-                        return <li key={r._id} className="recipe item"><Link to={`/recipes/${r._id}`}>{r.title}</Link></li>
+                    ? 
+                    
+                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.title.toLowerCase().includes(search.toLowerCase())).map(r => {
+                        return <RecipeCard key={r._id} r={r} show={show}/>
                     })
-                    : <h1 className="error">There are no recipes!</h1>
+                    : <h1 className="error">There are no recipes</h1>
             }
-        </ul>
+        </ul> */}
+        {/* {noRecipes && 
+            <div className="no-recipes">
+                <h1 className="error">There are no recipes</h1>
+                {auth.isAuthenticated ? 
+                    <Link to={Path.CreateRecipe} className="post">Post a recipe</Link>
+                    : <p><Link className="signup">Sign up</Link> to create recipes or <Link className="login">log in</Link> if you already have an account.</p>
+                     
+                }
+            </div>
+        } */}
+        </>
     )
 }
-// export default function RecipeList({
-//     content,
-//     search
-// }) {
-//     const [recipes, setRecipes] = useState({});
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             const data = await recipeAPI.getAllRecipes();
-//             setRecipes(data);
-//         }
-//         fetchData()
-//     }, []);
-
-//     useEffect(() => {
-//         console.log(search)
-//     },[search])
-
-//     return (
-//         <div className="recipe-list">
-//             <div className="header-wrapper">
-//                 <h2>{content}</h2>
-//             </div>
-//             <div className="line"></div>
-//             <ul className="recipes">
-
-//                 {recipes ? Object.values(recipes).filter(a => a.title.toLowerCase().includes(search.toLowerCase())).map(r => {
-//                     return  <li key={r._id}><Link to={`/recipes/${r._id}`}>{r.title}</Link></li> 
-//                 }) : <h1 className="error">There are no recipes!</h1>}
-
-//             </ul>
-//         </div>
-//     )
-// }
