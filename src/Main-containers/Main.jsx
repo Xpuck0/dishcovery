@@ -24,13 +24,13 @@ export default function Main() {
                     <Link to="/recipes/create">Create</Link>
                 </div>
             </section>
-            <section className="users">
+            {/* <section className="users">
                 <Heading content="Authors" line={false} />
                 <UserList quantity={30} />
                 <div className="links">
                     <Link to="/authors">Browse ALL</Link>
                 </div>
-            </section>
+            </section> */}
         </div>
     )
 }

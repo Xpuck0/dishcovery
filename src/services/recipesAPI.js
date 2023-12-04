@@ -1,4 +1,4 @@
-import recipeList from "../utils/requestUtils.js";
+// import recipeList from "../utils/requestUtils.js";
 import * as request from "./requests.js";
 import { getUser } from "./usersAPI.js";
 
@@ -16,7 +16,6 @@ export async function getAllRecipes() {
     }
 }
 
-await getAllRecipes();
 export async function getRecipe(id) {
     try {
 
@@ -36,7 +35,7 @@ export async function getFullRecipe(id) {
         const r = await res.json();
 
 
-        const userData = await getUser(`${r.owner}`);
+        const userData = await getUser(`${r._ownerId}`);
         r['author'] = userData.username;
         r['profilePicture'] = userData.profilePicture;
         r['wallets'] = userData.wallets;
@@ -63,22 +62,12 @@ export async function createRecipe(d) {
 
         const r = await request.post(base, body)
 
-        // const res = await fetch(base, {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(body)
-        // })
-
-        // const r = await res.json();
         return r;
     } catch (err) {
         console.log(err)
     }
 }
 
-// recipeList.forEach(r => createRecipe(r))
 
 export async function updateRecipe(id, d) {
     try {

@@ -16,9 +16,11 @@ export default function FunctionalRecipeList({
             case 'likes-descending':
                 return b.likes - a.likes; break;
             case 'date-ascending':
-                return new Date(a.date) - new Date(b.date); break;
+                console.log(a, b)
+                return a._createdOn - b._createdOn; break;
             case 'date-descending':
-                return new Date(b.date) - new Date(a.date); break;
+                console.log(a, b)
+                return b._createdOn - a._createdOn; break;
             case 'name-ascending':
                 return a.title.localeCompare(b.title); break;
             case 'name-descending':

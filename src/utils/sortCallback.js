@@ -5,9 +5,9 @@ const sortCallback = (a, b, order) => {
             case 'likes-descending':
                 return b.likes - a.likes; 
             case 'date-ascending':
-                return new Date(a.date) - new Date(b.date); 
+                return new Date(a._createdOn) - new Date(b._createdOn); 
             case 'date-descending':
-                return new Date(b.date) - new Date(a.date); 
+                return new Date(b._createdOn) - new Date(a._createdOn); 
             case 'name-ascending':
                 return a.title.localeCompare(b.title); 
             case 'name-descending':

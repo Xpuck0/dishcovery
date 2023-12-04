@@ -1,3 +1,4 @@
+import { getRecipe } from "./recipesAPI";
 import { getUser } from "./usersAPI";
 
 
@@ -36,7 +37,8 @@ export async function getAllComments(recipeId) {
 
 
     const comments = await Promise.all(Object.values(data).filter(comment => comment.recipeId === recipeId).map( async el => {
-        const userData = await getUser(`${el.owner}`);
+        const recipe = await getRecipe(el.recipeId)
+        const userData = await getUser(recipe._ownderId);
         el['username'] = userData.username;
         return el;
     }));

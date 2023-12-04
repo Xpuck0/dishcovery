@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import LogoutPage from './pages/LogoutPage'
 import RecipesPage from './pages/RecipesPage'
+import RecipeCreate from './pages/RecipeCreate'
 import RecipeDetails from './pages/RecipeDetails'
 import UsersPage from './pages/UsersPage'
 import UserDetails from './pages/UserDetails'
@@ -15,6 +16,7 @@ import UserDetails from './pages/UserDetails'
 import './App.css'
 import Path from './paths'
 import AuthProvider from './Main-containers/AuthProvider'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
     
@@ -31,14 +33,15 @@ function App() {
                 <Routes>
                     <Route path={Path.Home} element={<HomePage />} />
                     <Route path={Path.Login} element={<LoginPage />} />
-                    <Route path={Path.LogoutPage} element={<LogoutPage />} />
+                    <Route path="/logout" element={<LogoutPage />} />
                     <Route path={Path.Signup} element={<SignupPage />} />
                     <Route path={Path.Recipes} element={<RecipesPage />} />
-                    <Route path={`${Path.Recipes}:id`} element={<RecipeDetails />} />
+                    <Route path={`/recipes/:id`} element={<RecipeDetails />} />
+                    <Route path="recipes/create" element={<RecipeCreate />} />
                     <Route path={Path.Authors} element={<UsersPage />} />
                     <Route path={`${Path.Authors}/:id`} element={<UserDetails />} />
                     <Route path={Path.CreateRecipe} element={<HomePage />} />
-                    <Route path="*" element={<h1>Not found</h1>} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </AuthProvider>
         </QueryContext.Provider >

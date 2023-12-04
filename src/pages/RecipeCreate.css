@@ -1,0 +1,13 @@
+.create-page-wrapper {
+    height: 100vh;
+    width: 100vw;
+    padding: 3em;
+}
+
+.create-page {
+    background-color: #252525;
+    color: white;
+}
+
+.create-page-wrapper label {
+}

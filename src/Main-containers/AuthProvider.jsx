@@ -24,7 +24,6 @@ export default function AuthProvider({
 
     const registerSubmitHandler = async (values) => {
         const res = await signup(values.email, values.password)
-        console.log(res)
         if (!res.code) {
             setAuth(res)
             localStorage.setItem('accessToken', res.accessToken)

@@ -21,7 +21,7 @@ export default function RecipeList({
         const fetchData = async () => {
             const data = await recipeAPI.getAllRecipes();
             if (owner_id) {
-                setRecipes(data.filter(r => r.owner == owner_id))
+                setRecipes(data.filter(r => r._ownerId == owner_id))
             } else {
                 setRecipes(data);
             }
@@ -32,7 +32,7 @@ export default function RecipeList({
 
     return (
         <>
-        {/* <ul className="recipe-list list">
+        <ul className="recipe-list list">
             {
 
                 recipes
@@ -43,7 +43,7 @@ export default function RecipeList({
                     })
                     : <h1 className="error">There are no recipes</h1>
             }
-        </ul> */}
+        </ul>
         {/* {noRecipes && 
             <div className="no-recipes">
                 <h1 className="error">There are no recipes</h1>
