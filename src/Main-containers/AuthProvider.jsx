@@ -41,6 +41,7 @@ export default function AuthProvider({
         username: auth.username || auth.email,
         email: auth.email,
         isAuthenticated: !!auth.accessToken,
+        wallets: auth.wallets,
         logoutHandler,
         loginSubmitHandler: loginSubmitHandler,
         registerSubmitHandler: registerSubmitHandler,

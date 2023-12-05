@@ -5,9 +5,127 @@
 }
 
 .create-page {
+    min-height: 100%;
     background-color: #252525;
     color: white;
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
 }
 
-.create-page-wrapper label {
+.create-page .heading-wr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: papayawhip;
 }
+
+
+.create-page .heading-wr .title {
+    font-size: 40px;
+    border: none;
+    padding: .25em .5em;
+    margin: 1em;
+    background-color: #454545;
+    color: white;
+    border-radius: .5em;
+}
+
+.create-page textarea {
+
+    border-radius: .5em;
+}
+
+.create-page .heading-wr .title:focus {
+    border: 3px solid white;
+
+}
+
+.input-container label {
+    font-size: 1.3em;
+    margin-block: auto;
+    color: beige;
+    font-style:oblique;
+}
+
+.input-container {
+    margin: 0 auto;
+    display: flex;
+    gap: 2em;
+    /* max-width: 800px; */
+    max-width: 900px;
+    padding: 1em;
+    background-color: #151515;
+    border-radius: .5em;
+}
+
+.input-container label,
+.input-container button {
+    flex: 0 0 12%;
+}
+
+.input-container button {
+    border: 1px solid #00FF00;
+    background-color: #00FF00;
+    color: #050505;
+    border: none;
+    border-radius: .5em;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.input-container button:hover {
+    cursor: pointer;
+    background-color: #252525;
+    color: #00FF00;
+    border: 1px solid #00FF00;
+}
+
+.input-container input,
+.input-container textarea {
+    flex: 1 0 55%;
+    border: none;
+    outline: none;
+    background-color: #353535;
+    color: beige;
+}
+
+.create-page-wrapper input:focus {
+    outline: none;
+}
+
+.create-page-wrapper textarea {
+    padding: .25em .1em;
+    font-size: 18px;
+    min-height: 1.6em;
+}
+
+.create-page .written-instructions,
+.create-page .added-images,
+.create-page .written-ingredients,
+.create-page .written-tags {
+    margin: 0 auto 2em;
+    width: 600px;
+    background-color: #191919;
+    padding: .5em 1em;
+}
+
+.create-page li {
+    position: relative;
+}
+
+.create-page li span {
+    position: absolute;
+    right: 0;
+}
+
+#description {
+    width: 900px;
+    margin: 0 auto;
+}
+
+#description:focus {
+    outline: 2px solid #00ff00;
+}
+
+.create-page-wrapper label {}
