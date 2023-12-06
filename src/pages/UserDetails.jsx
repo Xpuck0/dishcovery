@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUser } from "../services/usersAPI";
+import { getUser, getUserByCollectionId } from "../services/usersAPI";
 import Heading from "../components/Heading";
 import RecipeList from "../containers/RecipeList";
 import Footer from "../Main-containers/Footer";
@@ -12,6 +12,7 @@ export default function UserDetails() {
 
     useEffect(() => {
         async function get(id) {
+            console.log(id)
             const r = await getUser(id)
             setUser(r);
         }

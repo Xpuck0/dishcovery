@@ -1,6 +1,6 @@
 // import recipeList from "../utils/requestUtils.js";
 import * as request from "./requests.js";
-import { getUser } from "./usersAPI.js";
+import { getUser, getUserByCollectionId } from "./usersAPI.js";
 
 const base = "http://localhost:3030/data/recipes";
 
@@ -34,11 +34,11 @@ export async function getFullRecipe(id) {
         const res = await fetch(`${base}/${id}`);
         const r = await res.json();
 
-
-        const userData = await getUser(`${r._ownerId}`);
+        console.log("recipe owner: " + r._ownerId)
+        const userData = await getUserByCollectionId(r._ownerId);
         r['author'] = userData.username;
-        r['profilePicture'] = userData.profilePicture;
-        r['wallets'] = userData.wallets;
+        // r['profilePicture'] = userData.profilePicture;
+        // r['wallets'] = userData.wallets;
 
         return r;
     } catch (err) {
@@ -56,7 +56,7 @@ export async function createRecipe(d) {
             images: d.images,
             ingredients: d.ingredients,
             instructionos: d.instructions,
-            likes: d.likes,
+            likes: d.likes || 0,
             date: d.date
         }
 

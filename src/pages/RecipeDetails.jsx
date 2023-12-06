@@ -53,7 +53,7 @@ export default function RecipeDetails() {
                     <Link className="like-button" to="..">Back</Link>
                     <section className="title-wrapper">
                         <h1 className="title">{recipe.title}</h1>
-                        <h4 className="author"><Link to={`/authors/${recipe.owner}`}>{recipe.author}</Link></h4>
+                        <h4 className="author"><Link to={`/authors/${recipe._ownerId}`}>{recipe.author}</Link></h4>
                     </section>
                     <button className="like-button" onClick={likeHandler}>{recipe.likes} likes</button>
                 </div>

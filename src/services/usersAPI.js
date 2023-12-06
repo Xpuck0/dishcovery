@@ -2,11 +2,24 @@ export const baseUsers = "http://localhost:3030/jsonstore/users"
 
 export async function getUser(id) {
     try {
+        console.log("getUser(id) where id = " + id)
         const res = await fetch(`${baseUsers}/${id}`);
         const data = await res.json();
         return data;
     } catch (err) {
         console.log(err);
+    }
+}
+
+export async function getUserByCollectionId(id) {
+    try {
+        console.log("getUserByCollectionId(id) where id = " + id);
+        const res = await getAllUsers();
+        const data = res.filter(o => o._collectionsId == id);
+        console.log(data)
+        return data[0];
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -29,14 +42,9 @@ export async function createUser(d) {
             username: d.username,
             email: d.email,
             password: d.password,
-            images: d.images,
-            following: d.following,
-            followers: d.followers,
             created: new Date(),
-            wallets: {
-                bitcoin: d.wallets.bitcoin,
-                monero: d.wallets.monero
-            }
+            wallets: [],
+            _collectionsId: d._id,
         }
 
         const responce = await fetch(baseUsers, {
