@@ -18,6 +18,7 @@ export default function UserList({
             setAuthors(data);
         }
 
+        
         fetchData();
     }, []);
 
@@ -28,7 +29,7 @@ export default function UserList({
                     ? authors.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.username.toLowerCase().includes(search.toLowerCase())).map(author => (
                         // console.log(author)
                         <li key={author._id} className="author item">
-                            <Link key={author._id} to={`/authors/${author._id}`}>{author.username}</Link>
+                            <Link  to={`/authors/${author._id}`}>{author.username}</Link>
                         </li>
                     ))
                     : <h1 className="error">There are no authors!</h1>
