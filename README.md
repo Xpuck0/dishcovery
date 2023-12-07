@@ -1,8 +1,31 @@
-# React + Vite
+# dishcovery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+Welcome to dishcovery, a platform for discovering, sharing and exploring recipes. 
+Whether you are a recipe chef or a crook, dishcovery is the place to go!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Key features
+
+- **Discover Recipes:** Browse the enormous collections of mouthwatering recipes!
+- **Share Your Recipes:** Sign up to post your meals to the internet!
+- **Comment on Recipes:** Do you want to ask questions about meals or just want to share your opinion? Feel free to comment!
+
+### Screenshots
+
+![dishcovery home](url)
+
+### Getting started
+
+#### Installation
+
+
+#### Create an account
+#### Explore
+#### Comment
+
+### Technologies used
+
+- React
+- JavaScript
+- HTML/CSS
