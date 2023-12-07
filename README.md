@@ -15,16 +15,29 @@ Whether you are a recipe chef or a crook, dishcovery is the place to go!
 
 ![dishcovery home](url)
 
-### Getting started
+## Getting started
 
-#### Installation
+### Installation
 
+1. Change directory to 
+        softuni-practice-server/dist
+    and run
+        node server.js
+    in order to start the server.
 
-#### Create an account
-#### Explore
-#### Comment
+2. Change directory back to root (where the package.json, vite.config and README should be located at) and run
+        npm run dev
+    to run the development version of the project.
 
-### Technologies used
+3. In the terminal you will see something like
+        -> Local:   http://localhost:5173
+    Go to the url and you are ready to go.
+
+### Create an account
+### Explore
+### Comment
+
+## Technologies used
 
 - React
 - JavaScript
