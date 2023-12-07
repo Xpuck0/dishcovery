@@ -56,7 +56,7 @@ export async function createRecipe(d) {
             images: d.images,
             ingredients: d.ingredients,
             instructionos: d.instructions,
-            likes: d.likes || 0,
+            likes: d.likes || [],
             date: d.date
         }
 
@@ -69,14 +69,32 @@ export async function createRecipe(d) {
 }
 
 
-export async function updateRecipe(id, d) {
+export async function updateRecipe(id, d, xadmin = false) {
     try {
+        const token = localStorage.getItem('accessToken');
+
+        let headers = {}
+        if (xadmin) {
+            headers = {
+                'X-Admin': ''
+            }
+        } else {
+            headers = {
+                'content-type': 'application/json'
+            };
+
+            if (token) {
+                headers = {
+                    ...headers,
+                    ['X-Authorization']: token,
+                }
+            }
+        }
+
 
         const res = await fetch(`${base}/${id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify(d)
         });
 

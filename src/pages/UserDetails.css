@@ -18,6 +18,12 @@
     height: 15em;
     border-radius: 50%;
     background-color: grey;
+    overflow: hidden;
+}
+
+.user-details .img-container img {
+    height: 100%;
+    background-repeat: space;
 }
 
 .user-details .follow {

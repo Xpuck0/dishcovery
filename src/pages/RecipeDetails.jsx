@@ -1,6 +1,9 @@
-import { Suspense, useEffect, useState } from "react";
-import { getFullRecipe } from "../services/recipesAPI";
+import { Suspense, useContext, useEffect, useState } from "react";
+import { getFullRecipe, updateRecipe } from "../services/recipesAPI";
 import { useParams, Link } from "react-router-dom";
+
+import { AuthContext } from "../contexts/contexts"
+
 import StarRating from "../components/StarRating";
 import Heading from "../components/Heading";
 
@@ -9,6 +12,9 @@ import Images from "../containers/Images";
 import CommentSection from "../containers/CommentSection";
 
 export default function RecipeDetails() {
+    const [likeStatus, setLikeStatus] = useState('false');
+    const {userId} = useContext(AuthContext);
+    const [rating, setRating] = useState(0);
     const [recipe, setRecipe] = useState({
         owner: "",
         title: "",
@@ -17,7 +23,7 @@ export default function RecipeDetails() {
         ingredients: [],
         instructions: [],
         tags: [],
-        likes: 0,
+        likes: [],
         _id: ""
     });
 
@@ -36,8 +42,17 @@ export default function RecipeDetails() {
 
 
 
-    const likeHandler = () => {
-        setRecipe(old => ({ ...old, likes: old.likes + 1 }))
+    const likeHandler = async () => {
+        let oldLikesCopy = recipe.likes;
+        if (!oldLikesCopy.includes(userId)) {
+            oldLikesCopy.push(userId)
+            setLikeStatus('true')
+        } else {
+            setLikeStatus('false')
+            oldLikesCopy = oldLikesCopy.filter(el => el != userId);
+        }
+        setRecipe(old => ({ ...old, likes: oldLikesCopy}))
+        await updateRecipe(recipe._id, recipe, true)
     }
 
     const checkHandler = (e) => {
@@ -55,15 +70,15 @@ export default function RecipeDetails() {
                         <h1 className="title">{recipe.title}</h1>
                         <h4 className="author"><Link to={`/authors/${recipe._ownerId}`}>{recipe.author}</Link></h4>
                     </section>
-                    <button className="like-button" onClick={likeHandler}>{recipe.likes} likes</button>
+                    <button className={`like-button ${likeStatus}`} onClick={likeHandler}>{recipe.likes.length} likes</button>
                 </div>
-
+                <Heading content="Images" />
                 <Images images={recipe.images} />
 
-                <StarRating />
+                <StarRating rating={rating} setRating={setRating} />
                 <Heading content="Ingredients" />
                 <ul className="ingredients">
-                    {recipe.ingredients ? recipe.ingredients.map((a, i) => (
+                    {recipe.ingredients.length > 0 ? recipe.ingredients.map((a, i) => (
                         <li onClick={checkHandler} key={i}><span>{a}</span></li>
                     ))
                         : <h3>No added ingredients</h3>
@@ -97,7 +112,7 @@ export default function RecipeDetails() {
                 {recipe.tags && <div className="tags">
 
                     {
-                        recipe.tags ? recipe.tags.map((a, i) => (
+                        recipe.tags.length > 0 ? recipe.tags.map((a, i) => (
                             <Link key={i} to={`/tags/${a}`} >{a}</Link>
                         ))
                             : <h3>No tags added.</h3>
@@ -105,7 +120,7 @@ export default function RecipeDetails() {
 
                 </div>}
 
-                <CommentSection />
+                <CommentSection rating={rating}/>
 
             </div >
         </div>

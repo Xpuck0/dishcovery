@@ -8,6 +8,17 @@
   outline: none;
   cursor: pointer;
 }
+
+.star-rating .star-deselect {
+  color: beige;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.star-rating .star-deselect:hover {
+  color: violet;
+  text-decoration:underline;
+}
 .star-rating .on {
   color: yellow;
 }

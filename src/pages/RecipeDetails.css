@@ -28,15 +28,22 @@
 .recipe-page-header .like-button {
     font-size: 1em;
     font-weight: 600;
-    color: tomato;
-    background-color: unset;
+    color: #101010;
+    background-color: tomato;
     border: 2px solid tomato;
     padding: .5em 1em;
     border-radius: .5em;
     width: 8em;
     text-align: center;
     text-decoration: none;
+    transform: background-color .3s ease-in;
 }
+
+.recipe-page-header .like-button.true {
+    background-color: unset;
+    color: tomato;
+}
+
 
 .recipe-page-header .like-button:hover {
     text-decoration: underline;

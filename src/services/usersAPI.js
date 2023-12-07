@@ -2,7 +2,6 @@ export const baseUsers = "http://localhost:3030/jsonstore/users"
 
 export async function getUser(id) {
     try {
-        console.log("getUser(id) where id = " + id)
         const res = await fetch(`${baseUsers}/${id}`);
         const data = await res.json();
         return data;
@@ -13,10 +12,8 @@ export async function getUser(id) {
 
 export async function getUserByCollectionId(id) {
     try {
-        console.log("getUserByCollectionId(id) where id = " + id);
         const res = await getAllUsers();
         const data = res.filter(o => o._collectionsId == id);
-        console.log(data)
         return data[0];
     } catch (err) {
         console.log(err)
@@ -39,7 +36,7 @@ export async function createUser(d) {
     try {
 
         const body = {
-            username: d.username,
+            username: d.username || d.email,
             email: d.email,
             password: d.password,
             created: new Date(),
@@ -73,7 +70,8 @@ export async function updateUser(id, d) {
         });
 
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
+        return data;
 
     } catch (err) {
         console.log(err)

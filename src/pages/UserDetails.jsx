@@ -13,7 +13,7 @@ export default function UserDetails() {
     useEffect(() => {
         async function get(id) {
             console.log(id)
-            const r = await getUser(id)
+            const r = await getUserByCollectionId(id)
             setUser(r);
         }
 

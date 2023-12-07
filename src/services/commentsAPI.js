@@ -1,48 +1,106 @@
 import { getRecipe } from "./recipesAPI";
-import { getUser } from "./usersAPI";
+import { getUser, getUserByCollectionId } from "./usersAPI";
+import * as request from "./requests.js"
 
+const base = "http://localhost:3030/data/comments";
 
-const base = "http://localhost:3030/jsonstore/comments";
+export async function createComment(recipeId, username, text, rating = 0) {
 
-export async function createComment(recipeId, username, text) {
 
     const body = {
         recipeId: recipeId,
         username: username,
-        comment: text
+        comment: text,
+        rating: rating,
+        likes: []
     };
+
+
+    const token = localStorage.getItem('accessToken');
+
+    let headers = {
+        'Content-Type': 'application/json'
+    };
+
+    if (token) {
+        headers = {
+            ...headers,
+            ['X-Authorization']: token,
+        }
+    }
 
     const res = await fetch(base, {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { ...headers },
         body: JSON.stringify(body)
     })
 
     const ret = await res.json();
+
+
     return ret;
 }
 
-export async function getAllComments(recipeId) {
-    const query = new URLSearchParams({
-        where: `recipeId="${recipeId}"`
-    })
+export async function updateComment(id, data, xadmin=false) {
+    const token = localStorage.getItem('accessToken');
 
-    // const res = await fetch(`${base}?${query}`);
+    let headers = {}
+    if (xadmin) {
+        headers = {
+            'X-Admin': ''
+        }
+    } else {
+        headers = {
+            'content-type': 'application/json'
+        };
+
+        if (token) {
+            headers = {
+                ...headers,
+                ['X-Authorization']: token,
+            }
+        }
+    }
+
+    const res = await fetch(`${base}/${id}`, {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(data)
+    });
+
+    return res;
+}
+
+export async function getAllComments(recipeId) {
     const res = await fetch(base);
 
     const data = await res.json();
 
 
 
-    const comments = await Promise.all(Object.values(data).filter(comment => comment.recipeId === recipeId).map( async el => {
-        const recipe = await getRecipe(el.recipeId)
-        const userData = await getUser(recipe._ownderId);
-        el['username'] = userData.username;
-        return el;
-    }));
+    const comments = await Promise.all(Object.values(data).filter(comment => comment && comment.recipeId === recipeId)) //.map(async el => {
+
+        // console.log(el)
+        // const recipe = await getRecipe(el.recipeId)
+        // const userData = await getUserByCollectionId(recipe._ownerId);
+        // el['username'] = userData.username;
+        // return el;
+    // }));
     return comments;
+}
+
+export async function deleteComment(id) {
+    const token = localStorage.getItem('accessToken');
+    console.log(token)
+    const res = await fetch(`${base}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': token
+        }
+    })
+
+    return res;
 }
 
 // await createComment("c38a9332-2011-495f-9bbc-bdc57b830251", 'Obama', "very tasty! :_(")

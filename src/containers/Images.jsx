@@ -7,7 +7,7 @@ import "./Images.css"
 
 export default function Images({ images }) {
     const sliderRef = useRef(null);
-    const scrollAmount = 100;
+    const scrollAmount = 300;
 
     return (
         <div className="images">

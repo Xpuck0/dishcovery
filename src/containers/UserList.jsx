@@ -10,23 +10,21 @@ export default function UserList({
     quantity
 }) {
     const [authors, setAuthors] = useState([]);
-    const {search, setSearch} = useContext(QueryContext);
+    const {search} = useContext(QueryContext);
 
     useEffect(() => {
         const fetchData = async () => {
             const data = await usersAPI.getAllUsers();
             setAuthors(data);
         }
-
-        
         fetchData();
     }, []);
 
     return (
         <ol className="authors-list list">
             {
-                authors
-                    ? authors.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.username.toLowerCase().includes(search.toLowerCase())).map(author => (
+                authors.length > 0
+                    ? authors.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a && a.username && a.username.toLowerCase().includes(search.toLowerCase())).map(author => (
                         // console.log(author)
                         <li key={author._id} className="author item">
                             <Link  to={`/authors/${author._id}`}>{author.username}</Link>

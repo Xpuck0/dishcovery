@@ -1,12 +1,18 @@
 import { useState } from "react";
 import "./StarRating.css"
 
-export default function StarRating() { 
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
+export default function StarRating({
+  rating, setRating,
 
+}) {
+
+  const [hover, setHover] = useState(0);
   return (
     <div className="star-rating">
+      <button onClick={() => {setRating(0); setHover(0)}} className="star-deselect">deselect</button>
+      {
+        console.log(rating)
+      }
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (
