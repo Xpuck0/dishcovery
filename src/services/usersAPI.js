@@ -10,6 +10,48 @@ export async function getUser(id) {
     }
 }
 
+export async function updateUserPartially(id, body) {
+    try {
+        const res = await fetch(`${baseUsers}/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+
+        const data = await res.json();
+        return data;
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+export async function updateUser(id, body, wallets) {
+    try {
+        body = {
+            ...body,
+            wallets: wallets
+        }
+
+        console.log(body)
+
+        const res = await fetch(`${baseUsers}/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+
+        const data = await res.json();
+        return data;
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export async function getUserByCollectionId(id) {
     try {
         const res = await getAllUsers();
@@ -59,24 +101,24 @@ export async function createUser(d) {
     }
 }
 
-export async function updateUser(id, d) {
-    try {
-        const res = await fetch(`${baseUsers}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(d)
-        });
+// export async function updateUser(id, d) {
+//     try {
+//         const res = await fetch(`${baseUsers}/${id}`, {
+//             method: 'PUT',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(d)
+//         });
 
-        const data = await res.json();
-        // console.log(data);
-        return data;
+//         const data = await res.json();
+//         // console.log(data);
+//         return data;
 
-    } catch (err) {
-        console.log(err)
-    }
-}
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
 export async function deleteUser(id) {
     try {

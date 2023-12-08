@@ -1,0 +1,153 @@
+.account-settings .line {
+    width: 100%;
+    height: 1px;
+    color: red
+}
+
+.account-settings .new-image-prompt.hide {
+    display: none;
+}
+
+.settings-form {
+    width: 600px;
+    /* background-color: #252525; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.settings-form input {
+    padding: .25em;
+    font-size: 1.2em;
+    background-color: #454545;
+    border: 2px solid #454545;
+}
+
+.settings-form input:focus {
+    outline:none;
+}
+
+.settings-form input[name="username"] {
+    border: 2px solid purple;
+    margin-bottom: 2em;
+}
+
+.settings-form input[name="email"] {
+    border: 2px solid orange;
+    margin-bottom: 2em;
+}
+.settings-form input[name="password"] {
+    border: 2px solid red;
+    margin-bottom: 2em;
+}
+
+.settings-form .img-input {
+    border: 2px solid navy;
+    width: 100%;
+}
+
+.settings-form .img-submit {
+    padding: .5em 1em;
+    border: 2px solid blue;
+    background-color: blue;
+    color: white;
+    margin-bottom: 2em;
+    font-size: 1em;
+    font-weight: 700;
+    transition: background-color .2s ease-in-out,
+                color .2s ease-in-out;
+}
+
+.settings-form .img-submit:hover {
+    background-color: unset;
+    color: cyan;
+}
+
+.settings-form .new-image {
+    font-size: 1em;
+    font-weight: 600;
+    margin-inline: 40%;
+    margin-top: 2em;
+    padding: .5em 0;
+    border: 2px solid #00ff59;
+    background-color: #00ff59;
+    transition: background-color .2s ease-in-out,
+                color .2s ease-in-out;
+}
+
+.settings-form .new-image:hover {
+
+    color: beige;
+    border: 2px solid #00ff59;
+    background-color: unset;
+}
+
+.settings-form input,
+.settings-form label {
+    display: block;
+    color: beige;
+    margin-block: .5em;
+}
+
+.settings-form p {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: beige;
+}
+
+.settings-form p span {
+    color: cyan;
+}
+
+.settings-form label {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.settings-form .img-wrapper {
+    margin: 0 auto;
+    width: 20em;
+    height: 20em;
+    background-repeat: space;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.settings-form img {
+    width: 100%;
+    height: 100%;
+}
+
+.settings-form .username {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.settings-form .wallets input {
+    border: 2px solid green;
+    width: 100%;
+}
+
+.settings-form .submit-form ,
+.settings-form .cancel{
+    flex: 1 1 50%;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: .5em 1em;
+    transition: background-color .2s ease-in-out,
+                color .2s ease-in-out;
+}
+
+.settings-form .submit-form:hover,
+.settings-form .cancel:hover {
+    background-color: unset;
+    color: white;
+}
+
+.settings-form .buttons {
+    display: flex;
+}

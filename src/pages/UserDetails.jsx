@@ -12,7 +12,6 @@ export default function UserDetails() {
 
     useEffect(() => {
         async function get(id) {
-            console.log(id)
             const r = await getUserByCollectionId(id)
             setUser(r);
         }
@@ -40,6 +39,11 @@ export default function UserDetails() {
                 <Heading  content="Recipes" />
                 <div className="recipes">
                     <RecipeList owner_id={id} />
+                </div>
+
+                <Heading content="Recipes Liked By User" />
+                <div className="liked-recipes">
+                    <RecipeList liked_by={user._collectionsId}/>
                 </div>
             </div>
             <Footer />

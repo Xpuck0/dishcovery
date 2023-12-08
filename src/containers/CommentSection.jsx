@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import { createComment, deleteComment, getAllComments, updateComment } from "../services/commentsAPI";
+import { createComment, deleteComment, getAllComments, updateComment, updateCommentPartially } from "../services/commentsAPI";
 
 import Heading from "../components/Heading";
 import "./CommentSection.css"
@@ -13,10 +13,8 @@ export default function CommentSection({ rating }) {
     const [comment, setComment] = useState('')
     const [comments, setComments] = useState([]);
     const [likedComments, setLikedComments] = useState([]);
-    //     const storedLikedComments = localStorage.getItem('likedComments');
-    //     return storedLikedComments ? JSON.parse(storedLikedComments) : [];
-    // })
-     const [editingCommentId, setEditingCommentId] = useState(null);
+    const [editCommentContent, setEditCommentContent] = useState('');
+    const [editingCommentId, setEditingCommentId] = useState(null);
     const [error, setError] = useState('hidden');
     const { userId, username, isAuthenticated } = useContext(AuthContext);
 
@@ -26,12 +24,20 @@ export default function CommentSection({ rating }) {
         getAllComments(id)
             .then(data => {
                 setComments(data)
+                setLikedComments(() => {
+                    const l = [];
+                    data.map(a => {
+                        a.likes.includes(userId) && l.push(a._id)
+                    })
+                    return l
+                })
             })
     }, [id, username])
 
     const changeHandler = (e) => {
-        setComment(old => e.target.value)
+        setComment(e.target.value)
     }
+
 
     const clearState = () => {
         setComment('');
@@ -62,9 +68,6 @@ export default function CommentSection({ rating }) {
         setComments(updatedComments);
 
         await updateComment(id, newData, true);
-
-        // localStorage.setItem('likedComments', JSON.stringify(likedComments));
-
     }
 
     const commentDeleteHandler = async (id) => {
@@ -72,8 +75,25 @@ export default function CommentSection({ rating }) {
         setComments(old => old.filter(a => a._id != id));
     }
 
-    const commentEditHandler = async (id) => {
+    const commentChangeHandler = (e) => {
+        setEditCommentContent(e.target.value);
+    }
 
+    const clickCommentEditHandler = (id, comment) => {
+        setEditCommentContent(comment)
+        setEditingCommentId(id)
+    }
+
+    const editCommentSubmitHandler = async (e, id) => {
+        e.preventDefault();
+
+        const comment = comments.find(c => c._id == id);
+        comment.comment = editCommentContent;
+
+        const res = await updateComment(id, comment, true)
+
+        setEditCommentContent('');
+        setEditingCommentId(null);
     }
 
     const submitHandler = async (e) => {
@@ -88,13 +108,14 @@ export default function CommentSection({ rating }) {
         }
     }
 
+
+
     return (
         <>
             <Heading content={`Comments[${comments.length}]`} />
             {isAuthenticated ?
                 <article className="create-comment">
                     <form className="form" onSubmit={submitHandler}>
-                        {/* <input type="text" name="username" value={comment.username} onChange={changeHandler} /> */}
                         <h3 className="author"><Link to={`/authors/${id}`}>{username || "Anonymous"}</Link></h3>
                         <textarea name="comment" id="comment" value={comment} placeholder="Add comment..." cols="30" rows="10" onChange={changeHandler} ></textarea>
                         <button type="submit">Submit</button>
@@ -115,11 +136,22 @@ export default function CommentSection({ rating }) {
                                     <h4 className="heading"><Link to={`/authors/${a._ownerId}`}>{a.username}</Link></h4>
                                     {a.rating != 0 && <p className="rating">{a.rating}/5 stars</p>}
                                     <p className="date">{convertTimestampToFormattedDate(a._createdOn)}</p>
-                                    {isAuthenticated && <button onClick={() => commentLikeHandler(a._id, a)} className={`comment-like ${likedComments.includes(a._id) ? 'liked' : ''}`}>{a.likes.length} liked this</button>}
-                                    {isAuthenticated && a._ownerId == userId && <p onClick={() => commentDeleteHandler(a._id)} className="removeBtn">X</p>}
-                                    {isAuthenticated && a._ownerId == userId && <p onClick={() => commentEditHandler(a._id)} className="editBtn">E</p>}
+                                    {isAuthenticated && <button onClick={() => commentLikeHandler(a._id, a)} className={`comment-like ${likedComments.includes(a._id) ? 'liked' : ''}`}>{a.likes.length} {a.likes.length === 1 ? 'like' : 'likes'}</button>}
+                                    <div className="header-buttons">
+                                    {isAuthenticated && a._ownerId == userId && <p onClick={() => commentDeleteHandler(a._id)} className="removeBtn">Delete</p>}
+                                    {isAuthenticated && a._ownerId == userId && <p onClick={() => clickCommentEditHandler(a._id, a.comment)} className="editBtn">Edit</p>}
+                                    </div>
                                 </div>
-                                <p className="content">{a.comment}</p>
+                                {editingCommentId === a._id ?
+                                    <form onSubmit={(e) => editCommentSubmitHandler(e, a._id)} className={'edit-form'}>
+                                        <textarea defaultValue={a.comment} onChange={commentChangeHandler}></textarea>
+                                        <div className="buttons">
+                                            <button className="confirmBtn" type="submit">Confirm</button>
+                                            <button className="cancelBtn" onClick={() => { setEditingCommentId('') }} type="button">Cancel</button>
+                                        </div>
+                                    </form>
+                                    : <p className="content">{a.comment}</p>
+                                }
                             </section>
                         </li>
                     )) : <h3>No comments! Be the first one to post a comment!</h3>}

@@ -12,6 +12,7 @@ import RecipeCreate from './pages/RecipeCreate'
 import RecipeDetails from './pages/RecipeDetails'
 import UsersPage from './pages/UsersPage'
 import UserDetails from './pages/UserDetails'
+import AccountSettings from './pages/AccountSettings'
 
 import './App.css'
 import Path from './paths'
@@ -33,14 +34,15 @@ function App() {
                 <Routes>
                     <Route path={Path.Home} element={<HomePage />} />
                     <Route path={Path.Login} element={<LoginPage />} />
-                    <Route path="/logout" element={<LogoutPage />} />
+                    <Route path={Path.Logout} element={<LogoutPage />} />
                     <Route path={Path.Signup} element={<SignupPage />} />
                     <Route path={Path.Recipes} element={<RecipesPage />} />
                     <Route path={`/recipes/:id`} element={<RecipeDetails />} />
-                    <Route path="recipes/create" element={<RecipeCreate />} />
+                    <Route path={Path.CreateRecipe} element={<RecipeCreate />} />
                     <Route path={Path.Authors} element={<UsersPage />} />
                     <Route path={`${Path.Authors}/:id`} element={<UserDetails />} />
                     <Route path={Path.CreateRecipe} element={<HomePage />} />
+                    <Route path={Path.Settings} element={<AccountSettings />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </AuthProvider>

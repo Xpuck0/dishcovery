@@ -12,7 +12,7 @@ import Images from "../containers/Images";
 import CommentSection from "../containers/CommentSection";
 
 export default function RecipeDetails() {
-    const [likeStatus, setLikeStatus] = useState('false');
+    const [likeStatus, setLikeStatus] = useState(false);
     const {userId} = useContext(AuthContext);
     const [rating, setRating] = useState(0);
     const [recipe, setRecipe] = useState({
@@ -35,6 +35,7 @@ export default function RecipeDetails() {
         async function getInfo() {
             const res = await getFullRecipe(id);
             setRecipe(res);
+            setLikeStatus(() => res.likes.includes(userId))
         }
 
         getInfo();
@@ -52,7 +53,10 @@ export default function RecipeDetails() {
             oldLikesCopy = oldLikesCopy.filter(el => el != userId);
         }
         setRecipe(old => ({ ...old, likes: oldLikesCopy}))
-        await updateRecipe(recipe._id, recipe, true)
+        // console.log(oldLikesCopy)
+        // console.log({...recipe, likes: oldLikesCopy})
+        await updateRecipe(recipe._id, {...recipe, likes: oldLikesCopy}, true)
+        // console.log(recipe.likes)
     }
 
     const checkHandler = (e) => {
@@ -70,12 +74,11 @@ export default function RecipeDetails() {
                         <h1 className="title">{recipe.title}</h1>
                         <h4 className="author"><Link to={`/authors/${recipe._ownerId}`}>{recipe.author}</Link></h4>
                     </section>
-                    <button className={`like-button ${likeStatus}`} onClick={likeHandler}>{recipe.likes.length} likes</button>
+                    <button className={`like-button ${likeStatus}`} onClick={likeHandler}>{recipe.likes.length} {recipe.likes.length == 1 ? 'like' : 'likes'}</button>
                 </div>
                 <Heading content="Images" />
                 <Images images={recipe.images} />
 
-                <StarRating rating={rating} setRating={setRating} />
                 <Heading content="Ingredients" />
                 <ul className="ingredients">
                     {recipe.ingredients.length > 0 ? recipe.ingredients.map((a, i) => (
@@ -120,6 +123,8 @@ export default function RecipeDetails() {
 
                 </div>}
 
+                <Heading content="Rating" />
+                <StarRating rating={rating} setRating={setRating} />
                 <CommentSection rating={rating}/>
 
             </div >

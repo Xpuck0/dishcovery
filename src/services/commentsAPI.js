@@ -1,5 +1,5 @@
-import { getRecipe } from "./recipesAPI";
-import { getUser, getUserByCollectionId } from "./usersAPI";
+import { getRecipe } from "./recipesAPI.js";
+import { getUser, getUserByCollectionId } from "./usersAPI.js";
 import * as request from "./requests.js"
 
 const base = "http://localhost:3030/data/comments";
@@ -69,6 +69,43 @@ export async function updateComment(id, data, xadmin=false) {
     });
 
     return res;
+}
+
+export async function updateCommentPartially(id, data, xadmin=false) {
+
+    try {
+
+    const token = localStorage.getItem('accessToken');
+
+    let headers = {}
+    if (xadmin) {
+        headers = {
+            'X-Admin': '',
+            'Access-Control-Allow-Origin': ''
+        }
+    } else {
+        headers = {
+            'content-type': 'application/json'
+        };
+
+        if (token) {
+            headers = {
+                ...headers,
+                ['X-Authorization']: token,
+            }
+        }
+    }
+    console.log(`${base}/${id}`)
+    const res = await fetch(`${base}/${id}`, {
+        method: 'PATCH',
+        headers: headers,
+        body: JSON.stringify(data)
+    });
+
+    return res;
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 export async function getAllComments(recipeId) {

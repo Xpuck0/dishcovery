@@ -5,6 +5,8 @@ const Path = {
     Login: '/login',
     Logout: '/logout',
     Signup: '/signup',
+    Delete: '/delete',
+    Settings: '/settings',
     CreateRecipe: '/recipes/create'
 };
 

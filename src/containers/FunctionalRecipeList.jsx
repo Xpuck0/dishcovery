@@ -12,19 +12,19 @@ export default function FunctionalRecipeList({
     const sortCallback = (a, b) => {
         switch (order) {
             case 'likes-ascending':
-                return a.likes - b.likes; break;
+                return a.likes - b.likes; 
             case 'likes-descending':
-                return b.likes - a.likes; break;
+                return b.likes - a.likes; 
             case 'date-ascending':
                 console.log(a, b)
-                return a._createdOn - b._createdOn; break;
+                return a._createdOn - b._createdOn; 
             case 'date-descending':
                 console.log(a, b)
-                return b._createdOn - a._createdOn; break;
+                return b._createdOn - a._createdOn; 
             case 'name-ascending':
-                return a.title.localeCompare(b.title); break;
+                return a.title.localeCompare(b.title); 
             case 'name-descending':
-                return b.title.localeCompare(a.title); break;
+                return b.title.localeCompare(a.title); 
             default:
                 return;
         }

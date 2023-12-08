@@ -11,49 +11,67 @@ export default function RecipeList({
     order,
     quantity,
     owner_id,
-    show
+    show,
+    liked_by,
 }) {
     const auth = useContext(AuthContext)
-    const {search, setSearch} = useContext(QueryContext)
+    const { search, setSearch } = useContext(QueryContext)
     const [recipes, setRecipes] = useState([]);
+    const [dataFetched, setDataFetched] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             const data = await recipeAPI.getAllRecipes();
-            if (owner_id) {
+            if (liked_by) {
+                const res = data.filter(r => r.likes.includes(liked_by));
+                console.log(res)
+                setRecipes(res)
+                console.log(recipes)
+            }
+            else if (owner_id) {
                 setRecipes(data.filter(r => r._ownerId == owner_id))
             } else {
                 setRecipes(data);
             }
+
+            setDataFetched(true);
         }
         fetchData()
-    }, []);
+    }, [liked_by, owner_id]);
 
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const data = await recipeAPI.getAllRecipes();
+    //         if (liked_by) {
+    //             const res = data.filter(r => r.likes.includes(liked_by));
+    //             console.log(res);
+    //             setRecipes(res);
+    //         }
+    //         if (owner_id) {
+    //             setRecipes(data.filter(r => r._ownerId == owner_id));
+    //         } else {
+    //             setRecipes(data);
+    //         }
+    //     };
+    //     fetchData();
+    // }, [liked_by, owner_id]);
+
+    if (!dataFetched) {
+        return null;
+    }
 
     return (
-        <>
         <ul className="recipe-list list">
             {
 
                 recipes
-                    ? 
-                    
+                    ?
+
                     recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.title.toLowerCase().includes(search.toLowerCase())).map(r => {
-                        return <RecipeCard key={r._id} r={r} show={show}/>
+                        return <RecipeCard key={r._id} r={r} show={show} />
                     })
                     : <h1 className="error">There are no recipes</h1>
             }
         </ul>
-        {/* {noRecipes && 
-            <div className="no-recipes">
-                <h1 className="error">There are no recipes</h1>
-                {auth.isAuthenticated ? 
-                    <Link to={Path.CreateRecipe} className="post">Post a recipe</Link>
-                    : <p><Link className="signup">Sign up</Link> to create recipes or <Link className="login">log in</Link> if you already have an account.</p>
-                     
-                }
-            </div>
-        } */}
-        </>
     )
 }

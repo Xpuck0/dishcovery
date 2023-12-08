@@ -7,7 +7,8 @@ import Path from '../paths';
 
 export default function Header() {
 
-    const { username, email, isAuthenticated } = useContext(AuthContext);
+    const [displayStats, setDisplayStats] = useState(false)
+    const { userId, username, email, isAuthenticated } = useContext(AuthContext);
     const {search, setSearch} = useContext(QueryContext)
 
     const changeHandler = (e) => {
@@ -18,11 +19,15 @@ export default function Header() {
         setSearch('')
     }
 
+    const toggleDropDown = (e) => {
+        setDisplayStats(o => !o);
+    }
+
     return (
         <div className="site-header">
             <Link to={'/'}><h1 className="logo">dishcovery</h1></Link>
             <form className="searchbar-wrapper">
-                <input type="text" name="Searchbar" id="search" value={search} onChange={changeHandler} placeholder="Search recipes and chefs" />
+                <input type="text" name="Searchbar" id="search" value={search} onChange={changeHandler} placeholder="🔎   Search recipes and chefs" />
                 <svg
                     onClick={resetHandler}
                     className="backspace"
@@ -48,8 +53,15 @@ export default function Header() {
                     </div>
                 ) : (
                     <div className="profile">
-                        <p className="name">{username}</p>
-                        <Link to={Path.Logout}><p className="logout">logout</p></Link>
+                        <p onClick={toggleDropDown} className="name">{username}</p>
+                        <nav>
+                            <ul className={`dropdown ${displayStats == false ? 'hide' : 'show'}`}>
+                                <li><Link to={`/authors/${userId}`}>Profile</Link></li>
+                                <li><Link to={Path.Logout}>Logout</Link></li>
+                                <li><Link to={Path.Settings}>Settings</Link></li>
+                                <li><button onClick={toggleDropDown} type="button">Close ❌</button></li>
+                            </ul>
+                        </nav>
                     </div>
                 )
             }

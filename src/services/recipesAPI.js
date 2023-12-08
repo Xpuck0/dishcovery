@@ -34,7 +34,7 @@ export async function getFullRecipe(id) {
         const res = await fetch(`${base}/${id}`);
         const r = await res.json();
 
-        console.log("recipe owner: " + r._ownerId)
+        // console.log("recipe owner: " + r._ownerId)
         const userData = await getUserByCollectionId(r._ownerId);
         r['author'] = userData.username;
         // r['profilePicture'] = userData.profilePicture;
@@ -90,7 +90,6 @@ export async function updateRecipe(id, d, xadmin = false) {
                 }
             }
         }
-
 
         const res = await fetch(`${base}/${id}`, {
             method: 'PUT',

@@ -17,7 +17,7 @@
     position: relative;
     top: -6px;
     /* -webkit-text-stroke: 2px black; */
-    line-height:0.9;
+    line-height: 0.9;
 }
 
 .site-header form {
@@ -28,7 +28,7 @@
 .site-header input {
     width: 100%;
     height: 100%;
-    
+
     padding: 0.5em 2em;
     background-color: #222;
     color: white;
@@ -51,14 +51,14 @@
 
 .site-header .backspace:hover {
     cursor: pointer;
-    fill:#5a5a5a;
+    fill: #5a5a5a;
     transition: 3s ease-in;
 }
 
 .site-header .auth-buttons {
     flex: 0 1 15%;
     justify-content: flex-end;
-    align-self:center;
+    align-self: center;
     display: flex;
     gap: 1em;
 }
@@ -70,17 +70,84 @@
     white-space: nowrap;
 }
 
+.site-header .name {
+    font-size: 1.1em;
+    color: cyan;
+}
+
+.site-header .profile {
+    position: relative;
+    margin-right: 4em;
+    border: 2px solid #7288FF
+}
+
+.site-header .profile:hover {
+    cursor: pointer;
+}
+
+.site-header .dropdown.hide {
+    display: none;
+}
+
+.site-header .dropdown li button {
+    height: 100%;
+    width: 100%;
+    font-size: 1em;
+    background-color: unset;
+    border: unset;
+    color: orangered;
+    cursor: pointer;
+}
+
+
+.site-header .dropdown li:last-child:hover {
+    border: 2px solid darkred;
+}
+
+.site-header .dropdown {
+
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    background-color: #252525;
+    position: absolute;
+    top: 4em;
+    left: 0;
+}
+
+.site-header .dropdown li {
+    background-color: #151515;
+    border: 2px solid #151515;
+    list-style-type: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 0.6em 2em;
+    white-space: nowrap;
+}
+
+.site-header .dropdown li:hover {
+    border: 2px solid cyan;
+    cursor: pointer;
+}
+
+.site-header .dropdown li a {
+    font-size: 1.2em;
+    color: cyan;
+}
+
 .site-header .login a {
     color: #7288FF;
 }
 
-.site-header .login a:hover{
-    border-bottom : 2px solid #7288FF;
+.site-header .login a:hover {
+    border-bottom: 2px solid #7288FF;
 }
 
 .site-header .signup a:hover {
     border-bottom: 2px solid #f222ac;
 }
+
 .site-header .signup a {
     color: #f222ac;
 }
@@ -93,7 +160,7 @@
 .site-header .profile {
     display: flex;
     justify-content: space-evenly;
-    
+
     color: beige;
 
 }
