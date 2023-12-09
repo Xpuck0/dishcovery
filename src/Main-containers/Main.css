@@ -4,19 +4,29 @@
 }
 
 .site-main .links {
+    margin: 0 auto;
+    width: 400px;
     display: flex;
     justify-content: space-evenly;
+    gap: 1em
 }
 
 .site-main .links a {
-    font-size: .9em;
-    font-weight: 600;
-    color: black;
-    background-color: #CDC;
-    border: 1px solid white;
+    flex: 0 0 40%;
+    font-size: 1.1em;
+    font-weight: 800;
     padding: .5em 1em;
-    border-radius: .5em;
-    width: 8em;
+
+    border-bottom: 2px solid #151515;
+    color: beige;
+    /* border-radius: .5em; */
+    /* width: 8em; */
     text-align: center;
     text-decoration: none;
+    background-color: #353535;
+}
+
+.site-main .links a:hover {
+    background-color: unset;
+    border-bottom: 2px solid beige;
 }

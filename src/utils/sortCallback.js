@@ -1,9 +1,9 @@
 const sortCallback = (a, b, order) => {
         switch (order) {
             case 'likes-ascending':
-                return a.likes - b.likes; 
+                return a.likes.length - b.likes.length; 
             case 'likes-descending':
-                return b.likes - a.likes; 
+                return b.likes.length - a.likes.length; 
             case 'date-ascending':
                 return new Date(a._createdOn) - new Date(b._createdOn); 
             case 'date-descending':

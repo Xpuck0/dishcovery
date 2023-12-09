@@ -14,16 +14,27 @@ const FORM_INITIAL_STATE = {
 export default function LoginPage() {
     const { loginSubmitHandler } = useContext(AuthContext);
     const { credentials, onChange, onSubmit } = useForm(loginSubmitHandler, FORM_INITIAL_STATE)
+    const [err, setErr] = useState();
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        const res = await loginSubmitHandler(credentials.email, credentials.password)
+
+        if (credentials.email.length < 1) {
+            setErr('Email cannot be empty string!')
+        } else if (!res.ok) {
+            const a = await res.json();
+            setErr(a.message)
+        }
+        onSubmit(e);
+    }
 
     return (
         <div className="login-page-wrapper">
             <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
             <div className="login-page">
-                {/* <div className="image-container">
-                    <img src="/images/auth.jpg" alt="Food image" />
-                </div> */}
                 <div className="login-form">
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={submitHandler}>
                         <h2>Log in</h2>
 
                         <div className="input-wrapper">
@@ -34,6 +45,7 @@ export default function LoginPage() {
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
+                            {err && <p className="error">* {err}</p>}
                         </div>
 
                         <button className="submit" type="submit">Log in</button>

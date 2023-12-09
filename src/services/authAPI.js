@@ -5,19 +5,19 @@ const base = 'http://localhost:3030/users';
 
 export async function login(email, password) {
     try {
-        // console.log(email, password)
-        // const result = await request.post('POST', `${base}/login`, {
-        //     email,
-        //     password
-        // });
+
 
         const fetched = await fetch(`${base}/login`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({"email": email, "password": password})
+            body: JSON.stringify({ "email": email, "password": password })
         })
+
+        if (!fetched.ok) {
+            return fetched;
+        }
 
         const data = await fetched.json();
 

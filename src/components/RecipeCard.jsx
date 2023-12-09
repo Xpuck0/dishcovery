@@ -15,7 +15,7 @@ export default function RecipeCard({ r, show }) {
                 <p className="title"><Link to={`/recipes/${r._id}`}>{r.title}</Link></p>
                 {show == "all" && (
                     <>
-                        <p className="likes">{r.likes} likes</p>
+                        <p className="likes">{r.likes.length} {r.likes.length == 1 ? 'like' : 'likes'}</p>
                         <span className="date">{convertTimestampToFormattedDate(r._createdOn)}</span>
                     </>
                 )}

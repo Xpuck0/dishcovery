@@ -72,13 +72,18 @@
 
 .site-header .name {
     font-size: 1.1em;
-    color: cyan;
+    color: white;
 }
 
 .site-header .profile {
+    width: 8em;
     position: relative;
-    margin-right: 4em;
-    border: 2px solid #7288FF
+    background-color: #7288FF;
+    border: 2px solid #7288FF;
+}
+
+.site-header .profile:hover {
+    background-color: unset;
 }
 
 .site-header .profile:hover {
@@ -106,14 +111,15 @@
 
 .site-header .dropdown {
 
-    padding: 1em;
+    width: 8em;
+    padding: .5em;
     display: flex;
     flex-direction: column;
     gap: .5em;
     background-color: #252525;
     position: absolute;
     top: 4em;
-    left: 0;
+    right: 0;
 }
 
 .site-header .dropdown li {
@@ -122,18 +128,20 @@
     list-style-type: none;
     font-size: 1.1em;
     font-weight: 600;
-    padding: 0.6em 2em;
+    text-align: center;
+    padding: 0.6em .5em;
     white-space: nowrap;
 }
 
 .site-header .dropdown li:hover {
-    border: 2px solid cyan;
+    border: 2px solid beige;
     cursor: pointer;
 }
 
 .site-header .dropdown li a {
-    font-size: 1.2em;
-    color: cyan;
+    font-size: .9em;
+    color: beige;
+    text-align: center
 }
 
 .site-header .login a {
@@ -163,4 +171,27 @@
 
     color: beige;
 
+}
+
+.site-header .navigation {
+    width: 100%;
+}
+
+.site-header .nav-list {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.site-header .nav-list li {
+    list-style-type: none;
+}
+.site-header .nav-list li a {
+    color: white;
+    font-size: 1.3em;
+    font-weight: 800;
+}
+
+.site-header .nav-list li a:hover {
+    color: magenta;
+    text-decoration: underline;
 }

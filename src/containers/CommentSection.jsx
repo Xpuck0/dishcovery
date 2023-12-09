@@ -137,10 +137,12 @@ export default function CommentSection({ rating }) {
                                     {a.rating != 0 && <p className="rating">{a.rating}/5 stars</p>}
                                     <p className="date">{convertTimestampToFormattedDate(a._createdOn)}</p>
                                     {isAuthenticated && <button onClick={() => commentLikeHandler(a._id, a)} className={`comment-like ${likedComments.includes(a._id) ? 'liked' : ''}`}>{a.likes.length} {a.likes.length === 1 ? 'like' : 'likes'}</button>}
-                                    <div className="header-buttons">
-                                    {isAuthenticated && a._ownerId == userId && <p onClick={() => commentDeleteHandler(a._id)} className="removeBtn">Delete</p>}
-                                    {isAuthenticated && a._ownerId == userId && <p onClick={() => clickCommentEditHandler(a._id, a.comment)} className="editBtn">Edit</p>}
-                                    </div>
+                                    {isAuthenticated && a._ownerId == userId && (
+                                        <div className="header-buttons">
+                                            <p onClick={() => commentDeleteHandler(a._id)} className="removeBtn">Delete</p>
+                                            <p onClick={() => clickCommentEditHandler(a._id, a.comment)} className="editBtn">Edit</p>
+                                        </div>)
+                                    }
                                 </div>
                                 {editingCommentId === a._id ?
                                     <form onSubmit={(e) => editCommentSubmitHandler(e, a._id)} className={'edit-form'}>

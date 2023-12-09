@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { AuthContext } from "../contexts/contexts";
 import { login, signup } from '../services/authAPI.js';
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,10 @@ export default function AuthProvider({
 
     const loginSubmitHandler = async (values) => {
         const res = await login(values.email, values.password)
+        if (!res.ok && !res._id) {
+
+            return res;
+        }
         setAuth(res)
 
         localStorage.setItem('accessToken', res.accessToken)
