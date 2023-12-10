@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
 import Header from "../Main-containers/Header"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as recipeAPI from "../services/recipesAPI";
 import RecipeCard from "../components/RecipeCard";
 import RecipeList from "../containers/RecipeList";
 import "./RecipesPage.css"
 import Heading from "../components/Heading";
+import Path from "../paths";
+import { AuthContext } from "../contexts/contexts";
+// import Footer from "../Main-containers/Footer";
 
 export default function RecipesPage() {
     const [form, setForm] = useState({
@@ -12,6 +16,7 @@ export default function RecipesPage() {
         order: 'descending'
     })
     const [showForm, setShowForm] = useState(false);
+    const {isAuthenticated} = useContext(AuthContext);
 
     const changeHandler = (e) => {
 
@@ -55,8 +60,10 @@ export default function RecipesPage() {
                     <RecipeList order={`${form.criteria}-${form.order}`} quantity={-1} show="all" />
 
                 </div>
+                {isAuthenticated && <Link className="create-btn" to={Path.CreateRecipe}>Create Recipe</Link>}
 
             </div>
+
         </>
     )
 }

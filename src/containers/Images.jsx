@@ -26,12 +26,12 @@ export default function Images({ images }) {
             {/* Image container */}
             < div className="images-container" ref={sliderRef} >
                 {
-                    images.map((image) => {
+                    images.map((image, i) => {
                         return (
                             <img
                                 className="image"
                                 alt="sliderImage"
-                                key={image}
+                                key={`${image}${i}`}
                                 src={image}
                             />
                         );

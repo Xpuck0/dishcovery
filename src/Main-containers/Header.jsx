@@ -25,7 +25,7 @@ export default function Header({ hideQuery }) {
 
     return (
         <div className="site-header">
-            <Link to={'/'}><h1 className="logo">dishcovery</h1></Link>
+            <Link className='title' to={'/'}><h1 className="logo">dishcovery</h1></Link>
             {!hideQuery ?
                 <form className="searchbar-wrapper">
                     <input type="text" name="Searchbar" id="search" value={search} onChange={changeHandler} placeholder="🔎   Search recipes and chefs" />
@@ -63,15 +63,17 @@ export default function Header({ hideQuery }) {
                     </div>
                 ) : (
                     <div className="profile">
-                        <p onClick={toggleDropDown} className="name">{username}</p>
-                        <nav>
-                            <ul className={`dropdown ${displayStats == false ? 'hide' : 'show'}`}>
-                                <li><Link to={`/authors/${userId}`}>Profile</Link></li>
-                                <li><Link to={Path.Logout}>Logout</Link></li>
-                                <li><Link to={Path.Settings}>Settings</Link></li>
-                                <li><button onClick={toggleDropDown} type="button">Close ❌</button></li>
-                            </ul>
-                        </nav>
+                        <div className="subprofile">
+                            <p onClick={toggleDropDown} className="name">{username}</p>
+                            <nav>
+                                <ul className={`dropdown ${displayStats == false ? 'hide' : 'show'}`}>
+                                    <li><Link to={`/authors/${userId}`}>Profile</Link></li>
+                                    <li><Link to={Path.Logout}>Logout</Link></li>
+                                    <li><Link to={Path.Settings}>Settings</Link></li>
+                                    <li><button onClick={toggleDropDown} type="button">Close ❌</button></li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 )
             }

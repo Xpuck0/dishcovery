@@ -28,13 +28,32 @@ export async function login(email, password) {
     }
 }
 
-export async function signup(email, password) {
+export async function signup({email, password, username, profilePicture, wallets}) {
     try {
+        console.log(email, username, password, profilePicture, wallets)
 
-        await request.post(`${base}/register`, {
-            email,
-            password,
+        const fetched = await fetch(`${base}/register`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                username: username,
+                profilePicture: profilePicture,
+                wallets: wallets
+            })
         })
+
+        const user = await fetched.json();
+        // await request.post(`${base}/register`, {
+        //     email,
+        //     password,
+        //     username, 
+        //     profilePicture,
+        //     wallets
+        // })
 
         const result = await login(email, password);
         console.log(result)

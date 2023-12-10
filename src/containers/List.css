@@ -2,32 +2,32 @@
     margin: 2em 0;
 }
 
- .list {
+.list {
     column-count: 3;
-    margin: 1em auto 0em;
+    margin: 1em calc(50% - 400px);
     padding: 1em 2em;
     min-height: 20em;
-    width: 700px; 
+    width: 700px;
 }
 
- .item {
+.item {
     font-size: 1.2em;
     color: white;
-    list-style-position: inside; 
+    list-style-position: inside;
     width: 16ch;
 }
 
- .item:hover {
+.item:hover {
     color: beige;
     text-decoration: underline;
 }
 
- .item a {
+.item a {
     color: gold;
     text-decoration: none
 }
 
- .item a:hover {
+.item a:hover {
     color: beige;
 }
 
@@ -36,4 +36,3 @@
     color: white;
     margin: 0 auto;
 }
-

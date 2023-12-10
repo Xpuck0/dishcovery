@@ -16,9 +16,13 @@
     text-shadow: 0px 0px 15px rgba(231,231,231,0.59);
 }
 
+.login-page-wrapper .title p {
+    margin: 0;
+}
+
 .login-page-wrapper .title-link {
     text-decoration: none;
-    color: white;
+    color: orange;
     font-weight: 800;
 }
 
@@ -38,11 +42,11 @@
 
     min-width: 30%;
     max-width: 1040px;
-    height: 70%;
     min-height: 20em;
+    height: 100%;
     margin: 0 auto;
-    border-radius: .3em;
-    overflow: hidden;
+    /* border-radius: .3em; */
+    overflow: scroll;
     background-color: #E4EBEB;
 
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.33);
@@ -60,6 +64,19 @@
     box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
     -webkit-box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
     -moz-box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.41) inset;
+}
+
+
+.login-page .toggle-password {
+    font-size: 1.2em;
+    position: absolute;
+    right: .5em;
+    top: .5em;
+    height: .5em;
+}
+
+.login-page .toggle-password:hover {
+    cursor: pointer;
 }
 
 
@@ -131,6 +148,7 @@
 
 .login-form .input-wrapper {
     margin-bottom: 1em;
+    position: relative;
 }
 
 .login-form form .input-wrapper input {

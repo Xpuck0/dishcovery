@@ -19,6 +19,7 @@ export default function useForm(submitHandler, initialValue = {}) {
 
     const inputProps = {
         credentials: credentials,
+        setCredentials: setCredentials,
         onChange: onChange,
         onSubmit: onSubmit, 
     }

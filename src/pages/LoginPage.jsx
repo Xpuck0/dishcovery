@@ -1,8 +1,8 @@
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, json } from "react-router-dom";
 import { useState, useEffect, useContext } from "react"
 
 import { AuthContext } from "../contexts/contexts";
-import { getUser } from "../services/usersAPI";
+import { getAllUsers, getUser, getUserByCollectionId } from "../services/usersAPI";
 import useForm from "../hooks/useForm";
 import "./LoginPage.css"
 
@@ -14,26 +14,40 @@ const FORM_INITIAL_STATE = {
 export default function LoginPage() {
     const { loginSubmitHandler } = useContext(AuthContext);
     const { credentials, onChange, onSubmit } = useForm(loginSubmitHandler, FORM_INITIAL_STATE)
+    const [jsonstoreUser, setJsonstoreUser] = useState({});
+    const [clicked, setClicked] = useState(false)
     const [err, setErr] = useState();
+    const [inputType, setInputType] = useState('password');
+    const [event, setEvent] = useState({});
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        const res = await loginSubmitHandler(credentials.email, credentials.password)
+
 
         if (credentials.email.length < 1) {
             setErr('Email cannot be empty string!')
-        } else if (!res.ok) {
-            const a = await res.json();
-            setErr(a.message)
+        } else {
+            const userWithEmail = await getAllUsers().then(data => data.find(a => a.email == credentials.email))
+            if (!userWithEmail) {
+                setErr("Email doesn't exist!");
+            } else {
+                if (credentials.password == userWithEmail.password) {
+                    onSubmit(e);
+                    setErr('');
+                } else {
+                    setErr('Invalid password!')
+                }
+            }
         }
-        onSubmit(e);
+
     }
 
     return (
         <div className="login-page-wrapper">
-            <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
             <div className="login-page">
                 <div className="login-form">
+                <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
                     <form onSubmit={submitHandler}>
                         <h2>Log in</h2>
 
@@ -44,7 +58,8 @@ export default function LoginPage() {
 
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
+                            <input type={inputType} name="password" id="password" value={credentials.password} onChange={onChange} />
+                            <p className="toggle-password" onClick={() => setInputType(old => old == "password" ? "text" : "password")}>👁</p>
                             {err && <p className="error">* {err}</p>}
                         </div>
 

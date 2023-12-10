@@ -81,8 +81,9 @@ export async function createUser(d) {
             username: d.username || d.email,
             email: d.email,
             password: d.password,
+            profilePicture: d.profilePicture,
             created: new Date(),
-            wallets: [],
+            wallets: d.wallets,
             _collectionsId: d._id,
         }
 

@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUser, getUserByCollectionId } from "../services/usersAPI";
 import Heading from "../components/Heading";
+import Header from "../Main-containers/Header"
 import RecipeList from "../containers/RecipeList";
 import Footer from "../Main-containers/Footer";
 import "./UserDetails.css"
+import { AuthContext } from "../contexts/contexts";
 
 export default function UserDetails() {
+    const { userId, isAuthenticated } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const { id } = useParams()
 
@@ -26,24 +29,24 @@ export default function UserDetails() {
 
     return (
         <>
-
+            <Header hideQuery={true} />
             <div className="user-details wrapper">
                 <div className="profile">
                     <div className="img-container">
                         <img src={user.profilePicture} alt={`${user.username}'s profile picture`} />
                     </div>
                     <h1 className="name">{user.username}</h1>
-                    <button className="follow" onClick={clickHandler}>Follow</button>
+                    {isAuthenticated && user._id != userId && <button className="follow" onClick={clickHandler}>Follow</button>}
                 </div>
 
-                <Heading  content="Recipes" />
+                <Heading content="Recipes" />
                 <div className="recipes">
-                    <RecipeList owner_id={id} />
+                    <RecipeList owner_id={id} show={'all'}/>
                 </div>
 
                 <Heading content="Recipes Liked By User" />
                 <div className="liked-recipes">
-                    <RecipeList liked_by={user._collectionsId}/>
+                    <RecipeList liked_by={user._collectionsId} show={'all'} />
                 </div>
             </div>
             <Footer />

@@ -12,14 +12,14 @@ export default function Main() {
     const [order, setOrder] = useState('date-descending')
     const { search, setSearch } = useContext(QueryContext)
     const { isAuthenticated } = useContext(AuthContext)
-    const show = useState('none')
+    const show = useState('all')
 
     return (
         <div className="site-main wrapper">
             {!search && <Categories />}
             <section className="recipes">
                 <Heading content="Newest" line={false} />
-                <RecipeList order={order} quantity={30} show={show} />
+                <RecipeList order={order} quantity={30} show={'all'} />
                 <div className="links">
                     <Link to="/recipes">Browse ALL</Link>
                     {isAuthenticated && <Link to="/recipes/create">Create</Link>}

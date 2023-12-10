@@ -39,22 +39,6 @@ export default function RecipeList({
         fetchData()
     }, [liked_by, owner_id]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const data = await recipeAPI.getAllRecipes();
-    //         if (liked_by) {
-    //             const res = data.filter(r => r.likes.includes(liked_by));
-    //             console.log(res);
-    //             setRecipes(res);
-    //         }
-    //         if (owner_id) {
-    //             setRecipes(data.filter(r => r._ownerId == owner_id));
-    //         } else {
-    //             setRecipes(data);
-    //         }
-    //     };
-    //     fetchData();
-    // }, [liked_by, owner_id]);
 
     if (!dataFetched) {
         return null;
