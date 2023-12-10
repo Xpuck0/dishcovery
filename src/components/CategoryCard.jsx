@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import checkImageExists from '../utils/imageUtils';
 import './CategoryCard.css';
 
@@ -13,7 +14,7 @@ export default function CategoryCard({
                 <div className="img-container">
                     <img src={imgExists || image} alt="" />
                 </div>
-                <h3>{category}</h3>
+                <h3><Link to={`/tags/${category}`}>{category}</Link></h3>
                 <p>{count} in this category</p>
             </div>
         </li>

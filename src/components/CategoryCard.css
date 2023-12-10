@@ -23,8 +23,13 @@
     object-fit: cover;
 }
 
-.category-card h3 {
-    color: rgb(255, 0, 255)
+.category-card h3 a{
+    color: rgb(255, 0, 255);
+    text-decoration: none;
+    font-weight: 500;
+}
+.category-card h3 a:hover{
+    text-decoration: underline;
 }
 
 .category-card p {

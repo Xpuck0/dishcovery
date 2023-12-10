@@ -30,3 +30,7 @@
     background-color: unset;
     border-bottom: 2px solid beige;
 }
+
+.site-main .tags {
+    margin-block: 2em;
+}

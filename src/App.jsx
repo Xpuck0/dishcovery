@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { AuthContext, QueryContext } from './contexts/contexts'
 
+import TagPage from './pages/TagPage'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
@@ -43,6 +44,7 @@ function App() {
                     <Route path={`${Path.Authors}/:id`} element={<UserDetails />} />
                     <Route path={Path.CreateRecipe} element={<HomePage />} />
                     <Route path={Path.Settings} element={<AccountSettings />} />
+                    <Route path="/tags/:tag" element={<TagPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </AuthProvider>

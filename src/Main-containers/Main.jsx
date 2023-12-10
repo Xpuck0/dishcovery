@@ -7,6 +7,7 @@ import UserList from "../containers/UserList";
 import { AuthContext, QueryContext } from "../contexts/contexts";
 import "./Main.css"
 import { Link } from "react-router-dom";
+import Tags from "../containers/Tags";
 
 export default function Main() {
     const [order, setOrder] = useState('date-descending')
@@ -31,6 +32,10 @@ export default function Main() {
                 <div className="links">
                     <Link to="/authors">Browse ALL</Link>
                 </div>
+            </section>
+            <section className="tags">
+                <Heading content="Or Browse By Tags" />
+                <Tags/>
             </section>
         </div>
     )

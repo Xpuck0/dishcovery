@@ -13,6 +13,7 @@ export default function RecipeList({
     owner_id,
     show,
     liked_by,
+    tag
 }) {
     const auth = useContext(AuthContext)
     const { search, setSearch } = useContext(QueryContext)
@@ -30,6 +31,14 @@ export default function RecipeList({
             }
             else if (owner_id) {
                 setRecipes(data.filter(r => r._ownerId == owner_id))
+            }else if (tag) {
+                const arr = [];
+                data.map(el => {
+                    if (el.tags.includes(tag)) {
+                        arr.push(el);
+                    }
+                })
+                setRecipes(arr)
             } else {
                 setRecipes(data);
             }
@@ -37,7 +46,7 @@ export default function RecipeList({
             setDataFetched(true);
         }
         fetchData()
-    }, [liked_by, owner_id]);
+    }, [liked_by, owner_id, tag]);
 
 
     if (!dataFetched) {
@@ -51,7 +60,7 @@ export default function RecipeList({
                 recipes
                     ?
 
-                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a.title.toLowerCase().includes(search.toLowerCase())).map(r => {
+                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a && a.title && a.title.toLowerCase().includes(search.toLowerCase())).map(r => {
                         return <RecipeCard key={r._id} r={r} show={show} />
                     })
                     : <h1 className="error">There are no recipes</h1>

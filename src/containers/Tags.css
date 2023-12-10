@@ -1,0 +1,22 @@
+.tags-container {
+    width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.tags-container li {
+    list-style-type: none;
+}
+
+.tags-container li a {
+    color: gold;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.tags-container li a:hover {
+    text-decoration: underline;
+}
