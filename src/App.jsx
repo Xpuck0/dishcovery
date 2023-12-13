@@ -18,19 +18,20 @@ import AccountSettings from './pages/AccountSettings'
 import './App.css'
 import Path from './paths'
 import AuthProvider from './Main-containers/AuthProvider'
+import QueryProvider from './Main-containers/QueryProvider'
 import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
     
-    const [search, setSearch] = useState('')
+    // const [search, setSearch] = useState('')
 
-    const queryValues = {
-        search: search,
-        setSearch: setSearch
-    }
+    // const queryValues = {
+    //     search: search,
+    //     setSearch: setSearch
+    // }
 
     return (
-        <QueryContext.Provider value={queryValues} >
+        <QueryProvider>
             <AuthProvider>
                 <Routes>
                     <Route path={Path.Home} element={<HomePage />} />
@@ -48,7 +49,7 @@ function App() {
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </AuthProvider>
-        </QueryContext.Provider >
+        </QueryProvider>
     )
 }
 

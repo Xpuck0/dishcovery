@@ -56,9 +56,7 @@ export async function signup({email, password, username, profilePicture, wallets
         // })
 
         const result = await login(email, password);
-        console.log(result)
         await createUser(result)
-        console.log(await getAllUsers());
 
         return result;
 

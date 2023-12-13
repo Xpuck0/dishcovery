@@ -14,6 +14,17 @@
     flex-direction: column;
 }
 
+.create-page .added-images ul li span {
+}
+
+.create-page .added-images ul li {
+    overflow: hidden;
+}
+
+.create-page ul li span:hover ,
+.create-page ol li span:hover {
+    cursor: pointer;
+}
 .create-page .heading-wr .username {
     font-size: 1.3em;
     font-weight: 600;
@@ -127,7 +138,8 @@
 
 .create-page li span {
     position: absolute;
-    right: 0;
+    right: 0em;
+    top: 0em;
 }
 
 #description {

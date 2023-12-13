@@ -33,13 +33,12 @@ export async function getFullRecipe(id) {
 
         const res = await fetch(`${base}/${id}`);
         const r = await res.json();
+        // console.log(r)
 
-        // console.log("recipe owner: " + r._ownerId)
         const userData = await getUserByCollectionId(r._ownerId);
+        // console.log(userData.username)
         r['author'] = userData.username;
-        // r['profilePicture'] = userData.profilePicture;
-        // r['wallets'] = userData.wallets;
-
+        // console.log(r)
         return r;
     } catch (err) {
         console.log(err)

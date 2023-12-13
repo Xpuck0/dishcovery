@@ -102,25 +102,6 @@ export async function createUser(d) {
     }
 }
 
-// export async function updateUser(id, d) {
-//     try {
-//         const res = await fetch(`${baseUsers}/${id}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(d)
-//         });
-
-//         const data = await res.json();
-//         // console.log(data);
-//         return data;
-
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
 export async function deleteUser(id) {
     try {
         const req = await fetch(`${baseUsers}/${id}`, {

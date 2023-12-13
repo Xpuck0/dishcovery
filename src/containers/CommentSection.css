@@ -163,8 +163,7 @@
 }
 
 .comments .comment-like:hover {
-    background-color: #252525;
-    color: red;
+    cursor: pointer;
 }
 
 .comments .comment-like.liked {
@@ -174,8 +173,7 @@
 }
 
 .comments .comment-like.liked:hover {
-    background-color: darkred;
-    color: beige;
+    cursor: pointer;
 }
 
 .comments .recipe-comment .date {

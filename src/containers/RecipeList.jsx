@@ -16,7 +16,7 @@ export default function RecipeList({
     tag
 }) {
     const auth = useContext(AuthContext)
-    const { search, setSearch } = useContext(QueryContext)
+    const { query } = useContext(QueryContext)
     const [recipes, setRecipes] = useState([]);
     const [dataFetched, setDataFetched] = useState(false);
 
@@ -60,7 +60,7 @@ export default function RecipeList({
                 recipes
                     ?
 
-                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a && a.title && a.title.toLowerCase().includes(search.toLowerCase())).map(r => {
+                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a && a.title && a.title.toLowerCase().includes(query.toLowerCase())).map(r => {
                         return <RecipeCard key={r._id} r={r} show={show} />
                     })
                     : <h1 className="error">There are no recipes</h1>

@@ -3,21 +3,24 @@ import { useParams, Link } from "react-router-dom";
 import { createComment, deleteComment, getAllComments, updateComment, updateCommentPartially } from "../services/commentsAPI";
 
 import Heading from "../components/Heading";
+import StarRating from "../components/StarRating";
 import "./CommentSection.css"
 import { AuthContext } from "../contexts/contexts";
 import convertTimestampToFormattedDate from "../utils/dateUtils";
 
 
 
-export default function CommentSection({ rating }) {
+export default function CommentSection() {
     const [comment, setComment] = useState('')
     const [comments, setComments] = useState([]);
     const [likedComments, setLikedComments] = useState([]);
     const [editCommentContent, setEditCommentContent] = useState('');
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [error, setError] = useState('hidden');
-    const { userId, username, isAuthenticated } = useContext(AuthContext);
 
+    const [rating, setRating] = useState(0);
+
+    const { userId, username, isAuthenticated } = useContext(AuthContext);
     const { id } = useParams();
 
     useEffect(() => {
@@ -113,6 +116,12 @@ export default function CommentSection({ rating }) {
     return (
         <>
             <Heading content={`Comments[${comments.length}]`} />
+            {isAuthenticated &&
+                <>
+                    <Heading content="Rating" />
+                    <StarRating rating={rating} setRating={setRating} />
+                </>
+            }
             {isAuthenticated ?
                 <article className="create-comment">
                     <form className="form" onSubmit={submitHandler}>
@@ -136,7 +145,7 @@ export default function CommentSection({ rating }) {
                                     <h4 className="heading"><Link to={`/authors/${a._ownerId}`}>{a.username}</Link></h4>
                                     {a.rating != 0 && <p className="rating">{a.rating}/5 stars</p>}
                                     <p className="date">{convertTimestampToFormattedDate(a._createdOn)}</p>
-                                    {isAuthenticated && <button onClick={() => commentLikeHandler(a._id, a)} className={`comment-like ${likedComments.includes(a._id) ? 'liked' : ''}`}>{a.likes.length} {a.likes.length === 1 ? 'like' : 'likes'}</button>}
+                                    {isAuthenticated && <button onClick={() => commentLikeHandler(a._id, a)} className={`comment-like ${likedComments.includes(a._id) ? 'liked' : ''}`}>{a.likes?.length} {a.likes?.length === 1 ? 'like' : 'likes'}</button>}
                                     {isAuthenticated && a._ownerId == userId && (
                                         <div className="header-buttons">
                                             <p onClick={() => commentDeleteHandler(a._id)} className="removeBtn">Delete</p>

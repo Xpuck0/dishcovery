@@ -69,6 +69,12 @@
     flex-direction: column;
 }
 
+.recipe-page-wrapper li {
+    text-wrap: wrap;
+    /* overflow:hidden; */
+    word-wrap: break-word;
+}
+
 .recipe-page-wrapper .instruction.edit textarea {
     outline: none;
     width: 105%;

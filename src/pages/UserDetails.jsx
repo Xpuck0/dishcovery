@@ -36,7 +36,7 @@ export default function UserDetails() {
                         <img src={user.profilePicture} alt={`${user.username}'s profile picture`} />
                     </div>
                     <h1 className="name">{user.username}</h1>
-                    {isAuthenticated && user._id != userId && <button className="follow" onClick={clickHandler}>Follow</button>}
+                    {/* {isAuthenticated && user._id != userId && <button className="follow" onClick={clickHandler}>Follow</button>} */}
                 </div>
 
                 <Heading content="Recipes" />

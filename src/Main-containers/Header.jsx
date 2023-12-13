@@ -9,26 +9,30 @@ export default function Header({ hideQuery }) {
 
     const [displayStats, setDisplayStats] = useState(false)
     const { userId, username, email, isAuthenticated } = useContext(AuthContext);
-    const { search, setSearch } = useContext(QueryContext)
+    // const { search, setSearch } = useContext(QueryContext)
+    const {query, changeQuery, emptyQuery} = useContext(QueryContext)
 
     const changeHandler = (e) => {
-        setSearch(e.target.value);
+        console.log(e.target.value);
+        changeQuery(e.target.value);
+        // setQuery(e.target.value);
     }
 
-    const resetHandler = (e) => {
-        setSearch('')
+    const resetHandler = () => {
+        emptyQuery();
     }
 
-    const toggleDropDown = (e) => {
+    const toggleDropDown = () => {
         setDisplayStats(o => !o);
     }
 
     return (
         <div className="site-header">
             <Link className='title' to={'/'}><h1 className="logo">dishcovery</h1></Link>
+            {/* {console.log(a)} */}
             {!hideQuery ?
                 <form className="searchbar-wrapper">
-                    <input type="text" name="Searchbar" id="search" value={search} onChange={changeHandler} placeholder="🔎   Search recipes and chefs" />
+                    <input type="text" name="Searchbar" id="search" value={ query }  onChange={(event)=>changeHandler(event)} placeholder="🔎   Search recipes and chefs" />
                     <svg
                         onClick={resetHandler}
                         className="backspace"

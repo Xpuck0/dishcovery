@@ -39,6 +39,7 @@ export default function SignupPage() {
 
         if (credentials.password.length < 4) {
             setErrors(old => ({ ...old, email: "Password should be at least 4 characters long!" }))
+            console.log(errors)
         } else {
             onSubmit(e);
         }
@@ -55,11 +56,6 @@ export default function SignupPage() {
         }))
     }
 
-    const passwordBlurHandler = () => {
-        if (credentials.password != credentials.passwordConfirm) {
-            setVisible(true);
-        }
-    }
 
     return (
         <div className="login-page-wrapper">
@@ -77,6 +73,7 @@ export default function SignupPage() {
                         <div className="input-wrapper">
                             <label htmlFor="password">* Password</label>
                             <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
+                            <p className="error"></p>
                         </div>
 
                         {/* <p className="error" style={{ display: visible ? 'block' : 'none' }}>Passwords do not match!</p> */}
