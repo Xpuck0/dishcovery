@@ -38,7 +38,7 @@ export async function getFullRecipe(id) {
         const userData = await getUserByCollectionId(r._ownerId);
         // console.log(userData.username)
         r['author'] = userData.username;
-        // console.log(r)
+        r['wallets'] = userData.wallets;
         return r;
     } catch (err) {
         console.log(err)
@@ -50,13 +50,13 @@ export async function createRecipe(d) {
 
         const body = {
             // owner: d.owner,
-            title: d.title,
-            author: d.author,
-            images: d.images,
-            ingredients: d.ingredients,
-            instructionos: d.instructions,
+            title: d.title || "Unknown",
+            description: d.description || '',
+            images: d.images || [],
+            ingredients: d.ingredients || [],
+            instructions: d.instructions || [],
             likes: d.likes || [],
-            date: d.date
+            tags: d.tags || []
         }
 
         const r = await request.post(base, body)

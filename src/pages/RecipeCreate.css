@@ -5,16 +5,13 @@
     padding: 3em;
 }
 
-.create-page {
+.create-page form {
     min-height: 100%;
     /* background-color: #252525; */
     color: white;
     display: flex;
-    gap: 2em;
+    gap: 4em;
     flex-direction: column;
-}
-
-.create-page .added-images ul li span {
 }
 
 .create-page .added-images ul li {

@@ -4,6 +4,9 @@
     margin: 2em 4em;
     width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
 }
 
 .recipe-page-header {
@@ -14,7 +17,36 @@
 
 .recipe-page-header h1 {
     font-size: 40px;
+    position: relative;
 }
+
+
+.recipe-page-wrapper .section-heading {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+}
+
+.recipe-page-wrapper .section-heading .edit-btn,
+.recipe-page-header span {
+    z-index: 10;
+    font-size: 1rem;
+    height: 2em;
+    background-color:dodgerblue;
+    padding: .25em 1em;
+    color: white;
+    cursor: pointer;
+}
+
+.recipe-page-header .title { 
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+
 
 .hide {
     display: none;
@@ -58,53 +90,23 @@
     cursor: pointer;
 }
 
-.recipe-page-wrapper .edit-btn {
-    margin: 0 49.5%;
-}
-
-.recipe-page-wrapper .instruction.edit {
-    margin: 0 auto;
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-}
-
-.recipe-page-wrapper li {
-    text-wrap: wrap;
-    /* overflow:hidden; */
-    word-wrap: break-word;
-}
-
-.recipe-page-wrapper .instruction.edit textarea {
-    outline: none;
-    width: 105%;
-    resize: vertical;
-}
-
-.recipe-page-wrapper .instruction.edit .buttons {
-    display: flex;
-    justify-content: space-between;
-}
-.recipe-page-wrapper .instruction.edit .buttons button{
-    border: 2px solid yellowgreen;
-    font-size: 1em;
-    padding: .25em 1em;
-    background-color: yellowgreen;
-    color: white;
-}
-
 .recipe-page-wrapper .images {
     display: flex;
     gap: 1em;
 }
 
-.ingredients li,
-.instructions li {
-    list-style-position: inside;
-}
-
 .recipe-page-wrapper .checked {
     text-decoration: line-through;
+}
+
+.recipe-page-wrapper .description {
+    background-color: #341900;
+    border-left: 1em solid orange;
+    color: white;
+    padding: 1em;
+    font-size: 1.2em;
+    font-weight: 456;
+
 }
 
 li span,

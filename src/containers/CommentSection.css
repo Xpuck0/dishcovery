@@ -18,6 +18,10 @@
     flex: 1 1 10%;
 }
 
+.comment-section {
+    margin-top: 2em;
+}
+
 .create-comment textarea,
 .comments textarea {
     flex: 1 1 75%;
@@ -50,12 +54,22 @@
     cursor: pointer;
 }
 
+.textfield {
+    flex: 1 0 80%;
+    display: flex;
+    flex-direction: column;
 
+    gap: .5em;
+}
+
+.edit-form .show,
 .create-comment .show {
     display: block;
     color: red;
     font-size: .8em;
 }
+
+.edit-form .hidden ,
 .create-comment .hidden {
     display: none;
 }
@@ -84,10 +98,24 @@
     padding: 1em;
 }
 
+.create-comment { 
+    width: 100%;
+}
+
 .create-comment a {
     font-weight: 800;
     text-decoration: none;
     color: #7288FF;
+    /* margin: 0 calc(50%); */
+}
+
+.create-comment.login a {
+    font-weight: 800;
+    padding : .5em 1em;
+    text-decoration: none;
+    color: white;
+    background-color: #7288ff;
+    margin: 0 calc(50% - 6em);
 }
 
 
@@ -126,10 +154,22 @@
 
 }
 
+.recipe-comment .content {
+    font-weight: 450;
+    margin-top: .5em;
+    color: navajowhite
+}
+
 .comments .recipe-comment .editBtn:after {
     content: '✏️';
     font-size: .8em;
     margin-left: .5em;
+}
+
+
+.comments .edit-form .buttons .confirmBtn[disabled] {
+    cursor:not-allowed;
+    background-color: grey;
 }
 
 .comments .recipe-comment .editBtn {
@@ -192,6 +232,9 @@
     display: flex;
     gap: .5em;
     flex-direction: column;
+}
+.comments .edit-form .buttons button:hover {
+    cursor: pointer;
 }
 
 .comments .edit-form .confirmBtn {

@@ -27,6 +27,7 @@ export default function CommentSection() {
         getAllComments(id)
             .then(data => {
                 setComments(data)
+                console.log(comments)
                 setLikedComments(() => {
                     const l = [];
                     data.map(a => {
@@ -90,13 +91,18 @@ export default function CommentSection() {
     const editCommentSubmitHandler = async (e, id) => {
         e.preventDefault();
 
-        const comment = comments.find(c => c._id == id);
-        comment.comment = editCommentContent;
+        if (editCommentContent.length > 0) {
+            const comment = comments.find(c => c._id == id);
+            comment.comment = editCommentContent;
 
-        const res = await updateComment(id, comment, true)
+            const res = await updateComment(id, comment, true)
 
-        setEditCommentContent('');
-        setEditingCommentId(null);
+            setEditCommentContent('');
+            setEditingCommentId(null);
+        } else {
+        }
+
+
     }
 
     const submitHandler = async (e) => {
@@ -114,11 +120,10 @@ export default function CommentSection() {
 
 
     return (
-        <>
-            <Heading content={`Comments[${comments.length}]`} />
+        <div className="comment-section">
+            <Heading content={`Comments[${comments.length}]`} line={true} />
             {isAuthenticated &&
                 <>
-                    <Heading content="Rating" />
                     <StarRating rating={rating} setRating={setRating} />
                 </>
             }
@@ -131,7 +136,7 @@ export default function CommentSection() {
                     </form>
                     <p className={error}>- Comment should be at least a character long!</p>
                 </article> :
-                <div className="create-comment">
+                <div className="create-comment login">
                     <Link to="/login">Log in to comment</Link>
                 </div>
             }
@@ -155,10 +160,12 @@ export default function CommentSection() {
                                 </div>
                                 {editingCommentId === a._id ?
                                     <form onSubmit={(e) => editCommentSubmitHandler(e, a._id)} className={'edit-form'}>
-                                        <textarea defaultValue={a.comment} onChange={commentChangeHandler}></textarea>
+                                        <div className="textfield">
+                                            <textarea defaultValue={a.comment} onChange={commentChangeHandler}></textarea>
+                                        </div>
                                         <div className="buttons">
-                                            <button className="confirmBtn" type="submit">Confirm</button>
-                                            <button className="cancelBtn" onClick={() => { setEditingCommentId('') }} type="button">Cancel</button>
+                                            <button className="confirmBtn" type="submit" disabled={!!!editCommentContent} >Confirm</button>
+                                            <button className="cancelBtn" onClick={() => { setEditingCommentId(''); }} type="button">Cancel</button>
                                         </div>
                                     </form>
                                     : <p className="content">{a.comment}</p>
@@ -169,6 +176,6 @@ export default function CommentSection() {
                 </ul>
             </div>
 
-        </>
+        </div>
     )
 }

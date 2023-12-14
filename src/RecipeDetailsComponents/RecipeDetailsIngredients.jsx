@@ -9,7 +9,7 @@ export default function RecipeDetailsIngredients({ recipe, setRecipe, checkHandl
     const [newIngredients, setNewIngredients] = useState([]);
     const [showEdit, setShowEdit] = useState(false);
 
-    const {userId, isAuthenticated} = useContext(AuthContext)
+    const { userId, isAuthenticated } = useContext(AuthContext)
 
 
     const onEditClick = (e) => {
@@ -20,12 +20,14 @@ export default function RecipeDetailsIngredients({ recipe, setRecipe, checkHandl
     return (
         <>
 
-            <Heading content="Ingredients" />
+            <div className="section-heading">
+                <Heading content="Ingredients" />
 
-            {/* EDIT BUTTON */}
-            {isAuthenticated && userId == recipe._ownerId && (
-                <span className="edit-btn" onClick={onEditClick}>🖌️</span>
-            )}
+                {/* EDIT BUTTON */}
+                {isAuthenticated && userId == recipe._ownerId && (
+                    <span className="edit-btn" onClick={onEditClick}>Edit</span>
+                )}
+            </div>
 
 
 
@@ -40,7 +42,7 @@ export default function RecipeDetailsIngredients({ recipe, setRecipe, checkHandl
                         }
                     </ul>
                     {showEdit && (
-                        <EditForm type="ingredients" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newIngredients} setNewArr={setNewIngredients}/>
+                        <EditForm type="ingredients" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newIngredients} setNewArr={setNewIngredients} />
                     )}
                 </>
             )}

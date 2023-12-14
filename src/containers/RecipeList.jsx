@@ -23,17 +23,18 @@ export default function RecipeList({
     useEffect(() => {
         const fetchData = async () => {
             const data = await recipeAPI.getAllRecipes();
+            console.log(data)
             if (liked_by) {
                 const res = data.filter(r => r.likes.includes(liked_by));
-                console.log(res)
                 setRecipes(res)
-                console.log(recipes)
             }
             else if (owner_id) {
                 setRecipes(data.filter(r => r._ownerId == owner_id))
             }else if (tag) {
                 const arr = [];
+                console.log(data)
                 data.map(el => {
+                    console.log(el)
                     if (el.tags.includes(tag)) {
                         arr.push(el);
                     }

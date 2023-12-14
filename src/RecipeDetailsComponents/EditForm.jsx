@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { updateRecipe } from "../services/recipesAPI";
 import { useParams } from "react-router-dom";
+import "./EditForm.css"
 
-export default function EditForm({type, showEdit, setShowEdit, recipe, setRecipe, newArr, setNewArr }) {
+export default function EditForm({ type, showEdit, setShowEdit, recipe, setRecipe, newArr, setNewArr }) {
     // const [newArr, setNewArr] = useState([]);
     const [prompt, setPrompt] = useState('');
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const editCancel = (e) => {
         e.preventDefault();
@@ -17,7 +18,7 @@ export default function EditForm({type, showEdit, setShowEdit, recipe, setRecipe
     const editRemove = async (i) => {
         const updatedArr = [...newArr];
         updatedArr.splice(i, 1);
-        const res = await updateRecipe(id, { ...recipe, [type]: updatedArr}, true)
+        const res = await updateRecipe(id, { ...recipe, [type]: updatedArr }, true)
         setRecipe(res)
         setNewArr(updatedArr);
     };
@@ -32,7 +33,7 @@ export default function EditForm({type, showEdit, setShowEdit, recipe, setRecipe
             setNewArr(updatedArr);
 
             try {
-                const res = await updateRecipe(id, { ...recipe, [type]: updatedArr}, true);
+                const res = await updateRecipe(id, { ...recipe, [type]: updatedArr }, true);
                 console.log(res)
                 setRecipe(res);
             } catch (error) {
@@ -47,16 +48,20 @@ export default function EditForm({type, showEdit, setShowEdit, recipe, setRecipe
 
     return (
         <div className={`edit ${!showEdit ? 'hide' : ''}`}>
-            <ul>
+            <ul className="edit-arr">
                 {newArr?.map((el, i) => (
-                    <li key={`${el}${i}`}>{el} {recipe[type].length > 1 && <span onClick={() => editRemove(i)}>X</span>}</li>
+                    <li key={`${el}${i}`}>{el} {recipe[type].length > 1 && <span onClick={() => editRemove(i)}> X </span>}</li>
                 ))}
             </ul>
-            <form onSubmit={editSubmit} className={`edit-form `}>
-                <label htmlFor="prompt">New {type}</label>
-                <textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)}></textarea>
-                <button type="submit">Add</button>
-                <button type="button" onClick={editCancel}>Ok</button>
+            <form onSubmit={editSubmit} className={`edit-recipe-form`}>
+                <div className="input">
+                    <label htmlFor="prompt">New {type}</label>
+                    <textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)}></textarea>
+                </div>
+                <div className="buttons">
+                    <button type="submit">Add</button>
+                    <button type="button" onClick={editCancel}>Ok</button>
+                </div>
             </form>
         </div>
     )

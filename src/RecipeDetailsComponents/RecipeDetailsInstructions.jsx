@@ -8,7 +8,7 @@ export default function RecipeDetailsInstructions({ recipe, setRecipe, checkHand
     const [newInstructions, setNewInstructions] = useState([]);
     const [showEdit, setShowEdit] = useState(false);
 
-    const {userId, isAuthenticated} = useContext(AuthContext)
+    const { userId, isAuthenticated } = useContext(AuthContext)
 
 
     const onEditClick = (e) => {
@@ -18,13 +18,13 @@ export default function RecipeDetailsInstructions({ recipe, setRecipe, checkHand
 
     return (
         <>
-
-            <Heading content="Instructions" />
-
-            {/* EDIT BUTTON */}
-            {isAuthenticated && userId == recipe._ownerId && (
-                <span className="edit-btn" onClick={onEditClick}>🖌️</span>
-            )}
+            <div className="section-heading">
+                <Heading content="Instructions" />
+                {/* EDIT BUTTON */}
+                {isAuthenticated && userId == recipe._ownerId && (
+                    <span className="edit-btn" onClick={onEditClick}>Edit</span>
+                )}
+            </div>
 
             {recipe.instructions?.length && (
                 <>
@@ -37,7 +37,7 @@ export default function RecipeDetailsInstructions({ recipe, setRecipe, checkHand
                         }
                     </ol>
                     {showEdit && (
-                        <EditForm type="instructions" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newInstructions} setNewArr={setNewInstructions}/>
+                        <EditForm type="instructions" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newInstructions} setNewArr={setNewInstructions} />
                     )}
                 </>
             )}

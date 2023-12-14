@@ -9,19 +9,23 @@ export default function RecipeDetailsImages({ recipe, setRecipe }) {
     const [showEdit, setShowEdit] = useState(false)
     const [newImages, setNewImages] = useState([])
 
+    if (!recipe) return null;
+
     return (
         <>
-            <Heading content="Images" />
+            <div className="section-heading">
+                <Heading content="Images" />
 
-            {/* EDIT BUTTON */}
-            {
-                isAuthenticated && userId == recipe._ownerId && (
-                    <span className="edit-btn" onClick={() => {
-                        setShowEdit(true)
-                        setNewImages(recipe.images)
-                    }}>🖊️</span>
-                )
-            }
+                {/* EDIT BUTTON */}
+                {
+                    isAuthenticated && userId == recipe._ownerId && (
+                        <span className="edit-btn" onClick={() => {
+                            setShowEdit(true)
+                            setNewImages(recipe.images)
+                        }}>Edit</span>
+                    )
+                }
+            </div>
 
             {/* IMAGES */}
             <div className={`image-section ${showEdit ? 'hide' : ''}`}>
@@ -34,7 +38,7 @@ export default function RecipeDetailsImages({ recipe, setRecipe }) {
             {/* IMAGE EDIT */}
             {
                 showEdit && (
-                    <EditForm type="images" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newImages} setNewArr={setNewImages}/>
+                    <EditForm type="images" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newImages} setNewArr={setNewImages} />
                 )
             }
         </>

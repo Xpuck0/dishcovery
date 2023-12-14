@@ -1,0 +1,86 @@
+.recipe-page-wrapper .title-edit.edit-form {
+    width: 400px;
+}
+
+.recipe-page-wrapper .edit-recipe-form {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.recipe-page-wrapper .edit-recipe-form .input {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-page-wrapper .edit-recipe-form  .input label,
+.recipe-page-wrapper .edit-form.title-edit .input label {
+    font-size: .8em;
+    font-style: italic;
+    flex: 0 1 10%;
+    font-weight: 600;
+    color: paleturquoise;
+    margin-bottom: .25em;
+}
+
+.recipe-page-wrapper .edit-recipe-form .input textarea,
+.recipe-page-wrapper .edit-form.title-edit .input input {
+    width: 100%;
+    border: none;
+    background-color: #454545;
+    padding: .25em .5em;
+    font-size: 1em;
+    color: white;
+    min-height: 2em;
+    min-width: 5em;
+    max-width: 100%;
+    outline: none;
+    border: 2px solid #454545;
+    
+}
+
+.recipe-page-wrapper .title-edit.edit-form textarea {
+    height: 3em;
+}
+
+.recipe-page-wrapper .edit-recipe-form .input textarea:focus,
+.recipe-page-wrapper .edit-form.title-edit input:focus {
+    border: 2px solid mediumspringgreen;
+}
+
+.recipe-page-wrapper .edit-recipe-form .buttons,
+.recipe-page-wrapper .title-edit.edit-form .buttons {
+    margin-top: .5em;
+    display: flex;
+}
+
+.recipe-page-wrapper .edit-recipe-form .buttons button,
+.recipe-page-wrapper .title-edit.edit-form .buttons button { 
+    padding: 1em;
+    flex: 0 1 10%;
+    border: unset;
+    font-weight: 600;
+    /* width: 3em */
+}
+
+.recipe-page-wrapper .edit-arr li {
+    color: navajowhite;
+    word-wrap: break-word;
+}
+
+.recipe-page-wrapper .edit-arr li:before {
+    color: white;
+}
+.recipe-page-wrapper .edit-arr li span {
+    color: darkred;
+    width: 1em;
+    height: 1em;
+}
+
+
+.recipe-page-wrapper .edit-arr li span:hover {
+    cursor: pointer;
+    border: 1px solid red;
+    border-radius: 50%;
+}
