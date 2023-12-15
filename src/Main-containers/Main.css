@@ -8,6 +8,7 @@
     width: 400px;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 1em;
     gap: 1em
 }
 

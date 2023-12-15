@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getUser, getUserByCollectionId } from "../services/usersAPI";
 import Heading from "../components/Heading";
 import Header from "../Main-containers/Header"
@@ -7,20 +7,32 @@ import RecipeList from "../containers/RecipeList";
 import Footer from "../Main-containers/Footer";
 import "./UserDetails.css"
 import { AuthContext } from "../contexts/contexts";
+import Path from "../paths";
 
 export default function UserDetails() {
     const { userId, isAuthenticated } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const { id } = useParams()
+    const nav = useNavigate();
 
     useEffect(() => {
         async function get(id) {
-            const r = await getUserByCollectionId(id)
+            let r;
+            try {
+                r = await getUserByCollectionId(id)
+                if (r.code) {
+                    throw new Error("Invalid user ID")
+                }
+            } catch (err) {
+                nav(Path.UserNotFound);
+                return null;
+            }
+
             setUser(r);
         }
 
         get(id);
-    }, [])
+    }, [id, userId])
 
     const clickHandler = (e) => {
         const a = e.target;
@@ -41,7 +53,7 @@ export default function UserDetails() {
 
                 <Heading content="Recipes" />
                 <div className="recipes">
-                    <RecipeList owner_id={id} show={'all'}/>
+                    <RecipeList owner_id={id} show={'all'} />
                 </div>
 
                 <Heading content="Recipes Liked By User" />

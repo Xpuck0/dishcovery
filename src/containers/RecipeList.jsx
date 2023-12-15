@@ -3,8 +3,9 @@ import { AuthContext, QueryContext } from "../contexts/contexts.js";
 import * as recipeAPI from '../services/recipesAPI';
 import sortCallback from "../utils/sortCallback.js";
 import './List.css'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard.jsx";
+import RecipeCardHome from "../components/RecipeCardHome.jsx";
 import Path from "../paths.js";
 
 export default function RecipeList({
@@ -19,6 +20,7 @@ export default function RecipeList({
     const { query } = useContext(QueryContext)
     const [recipes, setRecipes] = useState([]);
     const [dataFetched, setDataFetched] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +32,7 @@ export default function RecipeList({
             }
             else if (owner_id) {
                 setRecipes(data.filter(r => r._ownerId == owner_id))
-            }else if (tag) {
+            } else if (tag) {
                 const arr = [];
                 console.log(data)
                 data.map(el => {
@@ -55,15 +57,16 @@ export default function RecipeList({
     }
 
     return (
-        <ul className="recipe-list list">
+        <ul className={`recipe-list list ${location.pathname == Path.Home ? 'home': ''}`}>
             {
 
                 recipes
                     ?
 
-                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity).filter(a => a && a.title && a.title.toLowerCase().includes(query.toLowerCase())).map(r => {
-                        return <RecipeCard key={r._id} r={r} show={show} />
-                    })
+                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity <= 0 ? recipes.length : quantity).filter(a => a && a.title && a.title.toLowerCase().includes(query.toLowerCase())).map(r => (
+
+                        location.pathname == Path.Home ? <RecipeCardHome  key={r._id} r={r} /> : <RecipeCard key={r._id} r={r} show={show} /> 
+                    ))
                     : <h1 className="error">There are no recipes</h1>
             }
         </ul>
