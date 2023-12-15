@@ -1,10 +1,11 @@
-import { Link, Routes, Route, json } from "react-router-dom";
+import { Link, Routes, Route, json, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react"
 
 import { AuthContext } from "../contexts/contexts";
 import { getAllUsers, getUser, getUserByCollectionId } from "../services/usersAPI";
 import useForm from "../hooks/useForm";
 import "./LoginPage.css"
+import Path from "../paths";
 
 const FORM_INITIAL_STATE = {
     email: '',
@@ -12,18 +13,23 @@ const FORM_INITIAL_STATE = {
 }
 
 export default function LoginPage() {
-    const { loginSubmitHandler } = useContext(AuthContext);
+    const { isAuthenticated, loginSubmitHandler } = useContext(AuthContext);
+    const [isAuth, setIsAuth] = useState(isAuthenticated)
     const { credentials, onChange, onSubmit } = useForm(loginSubmitHandler, FORM_INITIAL_STATE)
-    const [jsonstoreUser, setJsonstoreUser] = useState({});
-    const [clicked, setClicked] = useState(false)
     const [err, setErr] = useState();
     const [inputType, setInputType] = useState('password');
-    const [event, setEvent] = useState({});
+
+    const nav = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            nav(Path.Home)
+        }
+    }, [isAuthenticated]);
 
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
 
         if (credentials.email.length < 1) {
             setErr('Email cannot be empty string!')
@@ -43,11 +49,13 @@ export default function LoginPage() {
 
     }
 
+
     return (
         <div className="login-page-wrapper">
+
             <div className="login-page">
                 <div className="login-form">
-                <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
+                    <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
                     <form onSubmit={submitHandler}>
                         <h2>Log in</h2>
 

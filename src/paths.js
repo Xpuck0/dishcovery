@@ -7,7 +7,9 @@ const Path = {
     Signup: '/signup',
     Delete: '/delete',
     Settings: '/settings',
-    CreateRecipe: '/recipes/create'
+    CreateRecipe: '/recipes/create',
+    RecipeNotFound: '/recipes/not-found',
+    UserNotFound: '/authors/not-found'
 };
 
 export default Path;

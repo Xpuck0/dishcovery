@@ -26,6 +26,7 @@
     font-size: 1.3em;
     font-weight: 600;
     font-style: italic;
+    margin-top: 2em;
     color: gold
 }
 
@@ -41,7 +42,7 @@
     font-size: 40px;
     border: none;
     padding: .25em .5em;
-    margin: 1em;
+    /* margin: 1em; */
     background-color: #454545;
     color: white;
     border-radius: .5em;
@@ -53,14 +54,15 @@
 
 }
 
-.input-container label {
+.create-page .input-container label {
     font-size: 1.3em;
     margin-block: auto;
     color: beige;
     font-style: oblique;
 }
 
-.input-container {
+.create-page .input-container {
+    position:relative;
     margin: 0 auto;
     display: flex;
     gap: 2em;
@@ -68,7 +70,30 @@
     max-width: 900px;
     padding: 1em;
     background-color: #151515;
+    border-radius: .1em;
+}
+.create-page .textarea-wrapper {
+    position:relative;
+    margin: 0 auto;
+    display: flex;
+    gap: 2em;
+    max-width: 900px;
+    background-color: #151515;
     border-radius: .5em;
+}
+.create-page .heading-wr .input-wrapper {
+    position: relative;
+}
+
+
+.create-page .input-container .error,
+.create-page .heading-wr .error {
+    position: absolute;
+    bottom: -1.5em;
+    /* margin-left: auto; */
+    margin: 0 auto;
+    font-style: italic;
+    color: darkred;
 }
 
 .input-container label,
@@ -94,18 +119,22 @@
 }
 
 .input-container input,
-.input-container textarea {
+.input-container textarea{
     flex: 1 0 55%;
+    resize: vertical;
     border: none;
     outline: none;
     background-color: #353535;
     color: beige;
 }
-
+.input-container .textarea-wrapper  {
+    flex: 1 0 55%
+}
 
 .create-page textarea {
     padding: .5em;
-    border-radius: .5em;
+    border-radius: .1em;
+    max-width: 100%;
 }
 
 
@@ -114,7 +143,6 @@
 }
 
 .create-page-wrapper textarea {
-    /* padding: .25em 1em; */
     font-size: 18px;
     min-height: 2em;
 }
@@ -158,7 +186,7 @@
     margin-inline: 20%;
     background-color: #353535;
     border-radius: unset;
-    border: unset;
+    border: 2px solid #454545;
     color: navajowhite;
     font-size: 1.2em;
     padding: 1em;
@@ -213,3 +241,6 @@
     color: black;
 }
 
+.create-page .input-container textarea:focus {
+    border: 2px solid cornflowerblue;
+}

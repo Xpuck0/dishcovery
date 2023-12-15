@@ -1,6 +1,6 @@
 import { Suspense, useContext, useEffect, useState } from "react";
-import { getFullRecipe, updateRecipe } from "../services/recipesAPI";
-import { useParams, Link } from "react-router-dom";
+import { deleteRecipe, getFullRecipe, updateRecipe } from "../services/recipesAPI";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contexts/contexts"
 
@@ -14,6 +14,9 @@ import RecipeDetailsIngredients from "../RecipeDetailsComponents/RecipeDetailsIn
 import RecipeDetailsInstructions from "../RecipeDetailsComponents/RecipeDetailsInstructions";
 import RecipeDetailsTags from "../RecipeDetailsComponents/RecipeDetailsTags";
 import RecipeDetailsWallets from "../RecipeDetailsComponents/RecipeDetailsWallets";
+import Heading from "../components/Heading";
+import RecipeDetailsDescription from "../RecipeDetailsComponents/RecipeDetailsDescription";
+import Path from "../paths";
 
 export default function RecipeDetails() {
     const { userId, isAuthenticated } = useContext(AuthContext);
@@ -22,12 +25,25 @@ export default function RecipeDetails() {
     const [likeStatus, setLikeStatus] = useState(false);
 
     const { id } = useParams();
+    const nav = useNavigate()
 
     const [recipe, setRecipe] = useState({});
 
     useEffect(() => {
         async function getInfo() {
-            const res = await getFullRecipe(id);
+            let res;
+            try {
+
+                res = await getFullRecipe(id);
+                if (res.code) {
+                    throw new Error('Error fetching recipe. Probably invalid ID')
+                }
+
+            } catch (err) {
+                console.error("Invalid recipe provided");
+                nav(Path.RecipeNotFound)
+                return null;
+            }
 
             setRecipe((prev) => {
                 return {
@@ -52,7 +68,18 @@ export default function RecipeDetails() {
             oldLikesCopy = oldLikesCopy.filter(el => el != userId);
         }
         setRecipe(old => ({ ...old, likes: oldLikesCopy }))
-        await updateRecipe(recipe._id, { ...recipe, likes: oldLikesCopy || []}, true)
+        await updateRecipe(recipe._id, { ...recipe, likes: oldLikesCopy || [] }, true)
+    }
+
+    const deleteHandler = async () => {
+        try {
+            if (window.confirm("Do you really want to delete the recipe?")) {
+                await deleteRecipe(recipe._id)
+                nav(Path.Home)
+            }
+        } catch (err) {
+            console.error("Error deleting recipe" + err);
+        }
     }
 
     const checkHandler = (e) => {
@@ -64,21 +91,23 @@ export default function RecipeDetails() {
         return null;
     }
 
+
+
     return (
         <>
             <Header hideQuery={true} />
             <div className="wrapper">
                 <div className="recipe-page-wrapper">
                     {isAuthenticated && <button className={`like-button ${likeStatus}`} onClick={likeHandler}>❤️ {recipe.likes.length} {recipe.likes.length == 1 ? 'like' : 'likes'}</button>}
+                    {isAuthenticated && userId == recipe._ownerId && <button onClick={deleteHandler} className="delete-button">Delete</button>}
 
                     <RecipeDetailsHeader recipe={recipe} setRecipe={setRecipe} />
                     <RecipeDetailsImages recipe={recipe} setRecipe={setRecipe} />
-                    {console.log(recipe)}
-                    <p className="description">{recipe.description}</p>
+                    <RecipeDetailsDescription>{recipe.description}</RecipeDetailsDescription>
                     <RecipeDetailsIngredients recipe={recipe} setRecipe={setRecipe} checkHandler={checkHandler} />
                     <RecipeDetailsInstructions recipe={recipe} setRecipe={setRecipe} checkHandler={checkHandler} />
                     <RecipeDetailsTags recipe={recipe} setRecipe={setRecipe} checkHandler={checkHandler} />
-                    <RecipeDetailsWallets recipe={recipe} /> 
+                    <RecipeDetailsWallets recipe={recipe} />
                     <CommentSection />
 
                 </div >

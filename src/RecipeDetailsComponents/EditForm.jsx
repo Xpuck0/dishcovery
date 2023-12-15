@@ -44,13 +44,20 @@ export default function EditForm({ type, showEdit, setShowEdit, recipe, setRecip
         }
     }
 
+    const checkRemove = () => {
+        if (type == "tags" || type == "images" || recipe[type].length > 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     return (
         <div className={`edit ${!showEdit ? 'hide' : ''}`}>
             <ul className="edit-arr">
                 {newArr?.map((el, i) => (
-                    <li key={`${el}${i}`}>{el} {recipe[type].length > 1 && <span onClick={() => editRemove(i)}> X </span>}</li>
+                    <li key={`${el}${i}`}>{el} {checkRemove() && <span onClick={() => editRemove(i)}> X </span>}</li>
                 ))}
             </ul>
             <form onSubmit={editSubmit} className={`edit-recipe-form`}>

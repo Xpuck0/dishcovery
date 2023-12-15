@@ -103,11 +103,31 @@ export async function updateRecipe(id, d, xadmin = false) {
     }
 }
 
-export async function deleteRecipe(id) {
+export async function deleteRecipe(id, xadmin) {
     try {
+        const token = JSON.parse(localStorage.getItem('auth')).accessToken;
+        console.log(token)
 
+        let headers = {}
+        if (xadmin) {
+            headers = {
+                'X-Admin': ''
+            }
+        } else {
+            headers = {
+                'content-type': 'application/json'
+            };
+
+            if (token) {
+                headers = {
+                    ...headers,
+                    ['X-Authorization']: token,
+                }
+            }
+        }
         const res = await fetch(`${base}/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: headers,
         })
         const data = await res.json();
         return data;

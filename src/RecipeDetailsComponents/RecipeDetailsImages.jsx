@@ -30,9 +30,9 @@ export default function RecipeDetailsImages({ recipe, setRecipe }) {
             {/* IMAGES */}
             <div className={`image-section ${showEdit ? 'hide' : ''}`}>
 
-                {recipe.images?.length && (
+                {recipe.images?.length ? (
                     <Images key={recipe._id} images={recipe.images} />
-                )}
+                ): null}
             </div>
 
             {/* IMAGE EDIT */}

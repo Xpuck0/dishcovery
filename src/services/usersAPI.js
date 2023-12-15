@@ -27,17 +27,13 @@ export async function updateUserPartially(id, body) {
         console.log(err)
     }
 }
-export async function updateUser(id, body, wallets) {
+export async function updateUser(id, body) {
     try {
-        body = {
-            ...body,
-            wallets: wallets
-        }
 
         console.log(body)
 
         const res = await fetch(`${baseUsers}/${id}`, {
-            method: "PATCH",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },

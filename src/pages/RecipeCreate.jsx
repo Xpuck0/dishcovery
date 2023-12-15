@@ -14,7 +14,6 @@ export default function RecipeCreate() {
     const [ingredients, setIngredients] = useState('');
     const [instructions, setInstructions] = useState('');
     const [tag, setTag] = useState('')
-    const [checked, setChecked] = useState(false)
     const [data, setData] = useState({
         title: '',
         description: '',
@@ -23,9 +22,47 @@ export default function RecipeCreate() {
         instructions: [],
         tags: []
     });
+    const [titleError, setTitleError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
+    const [ingredientsError, setIngredientsError] = useState('');
+    const [instructionsError, setInstructionsError] = useState('');
 
-    const { username, wallets } = useContext(AuthContext);
+    const { username, isAuthenticated } = useContext(AuthContext);
     const navigtage = useNavigate();
+
+    const validateInputs = () => {
+        let isValid = true;
+
+        if (data.title.trim() === '') {
+            setTitleError('Title is required');
+            isValid = false;
+        } else {
+            setTitleError('');
+        }
+
+        if (data.description.trim() === '') {
+            setDescriptionError('Description is required');
+            isValid = false;
+        } else {
+            setDescriptionError('');
+        }
+
+        if (data.ingredients.length === 0) {
+            setIngredientsError('At least one ingredient is required');
+            isValid = false;
+        } else {
+            setIngredientsError('');
+        }
+
+        if (data.instructions.length === 0) {
+            setInstructionsError('At least one instruction is required');
+            isValid = false;
+        } else {
+            setInstructionsError('');
+        }
+
+        return isValid;
+    };
 
     const submitForm = async () => {
         const res = await createRecipe(data);
@@ -35,6 +72,12 @@ export default function RecipeCreate() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validateInputs()) {
+            console.error('Please fill in all fields');
+            return;
+        }
+
         await submitForm()
         navigtage('/')
     };
@@ -46,16 +89,6 @@ export default function RecipeCreate() {
         })
     }
 
-    const addImage = (e) => {
-        const images = data.images;
-        images.push(img);
-
-        setImg('');
-        setData(old => ({
-            ...old,
-            images: images,
-        }))
-    }
 
     const imageChangeHandler = (e) => {
         setImg(e.target.value)
@@ -69,26 +102,44 @@ export default function RecipeCreate() {
         setTag(e.target.value);
     }
 
+    const addImage = (e) => {
+        const images = data.images;
+        if (img.trim() !== '') {
+            images.push(img);
+
+            setImg('');
+            setData(old => ({
+                ...old,
+                images: images,
+            }))
+        }
+    }
+
     const addTag = (e) => {
         const ingr = data.tags;
-        ingr.push(tag)
+        if (tag.trim() !== '') {
+            ingr.push(tag)
 
-        setTag('');
-        setData(old => ({
-            ...old,
-            tags: ingr || []
-        }))
+            setTag('');
+            setData(old => ({
+                ...old,
+                tags: ingr || []
+            }))
+        }
     }
 
     const addIngredient = (e) => {
         const ingr = data.ingredients;
-        ingr.push(ingredients)
+        if (ingredients.trim() !== '') {
 
-        setIngredients('');
-        setData(old => ({
-            ...old,
-            ingredients: ingr
-        }))
+            ingr.push(ingredients)
+
+            setIngredients('');
+            setData(old => ({
+                ...old,
+                ingredients: ingr
+            }))
+        }
     }
 
     const instructionsChangeHandler = (e) => {
@@ -97,13 +148,15 @@ export default function RecipeCreate() {
 
     const addInstruction = (e) => {
         const instr = data.instructions;
-        instr.push(instructions);
+        if (instructions.trim() !== '') {
+            instr.push(instructions);
 
-        setInstructions('')
-        setData(old => ({
-            ...old,
-            instructions: instr
-        }))
+            setInstructions('')
+            setData(old => ({
+                ...old,
+                instructions: instr
+            }))
+        }
     }
 
     const removeHandler = (index, type) => {
@@ -129,25 +182,28 @@ export default function RecipeCreate() {
                 <div className="create-page">
                     <form onSubmit={onSubmit}>
 
-                        <div>
-                            <Heading content="Title" />
+                        <div className="section-wrapper">
+                            <Heading content="* Title" />
                             <section className="heading-wr">
-                                <input className="title" placeholder="Enter title..." type="text" name="title" value={data.title} onChange={changeHandler} />
+                                <div className="input-wrapper">
+                                    <input className="title" placeholder="Enter title..." type="text" name="title" value={data.title} onChange={changeHandler} />
+                                    <p className="error">{titleError}</p>
+                                </div>
                                 <p className="username">{username}</p>
                             </section>
                         </div>
 
-                        <div>
+                        <div className="section-wrapper">
 
 
-                            <Heading content="Description" />
-                            <div className="description">
-                                <label htmlFor="description"></label>
-                                <textarea placeholder="Write a brief description..." name="description" id="description" value={Object.description} onChange={changeHandler}></textarea>
+                            <Heading content="* Description" />
+                            <div className="description input-container">
+                                <textarea placeholder="Write a brief description..." name="description" id="description" value={data.description} onChange={changeHandler}></textarea>
+                                <p className="error">{descriptionError}</p>
                             </div>
                         </div>
 
-                        <div>
+                        <div className="section-wrapper">
                             <Heading content="Images" />
                             <div className="images-wr">
                                 {data.images.length > 0 &&
@@ -171,9 +227,9 @@ export default function RecipeCreate() {
 
                         </div>
 
-                        <div>
+                        <div className="section-wrapper">
 
-                            <Heading content="Ingredients" />
+                            <Heading content="* Ingredients" />
                             <div className="ingredients-wr">
                                 {data.ingredients.length > 0 &&
 
@@ -190,15 +246,19 @@ export default function RecipeCreate() {
                                 }
                                 <div className="ingredients input-container">
                                     <label htmlFor="ingredients">Ingredients</label>
-                                    <textarea type="textfield" name="ingredients" value={ingredients} onChange={ingredientsChangeHandler} />
+                                    <div className="textarea-wrapper">
+
+                                        <textarea type="textfield" name="ingredients" value={ingredients} onChange={ingredientsChangeHandler} />
+                                        <p className="error">{ingredientsError}</p>
+                                    </div>
                                     <button type="button" onClick={addIngredient} >Add more</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div>
+                        <div className="section-wrapper">
 
-                            <Heading content="Instructions" />
+                            <Heading content="* Instructions" />
                             <div className="instructions">
                                 {data.instructions.length > 0 &&
                                     <div className="written-instructions">
@@ -214,13 +274,16 @@ export default function RecipeCreate() {
                                 }
                                 <div className="instructions input-container">
                                     <label htmlFor="instructions">Instructions</label>
-                                    <textarea type="textfield" name="instructions" value={instructions} onChange={instructionsChangeHandler} />
+                                    <div className="textarea-wrapper">
+                                        <textarea type="textfield" name="instructions" value={instructions} onChange={instructionsChangeHandler} />
+                                        <p className="error">{instructionsError}</p>
+                                    </div>
                                     <button type="button" onClick={addInstruction}>Add more</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div>
+                        <div className="section-wrapper">
 
                             <Heading content="Tags" />
                             <div className="tags">
@@ -238,7 +301,6 @@ export default function RecipeCreate() {
                                 }
                                 <div className="tags input-container">
                                     <label htmlFor="tags">Tags</label>
-                                    {console.log(tag)}
                                     <textarea type="textfield" name="tags" value={tag} onChange={tagsChangeHandler} />
                                     <button type="button" onClick={addTag}>Add more</button>
                                 </div>

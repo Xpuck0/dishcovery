@@ -79,6 +79,22 @@
     transform: background-color .3s ease-in;
 }
 
+.recipe-page-wrapper .delete-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+    background-color: unset;
+    border: 2px solid white;
+    padding: .5em 1em;
+    width: 8em;
+    text-align: center;
+    text-decoration: none;
+    transform: background-color .3s ease-in;
+}
+
 .recipe-page-wrapper .like-button.true {
     background-color: unset;
     color: tomato;

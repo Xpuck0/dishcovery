@@ -1,7 +1,5 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-import { AuthContext, QueryContext } from './contexts/contexts'
 
 import TagPage from './pages/TagPage'
 import HomePage from './pages/HomePage'
@@ -20,16 +18,10 @@ import Path from './paths'
 import AuthProvider from './Main-containers/AuthProvider'
 import QueryProvider from './Main-containers/QueryProvider'
 import NotFoundPage from './pages/NotFoundPage'
+import ResourceNotFound from './pages/ResourceNotFound'
 
 function App() {
     
-    // const [search, setSearch] = useState('')
-
-    // const queryValues = {
-    //     search: search,
-    //     setSearch: setSearch
-    // }
-
     return (
         <QueryProvider>
             <AuthProvider>
@@ -45,6 +37,8 @@ function App() {
                     <Route path={`${Path.Authors}/:id`} element={<UserDetails />} />
                     <Route path={Path.CreateRecipe} element={<HomePage />} />
                     <Route path={Path.Settings} element={<AccountSettings />} />
+                    <Route path={Path.RecipeNotFound} element={<ResourceNotFound what="recipes" />} />
+                    <Route path={Path.UserNotFound} element={<ResourceNotFound what="authors" />} />
                     <Route path="/tags/:tag" element={<TagPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

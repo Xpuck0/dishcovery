@@ -1,10 +1,11 @@
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react"
 import { AuthContext } from "../contexts/contexts";
 import { getUser } from "../services/usersAPI";
 import { signup } from "../services/authAPI";
 import "./LoginPage.css"
 import useForm from "../hooks/useForm";
+import Path from "../paths";
 
 const FORM_INITIAL_STATE = {
     email: 'email',
@@ -18,7 +19,7 @@ const FORM_INITIAL_STATE = {
 }
 
 export default function SignupPage() {
-    const { registerSubmitHandler } = useContext(AuthContext)
+    const { isAuthenticated, registerSubmitHandler } = useContext(AuthContext)
     const { credentials, onChange, onSubmit, setCredentials } = useForm(registerSubmitHandler, {
         [FORM_INITIAL_STATE.email]: '',
         [FORM_INITIAL_STATE.password]: '',
@@ -29,10 +30,16 @@ export default function SignupPage() {
             [FORM_INITIAL_STATE.wallets.monero]: '',
         }
     })
-
-
     const [visible, setVisible] = useState(false);
     const [errors, setErrors] = useState({});
+
+    const nav = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            nav(Path.Home)
+        }
+    }, [isAuthenticated])
 
     const submitHandler = (e) => {
         e.preventDefault();

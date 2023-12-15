@@ -26,7 +26,7 @@ export default function RecipeDetailsTags({ recipe, setRecipe, checkHandler }) {
                     <span className="edit-btn" onClick={editClick}>Edit</span>
                 )}
             </div>
-            {recipe.tags?.length && (
+            {recipe.tags?.length ? (
                 <>
                     <div className={`tags ${showEdit && 'hide'}`}>
 
@@ -39,11 +39,11 @@ export default function RecipeDetailsTags({ recipe, setRecipe, checkHandler }) {
 
                     </div>
 
-                    {showEdit && (
-                        <EditForm type="tags" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newTags} setNewArr={setNewTags} />
-                    )}
                 </>
 
+            ) : null}
+            {showEdit && (
+                <EditForm type="tags" showEdit={showEdit} setShowEdit={setShowEdit} recipe={recipe} setRecipe={setRecipe} newArr={newTags} setNewArr={setNewTags} />
             )}
         </>
     )
