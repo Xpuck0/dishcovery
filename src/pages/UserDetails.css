@@ -53,3 +53,7 @@
     border-radius: 1em;
     margin: 0 0 2em 0;
 }
+
+.user-details.wrapper {
+    margin-bottom: 4em;
+}

@@ -20,7 +20,7 @@ export default function Main() {
             {!search && <Categories />}
             <section className="recipes">
                 <Heading content="Newest" line={false} />
-                <RecipeList order={order} quantity={30} show={'all'} />
+                <RecipeList order={order} quantity={6} show={'all'} />
                 <div className="links">
                     <Link to="/recipes">Browse ALL</Link>
                     {isAuthenticated && <Link to="/recipes/create">Create</Link>}

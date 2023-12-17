@@ -13,11 +13,12 @@
 }
 
 
-.recipe-list.home .recipe-card-home::before,
-.recipe-list.home .recipe-card-home::after {
+.recipe-list.home::before,
+.recipe-list.home::after {
     content: '';
-    display: block;
-
+    flex: 1 0 30%;
+    order: 9999;
+    
 }
 
 .recipe-list.home .recipe-card-home .img-wrapper img {
@@ -33,7 +34,6 @@
 }
 
 .recipe-list.home .recipe-card-home p {
-    /* border-inline: 1em solid darkgreen; */
     background-color: #242200;
     padding: 0 auto;
     height: fit-content;

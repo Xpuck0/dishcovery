@@ -20,18 +20,28 @@ export default function RecipeList({
     const { query } = useContext(QueryContext)
     const [recipes, setRecipes] = useState([]);
     const [dataFetched, setDataFetched] = useState(false);
+    const [error, setError] = useState("");
     const location = useLocation();
+
 
     useEffect(() => {
         const fetchData = async () => {
             const data = await recipeAPI.getAllRecipes();
             console.log(data)
+            setError('');
             if (liked_by) {
                 const res = data.filter(r => r.likes.includes(liked_by));
                 setRecipes(res)
+                if (!res.length){
+                    setError("There are no recipes liked by this user!")
+                }
             }
             else if (owner_id) {
-                setRecipes(data.filter(r => r._ownerId == owner_id))
+                const res = data.filter(r => r._ownerId == owner_id);
+                setRecipes(res)
+                if (!res.length) {
+                    setError("There are no recipes published by this user!")
+                } 
             } else if (tag) {
                 const arr = [];
                 console.log(data)
@@ -42,6 +52,10 @@ export default function RecipeList({
                     }
                 })
                 setRecipes(arr)
+                if (!arr.length) {
+                    setError("There are no recipes with this tag")
+                }
+
             } else {
                 setRecipes(data);
             }
@@ -57,17 +71,17 @@ export default function RecipeList({
     }
 
     return (
-        <ul className={`recipe-list list ${location.pathname == Path.Home ? 'home': ''}`}>
+        <ul className={`recipe-list list ${location.pathname != Path.Recipes ? 'home': ''}`}>
             {
 
-                recipes
+                recipes.length
                     ?
 
                     recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity <= 0 ? recipes.length : quantity).filter(a => a && a.title && a.title.toLowerCase().includes(query.toLowerCase())).map(r => (
 
-                        location.pathname == Path.Home ? <RecipeCardHome  key={r._id} r={r} /> : <RecipeCard key={r._id} r={r} show={show} /> 
+                        location.pathname == Path.Recipes ? <RecipeCard key={r._id} r={r} show={show} /> : <RecipeCardHome  key={r._id} r={r} /> 
                     ))
-                    : <h1 className="error">There are no recipes</h1>
+                    : <p className="error">{error}</p>
             }
         </ul>
     )

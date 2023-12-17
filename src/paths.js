@@ -1,7 +1,9 @@
 const Path = {
     Home: '/',
+    Chat: '/chat',
     Recipes: '/recipes',
     Authors: '/authors',
+    Ingredients: '/ingredients',
     Login: '/login',
     Logout: '/logout',
     Signup: '/signup',

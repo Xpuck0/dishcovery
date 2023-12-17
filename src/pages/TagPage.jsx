@@ -18,7 +18,9 @@ export default function TagPage() {
             <div className="tags-page">
                 <Header hideQuery={true} />
                 <Heading content={tag} />
-                <RecipeList tag={tag} show="all" />
+                <div className="list-wrapper">
+                    <RecipeList tag={tag} show="all" />
+                </div>
                 <Heading content="Other Tags" />
                 <Tags tag={tag} />
             </div>

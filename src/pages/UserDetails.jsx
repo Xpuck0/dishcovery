@@ -43,13 +43,17 @@ export default function UserDetails() {
         <>
             <Header hideQuery={true} />
             <div className="user-details wrapper">
-                <div className="profile">
-                    <div className="img-container">
-                        <img src={user.profilePicture} alt={`${user.username}'s profile picture`} />
+                {console.log(user.profilePicture)}
+                {user.profilePicture && (
+                    <div className="profile">
+                        <div className="img-container">
+                            <img src={user.profilePicture} alt={`${user.username}'s profile picture`} />
+                        </div>
+                        <h1 className="name">{user.username}</h1>
+                        {/* {isAuthenticated && user._id != userId && <button className="follow" onClick={clickHandler}>Follow</button>} */}
                     </div>
-                    <h1 className="name">{user.username}</h1>
-                    {/* {isAuthenticated && user._id != userId && <button className="follow" onClick={clickHandler}>Follow</button>} */}
-                </div>
+                )
+                }
 
                 <Heading content="Recipes" />
                 <div className="recipes">

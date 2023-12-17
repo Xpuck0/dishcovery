@@ -11,7 +11,7 @@
 }
 
 .site-header .title {
-    flex: 1 0 15%;
+    flex: 0 0 15%;
 }
 
 .site-header .subprofile {
@@ -56,7 +56,7 @@
 
 .site-header .searchbar-wrapper {
     position: relative;
-    flex: 0 1 60%;
+    flex: 1 1 100%;
 }
 
 .site-header .backspace {
@@ -92,10 +92,12 @@
     color: white;
 }
 
-.site-header .profile {
-    flex: 1 0 15%;
+.site-header .profile .hidden {
+    flex: 0 1 auto;
     display: flex;
     justify-content: flex-end;
+    max-width: 20em;
+    overflow: hidden;
     /* width: 8em; */
 }
 
@@ -179,14 +181,28 @@
 
 .site-header .profile {
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
 
     color: beige;
+}
 
+.site-header .toggle {
+
+    padding: 1em 1em;
+    font-weight: 600;
+    margin-left: auto;
+    /* height: 2em; */
+    border: unset;
+}
+
+.site-header .toggle:hover {
+    cursor: pointer;
 }
 
 .site-header .navigation {
-    width: 100%;
+    flex: 1 1 60%;
+    /* width: 100%; */
 }
 
 .site-header .nav-list {

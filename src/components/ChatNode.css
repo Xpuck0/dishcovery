@@ -1,0 +1,136 @@
+.chat-node {
+    background-color: #202020;
+    padding: .5em;
+    border-radius: 1em;
+    width: 60%;
+    display: flex;
+    color: white;
+}
+
+.chat-node.owner {
+    margin-left: auto;
+}
+
+.chat-node .img-section {
+    flex: 0 0 4em;
+}
+
+.chat-node .img-section .img-container {
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.chat-node .img-section .img-container img {
+    height: 100%;
+    background-repeat: space;
+    object-fit: fill;
+}
+
+.chat-node .text-section {
+    flex: 0 1 90%;
+    margin: 0 1em 0 1em;
+}
+
+.chat-node .text-section .edit-btn {
+    margin-left: auto;
+    border: unset;
+    padding: .2em 1em;
+    background-color: cadetblue;
+    border-radius: 1em;
+    width: 5em;
+    color: white;
+    transition: background-color .1s ease-in-out;
+}
+
+.chat-node .text-section .edit-btn:hover {
+    cursor: pointer;
+    background-color:darkcyan;
+}
+
+.chat-node .text-section .buttons {
+    display: flex;
+    gap: .5em;
+    justify-content: space-between;
+    margin-left: auto;
+    /* flex-direction: column;   */
+}
+
+.chat-node .text-section .buttons .delete-btn {
+    margin-left: auto;
+    border: unset;
+    padding: .2em 1em;
+    background-color: maroon;
+    border-radius: 1em;
+    color: white;
+    transition: background-color .1s ease-in-out;
+}
+
+.chat-node .text-section .buttons .delete-btn:hover {
+    background-color: #600000;
+    cursor: pointer;
+}
+
+
+.chat-node .text-section .content {
+    padding: .2em;
+    font-size: 1.1em;
+}
+
+.chat-node .edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-node .edit-form button {
+    align-self: flex-end;
+    padding: .3em .5em;
+    border: unset;
+    width: 5em;
+    margin-top: 1em;
+}
+
+.chat-node .edit-form .error {
+    font-size: .8em;
+    color: red;
+}
+
+.chat-node .edit-form textarea {
+    max-width: 100%;
+    padding: .2em;
+    min-height: 2em;
+    background-color: #202020;
+    color: white;
+    font-size: 1.1em;
+    resize: vertical;
+
+    border: unset;
+    border-bottom: 2px solid goldenrod;
+    outline:unset;
+}
+
+.chat-node .text-section .heading {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.chat-node .text-section .heading .username {
+    max-width: 280px;
+    overflow: hidden;
+    font-size: 1.2em;
+    color: greenyellow;
+    text-decoration: none; 
+}
+
+
+.chat-node .text-section .heading .username:hover {
+    text-decoration: underline;
+}
+
+.chat-node .text-section .heading .date {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #cccccc;
+}

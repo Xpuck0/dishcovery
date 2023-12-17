@@ -7,11 +7,18 @@
 }
 
 .star-rating {
-  margin-inline: 43%;;
+  /* margin-inline: 43%;; */
   display: flex;
-  flex-direction: column;
+  gap: 1em;
+  width: fit-content;
+  padding: .5em 1em;
+  border-radius: 1em;
+  /* margin: 0 auto; */
+  background-color: #252525;
+  /* flex-direction: column; */
   flex-wrap: nowrap;
   justify-content: center;
+  margin-bottom: 1em;
 }
 
 .star-rating button {
@@ -22,14 +29,16 @@
 }
 
 .star-rating .star-deselect {
+  height: auto;
+  padding: 0;
   color: beige;
   font-size: 1em;
   font-weight: 700;
 }
 
 .star-rating .star-deselect:hover {
-  color: violet;
-  text-decoration:underline;
+  /* text-decoration:underline; */
+  color: yellow;
 }
 .star-rating .on {
   color: yellow;

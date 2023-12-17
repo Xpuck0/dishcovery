@@ -1,4 +1,9 @@
 
 .tags-page {
     height: 100vh;
+} 
+
+.tags-page .list-wrapper {
+    margin: 0 auto; 
+    max-width: 1200px;
 }

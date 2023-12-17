@@ -108,13 +108,6 @@ export default function AccountSettings() {
         return <h1>Loading...</h1>
     }
 
-    if (!isAuthenticated) {
-        nav(Path.Login);
-        return null;
-        // throw new Error("User must be logged in in order to change profile settings");
-    }
-
-
 
     return (
         <>

@@ -40,6 +40,7 @@ export default function AuthProvider({
     const authValues = {
         userId: auth._id,
         username: auth.username || auth.email,
+        profilePicture: auth.profilePicture,
         email: auth.email,
         isAuthenticated: !!auth.accessToken,
         wallets: auth.wallets,

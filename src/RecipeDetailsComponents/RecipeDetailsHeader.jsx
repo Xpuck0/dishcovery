@@ -9,6 +9,7 @@ export default function RecipeDetailsHeader({ recipe, setRecipe }) {
     const [showItem, setShowItem] = useState(true)
 
     const [newTitle, setNewTitle] = useState('')
+    const [err, setErr] = useState('');
 
     const { id } = useParams();
 
@@ -22,10 +23,15 @@ export default function RecipeDetailsHeader({ recipe, setRecipe }) {
 
     const titleEditSubmit = async (e) => {
         e.preventDefault();
-        setShowItem(true);
+        if (newTitle.trim() != '') {
+            setShowItem(true);
 
-        const res = await updateRecipe(id, { ...recipe, title: newTitle }, true)
-        setRecipe(res)
+            const res = await updateRecipe(id, { ...recipe, title: newTitle }, true)
+            setRecipe(res)
+            setErr('');
+        } else {
+            setErr('Title cannot be empty!');
+        }
     }
 
     return (
@@ -39,13 +45,11 @@ export default function RecipeDetailsHeader({ recipe, setRecipe }) {
                             <label htmlFor="title">Title:</label>
                             <input name="title" type="text" value={newTitle} onChange={changeHandler} />
                         </div>
+                        <p className={`error ${err.length == 0  ? 'hidden': 'show'}`}>{err}</p>
                         <div className="buttons">
                             <button type="submit">Submit</button>
                             <button type="button" onClick={() => {
-                                setShowItem(old => ({
-                                    ...old,
-                                    title: true
-                                }))
+                                setShowItem(true)
                             }}>Cancel</button>
                         </div>
                     </form>

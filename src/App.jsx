@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 
 import TagPage from './pages/TagPage'
+import ChatPage from './pages/ChatPage'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
@@ -19,9 +20,10 @@ import AuthProvider from './Main-containers/AuthProvider'
 import QueryProvider from './Main-containers/QueryProvider'
 import NotFoundPage from './pages/NotFoundPage'
 import ResourceNotFound from './pages/ResourceNotFound'
+import GuestAuthGuard from './Guards/GuestAuthGuard'
 
 function App() {
-    
+
     return (
         <QueryProvider>
             <AuthProvider>
@@ -32,15 +34,19 @@ function App() {
                     <Route path={Path.Signup} element={<SignupPage />} />
                     <Route path={Path.Recipes} element={<RecipesPage />} />
                     <Route path={`/recipes/:id`} element={<RecipeDetails />} />
-                    <Route path={Path.CreateRecipe} element={<RecipeCreate />} />
                     <Route path={Path.Authors} element={<UsersPage />} />
                     <Route path={`${Path.Authors}/:id`} element={<UserDetails />} />
-                    <Route path={Path.CreateRecipe} element={<HomePage />} />
-                    <Route path={Path.Settings} element={<AccountSettings />} />
                     <Route path={Path.RecipeNotFound} element={<ResourceNotFound what="recipes" />} />
                     <Route path={Path.UserNotFound} element={<ResourceNotFound what="authors" />} />
+                    {/* <Route path={Path.Ingredients} element={<IngredientsPage />} /> */}
                     <Route path="/tags/:tag" element={<TagPage />} />
                     <Route path="*" element={<NotFoundPage />} />
+
+                    <Route element={<GuestAuthGuard />}>
+                        <Route path={Path.Settings} element={<AccountSettings />} />
+                        <Route path={Path.CreateRecipe} element={<RecipeCreate />} />
+                        <Route path={Path.Chat} element={<ChatPage />} />
+                    </Route>
                 </Routes>
             </AuthProvider>
         </QueryProvider>

@@ -1,0 +1,30 @@
+.edit-form.description-edit .input {
+    width: 100%;
+}
+
+.edit-form.description-edit .input textarea {
+    width: 100%;
+    min-height: 2em;
+    resize:vertical;
+    outline: none;
+    border: unset;
+    font-size: 1.1em;
+    background-color: unset;
+    color: white;
+    border-bottom: 2px solid orange
+}
+
+.edit-form.description-edit .buttons button {
+    border: unset;
+    margin: .5em .5em 0 0;
+    background-color: burlywood;
+    padding: .5em 1em;
+    color: beige;
+    font-weight: 600;
+    font-size: .8em;
+}
+
+
+.edit-form.description-edit .buttons button:hover {
+    background-color: rgb(94, 78, 57);
+}

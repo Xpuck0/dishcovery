@@ -103,7 +103,7 @@ export default function RecipeDetails() {
 
                     <RecipeDetailsHeader recipe={recipe} setRecipe={setRecipe} />
                     <RecipeDetailsImages recipe={recipe} setRecipe={setRecipe} />
-                    <RecipeDetailsDescription>{recipe.description}</RecipeDetailsDescription>
+                    <RecipeDetailsDescription recipe={recipe} setRecipe={setRecipe}>{recipe.description}</RecipeDetailsDescription>
                     <RecipeDetailsIngredients recipe={recipe} setRecipe={setRecipe} checkHandler={checkHandler} />
                     <RecipeDetailsInstructions recipe={recipe} setRecipe={setRecipe} checkHandler={checkHandler} />
                     <RecipeDetailsTags recipe={recipe} setRecipe={setRecipe} checkHandler={checkHandler} />

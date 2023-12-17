@@ -10,7 +10,8 @@ export default function Header({ hideQuery }) {
     const [displayStats, setDisplayStats] = useState(false)
     const { userId, username, email, isAuthenticated } = useContext(AuthContext);
     // const { search, setSearch } = useContext(QueryContext)
-    const {query, changeQuery, emptyQuery} = useContext(QueryContext)
+    const { query, changeQuery, emptyQuery } = useContext(QueryContext)
+    const [showQuery, setShowQuery] = useState(!hideQuery)
 
     const changeHandler = (e) => {
         console.log(e.target.value);
@@ -26,13 +27,18 @@ export default function Header({ hideQuery }) {
         setDisplayStats(o => !o);
     }
 
+    const toggleSearch = () => {
+        setShowQuery(!showQuery)
+    }
+
+
     return (
         <div className="site-header">
             <Link className='title' to={'/'}><h1 className="logo">dishcovery</h1></Link>
             {/* {console.log(a)} */}
-            {!hideQuery ?
+            {showQuery ?
                 <form className="searchbar-wrapper">
-                    <input type="text" name="Searchbar" id="search" value={ query }  onChange={(event)=>changeHandler(event)} placeholder="🔎   Search recipes and chefs" />
+                    <input type="text" name="Searchbar" id="search" value={query} onChange={(event) => changeHandler(event)} placeholder="🔎   Search recipes and chefs" />
                     <svg
                         onClick={resetHandler}
                         className="backspace"
@@ -54,11 +60,13 @@ export default function Header({ hideQuery }) {
                 <nav className="navigation">
                     <ul className="nav-list">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/recipes">Recipes</Link></li>
-                        <li><Link to="/authors">Authors</Link></li>
+                        <li><Link to={Path.Recipes}>Recipes</Link></li>
+                        <li><Link to={Path.Authors}>Authors</Link></li>
+                        {isAuthenticated && <li><Link to={Path.Chat}>Chat</Link></li>}
                     </ul>
                 </nav>
             }
+            {!hideQuery && <button className='toggle' onClick={toggleSearch}>{showQuery ? 'pages' : 'search'}</button>}
             {
                 !isAuthenticated ? (
                     <div className="auth-buttons">
@@ -66,15 +74,15 @@ export default function Header({ hideQuery }) {
                         <p className='signup'><Link to="/signup">Sign up</Link></p>
                     </div>
                 ) : (
-                    <div className="profile">
+                    <div onClick={toggleDropDown} className="profile">
                         <div className="subprofile">
-                            <p onClick={toggleDropDown} className="name">{username}</p>
+                            <p className="name">{username}</p>
                             <nav>
                                 <ul className={`dropdown ${displayStats == false ? 'hide' : 'show'}`}>
-                                    <li><Link to={`/authors/${userId}`}>Profile</Link></li>
+                                    <li><Link to={`${Path.Authors}/${userId}`}>Profile</Link></li>
                                     <li><Link to={Path.Logout}>Logout</Link></li>
                                     <li><Link to={Path.Settings}>Settings</Link></li>
-                                    <li><button onClick={toggleDropDown} type="button">Close ❌</button></li>
+                                    <li><button onClick={() => setDisplayStats(!displayStats)} type="button">Close</button></li>
                                 </ul>
                             </nav>
                         </div>

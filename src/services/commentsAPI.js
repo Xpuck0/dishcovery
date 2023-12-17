@@ -110,19 +110,9 @@ export async function updateCommentPartially(id, data, xadmin=false) {
 
 export async function getAllComments(recipeId) {
     const res = await fetch(base);
-
     const data = await res.json();
 
-
-
     const comments = await Promise.all(Object.values(data).filter(comment => comment && comment.recipeId === recipeId)) //.map(async el => {
-
-        // console.log(el)
-        // const recipe = await getRecipe(el.recipeId)
-        // const userData = await getUserByCollectionId(recipe._ownerId);
-        // el['username'] = userData.username;
-        // return el;
-    // }));
     return comments;
 }
 
@@ -140,4 +130,3 @@ export async function deleteComment(id) {
     return res;
 }
 
-// await createComment("c38a9332-2011-495f-9bbc-bdc57b830251", 'Obama', "very tasty! :_(")

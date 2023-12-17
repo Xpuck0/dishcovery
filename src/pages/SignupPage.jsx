@@ -69,7 +69,7 @@ export default function SignupPage() {
             <div className="login-page">
                 <div className="login-form">
                     <form onSubmit={submitHandler}>
-                        <p className="title"><Link to='/' className="title-link">dishcovery</Link></p>
+                        <p className="title"><Link to='/' className="title-signup">dishcovery</Link></p>
                         <h2>Sign up</h2>
 
                         <div className="input-wrapper">

@@ -12,10 +12,15 @@
 }
 
 .create-comment .form h3 {
-    min-width: fit-content;
+    max-width: 10% ;
+    overflow: hidden;
+    /* min-width: fit-content; */
     margin-right: 1em;
+    flex: 0 0 10%;
+}
 
-    flex: 1 1 10%;
+.create-comment .form a {
+    max-width: 10em;
 }
 
 .comment-section {
