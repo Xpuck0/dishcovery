@@ -37,7 +37,7 @@ export default function RecipeDetailsHeader({ recipe, setRecipe }) {
     return (
         <div className="recipe-page-header">
             <section className="title-wrapper">
-                <h1 className={`title ${!showItem && 'hide'}`}>{recipe.title}{isAuthenticated && userId == recipe._ownerId && (
+                <h1 className={`title ${!showItem && 'hide'}`}>{recipe.title}{isAuthenticated && userId == recipe._ownerId && showItem && (
                     <span onClick={editTitleHandler}>Edit</span>)}</h1>
                 {!showItem && (
                     <form className="edit-form title-edit" onSubmit={titleEditSubmit}>

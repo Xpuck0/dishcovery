@@ -22,7 +22,7 @@ export default function RecipeDetailsTags({ recipe, setRecipe, checkHandler }) {
         <>
             <div className="section-heading">
                 <Heading content="Tags" />
-                {isAuthenticated && userId == recipe._ownerId && (
+                {isAuthenticated && userId == recipe._ownerId && !showEdit && (
                     <span className="edit-btn" onClick={editClick}>Edit</span>
                 )}
             </div>

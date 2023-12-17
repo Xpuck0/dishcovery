@@ -42,7 +42,7 @@ export default function RecipeDetailsDescription({ children, recipe, setRecipe }
         <>
             <div className="section-heading">
                 <Heading content="Description" />
-                {isAuthenticated && userId == recipe._ownerId && (
+                {isAuthenticated && userId == recipe._ownerId && showItem && (
                     <span className="edit-btn" onClick={editDescriptionHandler}>Edit</span>
                 )}
             </div>

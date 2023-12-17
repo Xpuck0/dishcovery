@@ -21,7 +21,7 @@ export default function RecipeDetailsInstructions({ recipe, setRecipe, checkHand
             <div className="section-heading">
                 <Heading content="Instructions" />
                 {/* EDIT BUTTON */}
-                {isAuthenticated && userId == recipe._ownerId && (
+                {isAuthenticated && userId == recipe._ownerId && !showEdit && (
                     <span className="edit-btn" onClick={onEditClick}>Edit</span>
                 )}
             </div>

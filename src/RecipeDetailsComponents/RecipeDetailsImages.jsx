@@ -18,7 +18,7 @@ export default function RecipeDetailsImages({ recipe, setRecipe }) {
 
                 {/* EDIT BUTTON */}
                 {
-                    isAuthenticated && userId == recipe._ownerId && (
+                    isAuthenticated && userId == recipe._ownerId && !showEdit && (
                         <span className="edit-btn" onClick={() => {
                             setShowEdit(true)
                             setNewImages(recipe.images)

@@ -71,7 +71,7 @@ export default function RecipeList({
     }
 
     return (
-        <ul className={`recipe-list list ${location.pathname != Path.Recipes ? 'home': ''}`}>
+        <ul className={`recipe-list list ${location.pathname != Path.Recipes ? 'home': 'recipes'}`}>
             {
 
                 recipes.length

@@ -41,6 +41,13 @@ export default function ChatPage() {
         };
 
         getData();
+
+
+        const pollingInterval = 5000;
+
+        const intervalId = setInterval(getData, pollingInterval);
+
+        return () => clearInterval(intervalId);
     }, [userId]);
 
     const onInputChange = (e) => {

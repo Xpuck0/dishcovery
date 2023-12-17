@@ -24,7 +24,7 @@ export default function RecipeDetailsIngredients({ recipe, setRecipe, checkHandl
                 <Heading content="Ingredients" />
 
                 {/* EDIT BUTTON */}
-                {isAuthenticated && userId == recipe._ownerId && (
+                {isAuthenticated && userId == recipe._ownerId && !showEdit && (
                     <span className="edit-btn" onClick={onEditClick}>Edit</span>
                 )}
             </div>
