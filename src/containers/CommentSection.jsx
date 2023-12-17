@@ -7,6 +7,7 @@ import StarRating from "../components/StarRating";
 import "./CommentSection.css"
 import { AuthContext } from "../contexts/contexts";
 import convertTimestampToFormattedDate from "../utils/dateUtils";
+import sortCallback from "../utils/sortCallback";
 
 
 
@@ -143,7 +144,7 @@ export default function CommentSection() {
 
             <div className="comments">
                 <ul>
-                    {comments.length > 0 ? comments.map((a) => (
+                    {comments.length > 0 ? comments.sort((a, b) => sortCallback(a, b, 'date-descending')).map((a) => (
                         <li key={a._id} >
                             <section className="recipe-comment">
                                 <div className="header">
