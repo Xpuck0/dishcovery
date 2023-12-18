@@ -28,7 +28,7 @@ export async function login(email, password) {
     }
 }
 
-export async function signup({email, password, username, profilePicture, wallets}) {
+export async function signup({ email, password, username, profilePicture, wallets }) {
     try {
         console.log(email, username, password, profilePicture, wallets)
 
@@ -47,14 +47,6 @@ export async function signup({email, password, username, profilePicture, wallets
         })
 
         const user = await fetched.json();
-        // await request.post(`${base}/register`, {
-        //     email,
-        //     password,
-        //     username, 
-        //     profilePicture,
-        //     wallets
-        // })
-
         const result = await login(email, password);
         await createUser(result)
 
@@ -74,4 +66,3 @@ export async function logout() {
     localStorage.removeItem('accessToken');
 }
 
-const res = await login('peter@abv.bg', '123456')

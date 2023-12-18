@@ -57,3 +57,73 @@
 .user-details.wrapper {
     margin-bottom: 4em;
 }
+
+.user-details.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 4em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-details .profile {
+    border-radius: 1em;
+    margin: 2em 0;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.user-details .img-container {
+    margin: 2em auto;
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%;
+    background-color: #333; 
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+    transition: transform 0.3s ease;
+}
+
+.user-details .img-container:hover {
+    transform: scale(1.05); 
+}
+
+.user-details .img-container img {
+    width: 100%;
+    object-fit: cover; 
+}
+
+.user-details .follow {
+    font-weight: 700;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    background-color: #4CAF50; 
+    border-radius: 1em;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-details .follow:hover {
+    background-color: #45a049; 
+}
+
+.user-details h1.name {
+    font-size: 2.5rem; 
+    margin-top: 1em;
+    color: #fff;
+}
+
+.user-details .recipes,
+.user-details .liked-recipes {
+    width: 100%;
+    padding: 1em;
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

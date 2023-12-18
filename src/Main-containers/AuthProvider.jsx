@@ -44,9 +44,9 @@ export default function AuthProvider({
         email: auth.email,
         isAuthenticated: !!auth.accessToken,
         wallets: auth.wallets,
-        logoutHandler,
-        loginSubmitHandler: loginSubmitHandler,
-        registerSubmitHandler: registerSubmitHandler,
+        logoutHandler: logoutHandler || 0,
+        loginSubmitHandler: loginSubmitHandler || 0,
+        registerSubmitHandler: registerSubmitHandler || 0,
     }
 
     return (

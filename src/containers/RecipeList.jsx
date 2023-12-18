@@ -27,12 +27,11 @@ export default function RecipeList({
     useEffect(() => {
         const fetchData = async () => {
             const data = await recipeAPI.getAllRecipes();
-            console.log(data)
             setError('');
             if (liked_by) {
                 const res = data.filter(r => r.likes.includes(liked_by));
                 setRecipes(res)
-                if (!res.length){
+                if (!res.length) {
                     setError("There are no recipes liked by this user!")
                 }
             }
@@ -41,12 +40,10 @@ export default function RecipeList({
                 setRecipes(res)
                 if (!res.length) {
                     setError("There are no recipes published by this user!")
-                } 
+                }
             } else if (tag) {
                 const arr = [];
-                console.log(data)
                 data.map(el => {
-                    console.log(el)
                     if (el.tags.includes(tag)) {
                         arr.push(el);
                     }
@@ -65,23 +62,26 @@ export default function RecipeList({
         fetchData()
     }, [liked_by, owner_id, tag]);
 
+    const filteredRecipes = recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity <= 0 ? recipes.length : quantity).filter(a => a && a.title && a.title.toLowerCase().includes(query.toLowerCase()));
 
     if (!dataFetched) {
         return null;
     }
 
     return (
-        <ul className={`recipe-list list ${location.pathname != Path.Recipes ? 'home': 'recipes'}`}>
+        <ul className={`recipe-list list ${location.pathname != Path.Recipes ? 'home' : 'recipes'}`}>
             {
 
-                recipes.length
-                    ?
+                filteredRecipes.length > 0 ? filteredRecipes.map(r => (
 
-                    recipes.sort((a, b) => sortCallback(a, b, order)).slice(0, quantity <= 0 ? recipes.length : quantity).filter(a => a && a.title && a.title.toLowerCase().includes(query.toLowerCase())).map(r => (
+                    location.pathname == Path.Recipes ? <RecipeCard key={r._id} r={r} show={show} /> : <RecipeCardHome key={r._id} r={r} />
+                ))
+                // check if the user is on the author details page which looks like /authors/:id and write <p className="error">{error}</p> if the author has no recipes
+                // example  
+                // no write it
 
-                        location.pathname == Path.Recipes ? <RecipeCard key={r._id} r={r} show={show} /> : <RecipeCardHome  key={r._id} r={r} /> 
-                    ))
-                    : <p className="error">{error}</p>
+
+                    : location.pathname.startsWith(Path.Recipes) ? <p className="error">{error}</p> : <p className="error">There are no recipes</p>
             }
         </ul>
     )

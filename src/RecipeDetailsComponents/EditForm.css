@@ -64,23 +64,70 @@
     /* width: 3em */
 }
 
-.recipe-page-wrapper .edit-arr li {
-    color: navajowhite;
-    word-wrap: break-word;
-}
 
 .recipe-page-wrapper .edit-arr li:before {
     color: white;
 }
-.recipe-page-wrapper .edit-arr li span {
-    color: darkred;
-    width: 1em;
-    height: 1em;
-}
-
 
 .recipe-page-wrapper .edit-arr li span:hover {
     cursor: pointer;
     border: 1px solid red;
     border-radius: 50%;
+}
+
+.recipe-page-wrapper .edit-arr li {
+    /* color: navajowhite; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1em;
+    margin-bottom: 0.5em;
+    word-wrap: break-word;
+    /* background-color: white; */
+    height: 2em;
+}
+
+.recipe-page-wrapper .edit-arr li span {
+    display: inline-block;
+    margin-left: 1em;
+    color: darkred;
+    font-weight: bold;
+    padding: 0 0.4em;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.recipe-page-wrapper .edit-arr li span:hover {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.recipe-page-wrapper .edit-arr,
+.recipe-page-wrapper .edit-recipe-form {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.recipe-page-wrapper .edit-recipe-form .input textarea {
+    background-color: #333;
+    color: #ddd;
+    border: 2px solid #555;
+    transition: border-color 0.2s;
+}
+
+.recipe-page-wrapper .edit-recipe-form .input textarea:focus {
+    border-color: mediumspringgreen;
+}
+
+.recipe-page-wrapper .edit-recipe-form .buttons button {
+    background-color: #333;
+    color: #ddd;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    margin-right: 0.5em;
+}
+
+.recipe-page-wrapper .edit-recipe-form .buttons button:hover {
+    background-color: mediumspringgreen;
 }

@@ -6,7 +6,7 @@ import "./EditForm.css"
 export default function EditForm({ type, showEdit, setShowEdit, recipe, setRecipe, newArr, setNewArr }) {
     // const [newArr, setNewArr] = useState([]);
     const [prompt, setPrompt] = useState('');
-
+    const [error, setError] = useState('');
     const { id } = useParams()
 
     const editCancel = (e) => {
@@ -31,7 +31,6 @@ export default function EditForm({ type, showEdit, setShowEdit, recipe, setRecip
             const updatedArr = [...newArr, prompt];
 
             setNewArr(updatedArr);
-
             try {
                 const res = await updateRecipe(id, { ...recipe, [type]: updatedArr }, true);
                 console.log(res)
@@ -39,8 +38,11 @@ export default function EditForm({ type, showEdit, setShowEdit, recipe, setRecip
             } catch (error) {
                 console.error('Error updating recipe:', error);
             }
-
+            
+            setError('');
             setPrompt('');
+        } else {
+            setError('Cannot be empty!');
         }
     }
 
@@ -64,6 +66,7 @@ export default function EditForm({ type, showEdit, setShowEdit, recipe, setRecip
                 <div className="input">
                     <label htmlFor="prompt">New {type}</label>
                     <textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)}></textarea>
+                    {error && <p className="error">{error}</p>}
                 </div>
                 <div className="buttons">
                     <button type="submit">Add</button>

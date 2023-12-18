@@ -52,6 +52,7 @@ export async function getUserByCollectionId(id) {
     try {
         const res = await getAllUsers();
         const data = res.filter(o => o._collectionsId == id);
+        // console.log(data)
         return data[0];
     } catch (err) {
         console.log(err)
@@ -111,19 +112,19 @@ export async function deleteUser(id) {
     }
 }
 
-const data = {
-    username: "ivan veliki",
-    email: "ivan@veliki.com",
-    password: "34234",
-    images: ["image1", "image2"],
-    following: ["tempID1", "tempID2"],
-    followers: ["tempID3", "tempID4"],
+// const data = {
+//     username: "ivan veliki",
+//     email: "ivan@veliki.com",
+//     password: "34234",
+//     images: ["image1", "image2"],
+//     following: ["tempID1", "tempID2"],
+//     followers: ["tempID3", "tempID4"],
 
-    wallets: {
-        monero: "monerowallet",
-        bitcoin: "bitcoinwallet"
-    }
-}
+//     wallets: {
+//         monero: "monerowallet",
+//         bitcoin: "bitcoinwallet"
+//     }
+// }
 
 // await updateUser("3d3e3f53-fe64-4d06-bc9c-1a168767593b", data);
 // await createUser(data);

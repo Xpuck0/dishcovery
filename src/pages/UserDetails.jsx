@@ -17,6 +17,7 @@ export default function UserDetails() {
 
     useEffect(() => {
         async function get(id) {
+            console.log
             let r;
             try {
                 r = await getUserByCollectionId(id)
@@ -43,7 +44,6 @@ export default function UserDetails() {
         <>
             <Header hideQuery={true} />
             <div className="user-details wrapper">
-                {console.log(user.profilePicture)}
                 {user.profilePicture && (
                     <div className="profile">
                         <div className="img-container">

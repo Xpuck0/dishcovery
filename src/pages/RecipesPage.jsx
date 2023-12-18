@@ -8,7 +8,6 @@ import "./RecipesPage.css"
 import Heading from "../components/Heading";
 import Path from "../paths";
 import { AuthContext } from "../contexts/contexts";
-// import Footer from "../Main-containers/Footer";
 
 export default function RecipesPage() {
     const [form, setForm] = useState({

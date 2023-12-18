@@ -16,7 +16,7 @@ export default function Images({ images }) {
                 className="nav-btn"
                 onClick={() => {
                     const container = sliderRef.current;
-                    container.scrollLeft -= scrollAmount; // Scroll left by the specified amount
+                    container.scrollLeft -= scrollAmount; 
                 }
                 }
             >
@@ -43,7 +43,7 @@ export default function Images({ images }) {
                 className="nav-btn"
                 onClick={() => {
                     const container = sliderRef.current;
-                    container.scrollLeft += scrollAmount; // Scroll right by the specified amount
+                    container.scrollLeft += scrollAmount; 
                 }}
             >
                 <FaChevronRight/>

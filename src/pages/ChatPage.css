@@ -2,9 +2,11 @@
     width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 2em;
     padding-bottom: 200px;
+    flex-direction: column-reverse;
+    overflow-y: auto;
 }
 
 .chat-page .chat li {
@@ -27,7 +29,6 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%)
-
 }
 
 .chat-page .input:hover {
@@ -36,7 +37,7 @@
 
 
 .chat-page .input h3 {
-    padding: .2em .2em 0 0 ;
+    padding: .2em .2em 0 0;
 
     flex: 0 1 15%;
     text-align: center;
@@ -68,7 +69,7 @@
 .chat-page .input form .textarea-wrapper .error {
     color: red;
     font-size: .9em;
-} 
+}
 
 .chat-page .input form .textarea-wrapper textarea {
     width: 100%;
@@ -97,7 +98,7 @@
     border-radius: 1em;
     background-color: greenyellow;
     transition: background-color .15s ease-in-out,
-                color .15s ease-in-out;
+        color .15s ease-in-out;
 }
 
 .chat-page .input form .sent {

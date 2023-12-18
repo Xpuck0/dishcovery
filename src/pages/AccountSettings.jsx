@@ -31,6 +31,8 @@ export default function AccountSettings() {
     const [persistedState, setPersistedState] = usePersistedState('auth')
     const nav = useNavigate();
 
+    const hasWallets = Object.values(newCredentials.wallets).some(value => value.trim() !== '');
+
     useEffect(() => {
         async function fetchUser(id) {
             let user;
@@ -97,12 +99,24 @@ export default function AccountSettings() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log(newCredentials)
-        const res = await updateUser(userId, { ...jsonstoreUser, username: newCredentials.username || jsonstoreUser.username, profilePicture: newCredentials.profilePicture || jsonstoreUser.profilePicture, wallets: newCredentials.wallets || jsonstoreUser.profilePicture });
-        setJsonstoreUser(res);
-        setPersistedState(() => ({...persistedState, username: res.username, wallets: res.wallets})); // Corrected line
-        console.log(res)
-    }
+        console.log(newCredentials);
+
+        const updatedUser = {
+            ...jsonstoreUser,
+            username: newCredentials.username || jsonstoreUser.username,
+            profilePicture: newCredentials.profilePicture || jsonstoreUser.profilePicture,
+            wallets: hasWallets ? newCredentials.wallets : jsonstoreUser.wallets, 
+        };
+
+        try {
+            const res = await updateUser(userId, updatedUser);
+            setJsonstoreUser(res);
+            setPersistedState(() => ({ ...persistedState, username: res.username, wallets: res.wallets }));
+            console.log(res);
+        } catch (err) {
+            console.log(err); 
+        }
+    };
 
     if (loading) {
         return <h1>Loading...</h1>

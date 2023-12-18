@@ -4,26 +4,15 @@ import Heading from "../components/Heading"
 
 import { getUserByCollectionId } from "../services/usersAPI"
 
-export default function RecipeDetailsWallets({recipe}) {
-    // const [owner, setOwner] = useState({})
-
-    // useEffect(() => {
-    //     async function get() {
-    //         // console.log(props)
-    //         console.log(ownerId)
-    //         const res = await getUserByCollectionId(ownerId);
-    //         console.log(res)
-    //         setOwner(res)
-    //     }
-
-    //     get()
-    // }, [])
+export default function RecipeDetailsWallets({ recipe }) {
+    const hasWallets = Object.values(recipe.wallets).some(value => value.trim() !== '');
 
     return (
         <>
-            
-            {Object.keys(recipe.wallets).length && (
+
+            {hasWallets && (
                 <>
+                    {console.log(Object.values(recipe.wallets))}
                     <Heading content="Contribute" />
 
                     <h3 className="author"><Link to={`/authors/${recipe._ownerId}`}>{recipe.author}</Link></h3>

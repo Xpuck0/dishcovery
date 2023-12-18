@@ -46,3 +46,13 @@
     gap: 1em;
 }
 
+.recipe-list .error {
+    text-align: center;
+    height:100%;
+    transform: translateY(40%);
+    width: 100%;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: paleturquoise
+}
+

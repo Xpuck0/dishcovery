@@ -85,7 +85,7 @@ export async function updateChat(id, data, xadmin=false) {
         body: JSON.stringify(data)
     });
 
-    return res;
+    return await res.json();
 }
 
 export async function deleteChat(id) {

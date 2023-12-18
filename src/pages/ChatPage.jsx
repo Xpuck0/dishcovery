@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/contexts"
 import { createChat, deleteChat, getAllChats } from "../services/chatAPI";
@@ -17,37 +17,56 @@ export default function ChatPage() {
     const [input, setInput] = useState('');
     const [err, setErr] = useState(false);
     const [buttonContent, setButtonContent] = useState('Submit');
+    const bottomRef = React.useRef();
+
+
+    useEffect(() => {
+        if (bottomRef.current) {
+            bottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        }
+    }, [chat]);
+
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const res = await getAllChats();
-
                 const updatedChats = await Promise.all(
                     res.map(async (chat) => {
-                        const user = await getUserByCollectionId(chat._ownerId);
-                        return {
-                            ...chat,
-                            username: user.username,
-                            profilePicture: user.profilePicture,
-                        };
+                        try {
+                            const user = await getUserByCollectionId(chat._ownerId);
+                            return {
+                                ...chat,
+                                username: user.username,
+                                profilePicture: user.profilePicture,
+                            };
+                        } catch (error) {
+                            console.error("Error fetching user data for chat", error);
+                            return {
+                                ...chat,
+                                username: "Unknown",
+                                profilePicture: "",
+                            };
+                        }
                     })
                 );
+                console.log(updatedChats)
 
                 setChat(updatedChats);
             } catch (error) {
-                console.error("Error fetching chat data:", error);
+                console.log("Error fetching chat data:", error);
             }
         };
 
         getData();
 
 
-        const pollingInterval = 5000;
+        // const pollingInterval = 5000;
 
-        const intervalId = setInterval(getData, pollingInterval);
+        // const intervalId = setInterval(getData, pollingInterval);
 
-        return () => clearInterval(intervalId);
+        // return () => clearInterval(intervalId);
+
     }, [userId]);
 
     const onInputChange = (e) => {
@@ -63,6 +82,19 @@ export default function ChatPage() {
             setChat(updatedChats);
         }
     }
+
+    const updateChatState = (updatedChat) => {
+        setChat(prevChats => {
+            const index = prevChats.findIndex(c => c._id === updatedChat._id);
+            if (index !== -1) {
+                const newChats = [...prevChats];
+                newChats[index] = updatedChat;
+                return newChats;
+            }
+            return prevChats;
+        });
+    }
+
 
     const submitInput = async (e) => {
         e.preventDefault();
@@ -83,19 +115,20 @@ export default function ChatPage() {
         } else {
             setErr(true);
         }
-
     }
+
 
     return (
         <>
             <Header hideQuery={true} />
-            <div className="chat-page">
+            <div className="chat-page" ref={bottomRef}>
                 <Heading content="Chat Page" />
                 <ul className="chat">
                     {chat.length ? chat.sort((a, b) => sortCallback(a, b, "date-descending")).map(r => (
-                        <li key={r._id}><ChatNode chat={r} deleteChatFunc={deleteChatFunc} /></li>
+                        <li key={r._id}><ChatNode chat={r} deleteChatFunc={deleteChatFunc} updateChatState={updateChatState}/></li>
                     )) : (<li>Chat is empty</li>)}
                 </ul>
+
                 <div className="input">
                     <h3><Link to={`/authors/${userId}`}>{username}</Link></h3>
                     <form onSubmit={submitInput}>
@@ -108,5 +141,7 @@ export default function ChatPage() {
                 </div>
             </div>
         </>
-    )
+    );
+
+   
 }

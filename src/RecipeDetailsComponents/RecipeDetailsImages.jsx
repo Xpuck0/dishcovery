@@ -1,4 +1,7 @@
 import { useContext, useState } from "react"
+
+import useImageLoader from "../hooks/useImageLoader";
+
 import Images from "../containers/Images";
 import Heading from "../components/Heading"
 import { AuthContext } from "../contexts/contexts"
@@ -14,15 +17,20 @@ export default function RecipeDetailsImages({ recipe, setRecipe }) {
     return (
         <>
             <div className="section-heading">
-                <Heading content="Images" />
+                {(recipe.images?.length > 0 && userId != recipe._ownerId) && <Heading content="Images" />}
 
                 {/* EDIT BUTTON */}
                 {
-                    isAuthenticated && userId == recipe._ownerId && !showEdit && (
-                        <span className="edit-btn" onClick={() => {
-                            setShowEdit(true)
-                            setNewImages(recipe.images)
-                        }}>Edit</span>
+                    isAuthenticated && userId == recipe._ownerId && (
+                        <>
+                            <Heading content={"Images"} />
+                            {!showEdit && (
+                                <span className="edit-btn" onClick={() => {
+                                    setShowEdit(true)
+                                    setNewImages(recipe.images)
+                                }}>Edit</span>
+                            )}
+                        </>
                     )
                 }
             </div>
@@ -32,7 +40,7 @@ export default function RecipeDetailsImages({ recipe, setRecipe }) {
 
                 {recipe.images?.length ? (
                     <Images key={recipe._id} images={recipe.images} />
-                ): null}
+                ) : null}
             </div>
 
             {/* IMAGE EDIT */}

@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import convertTimestampToFormattedDate from "../utils/dateUtils";
 import "./ChatNode.css";
@@ -5,7 +6,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/contexts";
 import { updateChat, deleteChat } from "../services/chatAPI";
 
-export default function ChatNode({ chat, deleteChatFunc }) {
+export default function ChatNode({ chat, deleteChatFunc, updateChatState }) {
     const { isAuthenticated, userId } = useContext(AuthContext);
     const [editing, setEditing] = useState(false);
     const [newContent, setNewContent] = useState(chat.content);
@@ -27,11 +28,13 @@ export default function ChatNode({ chat, deleteChatFunc }) {
         }
     }
 
+
     const onSubmit = async (e) => {
         e.preventDefault();
-        if (newContent.length) {
-            const res = await updateChat(chat._id, { ...chat, content: newContent }, true);
-            chat.content = newContent;
+        if (newContent.trim().length) {
+            const res = await updateChat(chat._id, { ...chat, content: newContent, edited: true }, true);
+            console.log(res)
+            updateChatState(res)
             setEditing(false);
             setError(false)
         } else {
@@ -51,6 +54,7 @@ export default function ChatNode({ chat, deleteChatFunc }) {
                 <div className="heading">
                     <Link className="username" to={`/authors/${chat._ownerId}`}>{chat.username}</Link>
                     <p className="date">{convertTimestampToFormattedDate(chat._createdOn)}</p>
+                    {chat.edited && <p className="edited">(edited)</p>}
                     {isAuthenticated && userId == chat._ownerId && !editing && (
                         <div className="buttons">
                             <button className="edit-btn" type="button" onClick={enableEdit}>Edit</button>
@@ -65,6 +69,7 @@ export default function ChatNode({ chat, deleteChatFunc }) {
                         <form onSubmit={onSubmit} className="edit-form">
                             <textarea defaultValue={chat.content} onChange={changeEdit}></textarea>
                             {error && <p className="error">Text should be at least a character long!</p>}
+                            <button type="button" onClick={() => {setEditing(false); setNewContent(false)}}>Cancel</button>
                             <button type="submit">Submit</button>
                         </form>
                     )}
