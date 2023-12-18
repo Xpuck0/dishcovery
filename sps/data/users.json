@@ -1,0 +1,46 @@
+{
+	"users": [
+		{
+			"id": "1",
+			"username": "cosmicChef42",
+			"email": "cosmicChef42@example.com",
+			"password": "hashed_password_1",
+			"recipes": [],
+			"favorites": [],
+			"following": [],
+			"followers": [],
+			"wallet": {
+				"bitcoin": "cosmicBitcoin42",
+				"monero": "cosmicMonero42"
+			}
+		},
+		{
+			"id": "2",
+			"username": "quantumFoodie69",
+			"email": "quantumfod@example.com",
+			"password": "hashed_password_2",
+			"recipes": [],
+			"favorites": [],
+			"following": [],
+			"followers": [],
+			"wallet": {
+				"bitcoin": "22222222222",
+				"monero": "2222222222222"
+			}
+		},
+		{
+			"id": "3",
+			"username": "akljcv",
+			"email": "ckncvnnnk@example.com",
+			"password": "hashed_password_3",
+			"recipes": [],
+			"favorites": [],
+			"following": [],
+			"followers": [],
+			"wallet": {
+				"bitcoin": "cosmi3333333cBitcoin423",
+				"monero": "3333333"
+			}
+		}
+	]
+}

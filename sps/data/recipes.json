@@ -1,0 +1,21 @@
+{
+	"recipes": [
+
+		{
+			"id": "1",
+      			"title": "Galactic Goulash",
+      			"author": "cosmicChef42",
+      			"ingredients": ["Quantum Meat", "Exoplanet Vegetables", "Star Sauce"],
+      			"instructions": [
+				"Mix ingredients in a black hole-resistant bowl.",
+				"Stir clockwise until you achieve a wormhole-like consistency.",
+				"Serve in anti-gravity dishes."
+			],
+      			"tags": ["extraterrestrial", "interstellar", "delicious"],
+      			"image_urls": [ 
+				"$HOME/Pictures/background2.png"
+			],
+			"likes": 69
+		}
+	]
+}
