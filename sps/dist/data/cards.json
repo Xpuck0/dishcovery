@@ -1,0 +1,14 @@
+{
+	"1": {
+		"title": "Some cool title",
+		"author": "John kennedy",
+		"text": "Lorem idk az sum barovec",
+		"_id": "1"
+	},
+	"2": {
+		"title": " bad title",
+		"author": "John kennedy",
+		"text": "Lorem aaa kkjjjjjjjjjjjkkkk idk az sum barovec",
+		"_id": "2"
+	}
+}	

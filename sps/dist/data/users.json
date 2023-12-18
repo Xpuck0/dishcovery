@@ -1,0 +1,100 @@
+{
+    "3d3e3f53-fe64-4d06-bc9c-1a168767593b": {
+        "_collectionsId": "3d3e3f53-fe64-4d06-bc9c-1a168767593b",
+        "_id": "3d3e3f53-fe64-4d06-bc9c-1a168767593b",
+        "email": "peter@abv.bg",
+        "username": "Peter",
+        "hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+        "password": "123456",
+        "profilePicture": "https://i.pinimg.com/originals/68/76/99/6876993a25a8fc274cc09aee12171034.jpg",
+        "wallets": {
+            "monero": "monerowallet",
+            "bitcoin": "bitcoinwallet"
+        }
+    },
+    "881b4437-9d7a-47d6-98aa-50db91e7b6aa": {
+        "_collectionsId": "881b4437-9d7a-47d6-98aa-50db91e7b6aa",
+        "_id": "881b4437-9d7a-47d6-98aa-50db91e7b6aa",
+        "email": "george@abv.bg",
+        "username": "George",
+        "password": "123456",
+        "hashedPassword": "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+        "profilePicture": "https://avatarfiles.alphacoders.com/233/233892.jpg",
+        "created": "2023-11-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        }
+    },
+    "60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
+        "_id": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        "_collectionsId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        "email": "admin@abv.bg",
+        "username": "Admin",
+        "password": "admin",
+        "hashedPassword": "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302",
+        "profilePicture": "https://miro.medium.com/v2/resize:fit:679/0*ngAthWxOvKZHvsw9",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        }
+
+    },
+    "223e3f53-fe64-4d06-bc9c-1a168767593b": {
+        "username": "miro",
+        "email": "ivan@veliki.com",
+        "password": "34234",
+        "profilePicture": "https://avatarfiles.alphacoders.com/368/368754.jpg",
+        "created": "2020-10-16T19:42:04.330Z",
+        "likes": 3,
+        "recipes": [
+            "85d6f2b4-9821-4edd-919c-cd2cf1eee2be",
+            "3d3e3f53-fe64-4d06-bc9c-1a168767593b"
+        ],
+        "wallets": {
+            "monero": "monerowallet",
+            "bitcoin": "bitcoinwallet"
+        },
+        "_id": "223e3f53-fe64-4d06-bc9c-1a168767593b",
+        "_collectionsId": "223e3f53-fe64-4d06-bc9c-1a168767593b"
+    },
+    "Ab1b4437-9d7a-47d6-98aa-50db91e7b6aa": {
+        "username": "dido",
+        "email": "kkkkjkj@@@",
+        "password": "34234",
+        "profilePicture": "https://avatarfiles.alphacoders.com/368/368754.jpg",
+        "created": "2023-11-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        },
+        "_id": "Ab1b4437-9d7a-47d6-98aa-50db91e7b6aa",
+        "_collectionsId": "Ab1b4437-9d7a-47d6-98aa-50db91e7b6aa"
+    },
+    "4441717e-1026-4619-9d1d-92aa72c0cff6": {
+        "username": "Kiro",
+        "email": "dddddddkkkkjkj@@@",
+        "password": "34234",
+        "profilePicture": "https://avatarfiles.alphacoders.com/368/368754.jpg",
+        "created": "2021-10-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        },
+        "_id": "4441717e-1026-4619-9d1d-92aa72c0cff6",
+        "_collectionsId": "4441717e-1026-4619-9d1d-92aa72c0cff6"
+    },
+    "eb5fa8f8-038b-4916-b124-db9b6bf5efbb": {
+        "username": "grisho",
+        "email": "dddddddkkkkjkj@@@",
+        "password": "34234",
+        "profilePicture": "https://avatarfiles.alphacoders.com/368/368754.jpg",
+        "created": "2022-10-16T19:42:04.330Z",
+        "wallets": {
+            "bitcoin": "bitcoinwallet",
+            "monero": "monerowallet"
+        },
+        "_id": "eb5fa8f8-038b-4916-b124-db9b6bf5efbb",
+        "_collectionsId": "eb5fa8f8-038b-4916-b124-db9b6bf5efbb"
+    }
+}
