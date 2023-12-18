@@ -55,7 +55,7 @@ export default function UserDetails() {
                 )
                 }
 
-                <Heading content="Recipes" />
+                <Heading content="Recipes published by user" />
                 <div className="recipes">
                     <RecipeList owner_id={id} show={'all'} />
                 </div>
