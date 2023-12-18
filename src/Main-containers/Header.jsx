@@ -83,7 +83,7 @@ export default function Header({ hideQuery }) {
                                     <li><Link to={`${Path.Authors}/${userId}`}>Profile</Link></li>
                                     <li><Link to={Path.Logout}>Logout</Link></li>
                                     <li><Link to={Path.Settings}>Settings</Link></li>
-                                    <li><button onClick={() => setDisplayStats(!displayStats)} type="button">Close</button></li>
+                                    {/* <li><button onClick={() => setDisplayStats(false)} type="button">Close</button></li> */}
                                 </ul>
                             </nav>
                         </div>

@@ -86,13 +86,20 @@
     font-size: 1em;
     font-weight: 600;
     color: white;
-    background-color: unset;
-    border: 2px solid white;
+    background-color: red;
+    border: 2px solid red;
     padding: .5em 1em;
     width: 8em;
     text-align: center;
     text-decoration: none;
     transform: background-color .3s ease-in;
+}
+
+.recipe-page-wrapper .delete-button:hover {
+    background-color: unset;
+    color: red;
+    border: 2px solid red;
+    cursor: pointer;
 }
 
 .recipe-page-wrapper .like-button.true {
