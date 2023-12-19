@@ -1,7 +1,7 @@
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react"
 import { AuthContext } from "../contexts/contexts";
-import { getUser } from "../services/usersAPI";
+import { getAllUsers, getUser } from "../services/usersAPI";
 import { signup } from "../services/authAPI";
 import "./LoginPage.css"
 import useForm from "../hooks/useForm";
@@ -32,6 +32,7 @@ export default function SignupPage() {
     })
     const [visible, setVisible] = useState(false);
     const [errors, setErrors] = useState({});
+    const [users, setUsers] = useState([])
 
     const nav = useNavigate();
 
@@ -39,18 +40,33 @@ export default function SignupPage() {
         if (isAuthenticated) {
             nav(Path.Home)
         }
+        const getData = async () => {
+            setUsers(await getAllUsers())
+        }
+
+        getData();
     }, [isAuthenticated])
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         if (credentials.password.length < 4) {
-            setErrors(old => ({ ...old, email: "Password should be at least 4 characters long!" }))
-            console.log(errors)
+            setErrors(old => ({ ...old, password: "Password should be at least 4 characters long!" }))
+            // console.log(errors)
         } else {
-            onSubmit(e);
+            setErrors(old => ({ ...old, password: "" }))
         }
 
+        if (users.some(user => user.email === credentials.email)) {
+            setErrors(old => ({ ...old, email: "Email already exists!" }))
+            // console.log(errors)
+        } else {
+            setErrors(old => ({ ...old, email: "" }))
+        }
+
+        if (credentials.password.length >= 4 && !users.some(user => user.email === credentials.email)) {
+            onSubmit(e);
+        }
     }
 
     const onChangeWallet = (e) => {
@@ -75,12 +91,13 @@ export default function SignupPage() {
                         <div className="input-wrapper">
                             <label htmlFor="email">* Email</label>
                             <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} />
+                            {errors.email && <p className="error">{errors.email}</p>}
                         </div>
 
                         <div className="input-wrapper">
                             <label htmlFor="password">* Password</label>
                             <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
-                            <p className="error"></p>
+                            {errors.password && <p className="error">{errors.password}</p>}
                         </div>
 
                         {/* <p className="error" style={{ display: visible ? 'block' : 'none' }}>Passwords do not match!</p> */}

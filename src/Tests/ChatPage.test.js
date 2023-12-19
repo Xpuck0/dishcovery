@@ -1,10 +1,8 @@
-
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { AuthContext } from '../contexts/contexts';
+import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import ChatPage from '../pages/ChatPage';
-import { getAllChats } from '../services/chatAPI';
-
+import { AuthContext } from '../contexts/contexts';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const user = {
   userId: '3d3e3f53-fe64-4d06-bc9c-1a168767593b',
@@ -18,28 +16,49 @@ const user = {
   }
 }
 
+jest.mock('../services/chatAPI', () => ({
+  getAllChats: jest.fn(),
+  createChat: jest.fn(),
+  deleteChat: jest.fn(),
+}));
 
-// jest.mock('../services/chatAPI', () => ({
-//   getAllChats: jest.fn().mockResolvedValue([]),
-//   createChat: jest.fn(),
-//   deleteChat: jest.fn(),
-// }));
+jest.mock('../services/usersAPI', () => ({
+  getUserByCollectionId: jest.fn(),
+}));
 
-// jest.mock('../services/usersAPI', () => ({
-//   getUserByCollectionId: jest.fn().mockResolvedValue({ username: 'Test', profilePicture: 'test.jpg' }),
-// }));
+HTMLElement.prototype.scrollIntoView = jest.fn();
 
-describe.skip('ChatPage', () => {
-  it('renders without crashing', async () => {
+describe('ChatPage', () => {
+  const mockUser = user;
 
-    const chat = await getAllChats();
-    render(
-      <AuthContext.Provider value={user}>
-        <ChatPage />
+  it('renders without crashing', () => {
+    act(() => {
+      render(
+        <AuthContext.Provider value={mockUser}>
+          <Router>
+            <ChatPage />
+          </Router>
+        </AuthContext.Provider>
+      );
+    });
+  });
+
+  it('submits input on form submit', async () => {
+    const { getByPlaceholderText, getByText } = render(
+      <AuthContext.Provider value={mockUser}>
+        <Router>
+          <ChatPage />
+        </Router>
       </AuthContext.Provider>
     );
-    expect(screen.getByText('Submit')).toBeInTheDocument();
-  });
-  it('renders without crashing', () => { })
 
+    const input = getByPlaceholderText('Make a chat...');
+    const button = getByText('Submit');
+
+    fireEvent.change(input, { target: { value: 'Test message' } });
+    fireEvent.click(button);
+
+    await waitFor(() => expect(getByText('Sent')).toBeInTheDocument());
+
+  });
 });

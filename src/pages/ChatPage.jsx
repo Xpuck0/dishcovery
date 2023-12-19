@@ -21,10 +21,10 @@ export default function ChatPage() {
 
 
     useEffect(() => {
-        if (bottomRef.current) {
+        if (bottomRef.current && typeof bottomRef.current.scrollIntoView === 'function') {
             bottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
         }
-    }, [chat]);
+    }, [chat]); 
 
 
     useEffect(() => {
